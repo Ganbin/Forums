@@ -9,6 +9,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	forums.widgets.centerComp = $$('centerComp');
 	forums.widgets.mainComp = $$('mainComp');
 	forums.widgets.tabViewNav = $$('tabViewNav');
+	forums.widgets.passwordForgottenTxt = $$('passwordForgottenTxt');
 	
 	// Bottom left buttons
 	forums.widgets.managementBtn = $$('managementBtn');
@@ -23,9 +24,12 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	forums.widgets.subscriptionOkDialog = $$('subscriptionOkDialog');
 	forums.widgets.subscriptionDialog = $$('subscriptionDialog');
 	forums.widgets.confirmPostDeleteDialog = $$('confirmPostDeleteDialog');
+	forums.widgets.passwordResetDialog = $$('passwordResetDialog');
 	
 	
 // @region namespaceDeclaration// @startlock
+	var passwordResetDialog = {};	// @ModalDialog
+	var passwordForgottenTxt = {};	// @richText
 	var replyToPostBtn = {};	// @icon
 	var userPrefBtn = {};	// @buttonImage
 	var alreadySubscribedDialog = {};	// @ModalDialog
@@ -53,6 +57,16 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 // @endregion// @endlock
 
 // eventHandlers// @lock
+
+	passwordResetDialog.onValidClick = function passwordResetDialog_onValidClick (event)// @startlock
+	{// @endlock
+		forums.widgets.passwordResetDialog.closeDialog()
+	};// @lock
+
+	passwordForgottenTxt.click = function passwordForgottenTxt_click (event)// @startlock
+	{// @endlock
+		forums.widgets.centerComp.loadComponent('/Components/passwordForgotten.waComponent');
+	};// @lock
 
 	replyToPostBtn.click = function replyToPostBtn_click (event)// @startlock
 	{// @endlock
@@ -255,6 +269,8 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	};// @lock
 
 // @region eventManager// @startlock
+	WAF.addListener("passwordResetDialog", "onValidClick", passwordResetDialog.onValidClick, "WAF");
+	WAF.addListener("passwordForgottenTxt", "click", passwordForgottenTxt.click, "WAF");
 	WAF.addListener("posts", "oncontentHTMLAttributeChange", postsEvent.oncontentHTMLAttributeChange, "WAF", "contentHTML");
 	WAF.addListener("replyToPostBtn", "click", replyToPostBtn.click, "WAF");
 	WAF.addListener("userPrefBtn", "click", userPrefBtn.click, "WAF");

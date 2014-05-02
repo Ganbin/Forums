@@ -58,7 +58,7 @@ function constructor (id) {
 
 	urlBtn.click = function urlBtn_click (event)// @startlock
 	{// @endlock
-		forums.insertTag('[url]','[/url]',getHtmlId('messageContentTxt'),'url');
+		forums.promptUrl('Enter a valid URL.','Enter an URL (E.g. http://www.ajar.ch)');
 	};// @lock
 
 	underlineBtn.click = function underlineBtn_click (event)// @startlock

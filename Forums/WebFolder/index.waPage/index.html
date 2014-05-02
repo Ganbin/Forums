@@ -23,21 +23,52 @@
         
         
         
-    		<meta name="WAF.config.loadJS" content="scripts/namespace.js"/>
+    		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<meta name="WAF.config.loadJS" content="scripts/namespace.js"/>
 		<meta name="WAF.config.loadJS" id="waf-script" content="scripts/index.js"/>
 		<meta name="WAF.config.loadJS" content="/scripts/moment-with-langs.min.js"/>
 		<meta name="WAF.config.loadJS" content="/scripts/jquery.dotdotdot.min.js"/>
 		<meta name="WAF.config.loadJS" content="/scripts/highlight/highlight.pack.js"/>
+		<meta name="WAF.config.loadJS" content="/scripts/alertify/alertify.min.js"/>
 		
 		
 		
 		
 		
-		<meta name="WAF.config.loadCSS" content="styles/index.css" id="waf-interface-css"/>
-		<meta name="WAF.config.loadCSS" content="/application.css" id="waf-project-css"/>
+		
+		<meta name="WAF.config.loadCSS" id="waf-interface-css" content="styles/index.css"/>
+		<meta name="WAF.config.loadCSS" id="waf-project-css" content="/application.css"/>
 		<meta name="WAF.config.loadCSS" content="styles/forums.css"/>
 		<meta name="WAF.config.loadCSS" content="styles/xbbcode.css"/>
 		<meta name="WAF.config.loadCSS" content="/scripts/highlight/styles/default.css"/>
+		<meta name="WAF.config.loadCSS" content="/scripts/alertify/alertify.core.css"/>
+		<meta name="WAF.config.loadCSS" content="/scripts/alertify/alertify.default.css"/>
 </head>
     
     <body id="waf-body" data-workspace-width="0" data-workspace-orientation="portrait" data-workspace-height="0" data-workspace-device="desktop" data-viewport-width="device-width" data-viewport-minimum-scale="1.0" data-viewport-maximum-scale="1.0" data-viewport-initial-scale="1.0" data-type="document" data-theme="default" data-rpc-validation="false" data-rpc-namespace="rpc" data-rpc-activate="false" data-platform="desktop" data-lib="WAF" data-group="[['addBtn','icon2'],['editBtn','icon3'],['deleteBtn','icon1'],['userPrefBtn','icon5']]" data-entire-model="false" data-apple-meta-tags-status-bar="default" class="waf-theme forum" style="bottom:;right:;visibility:hidden;">
@@ -45,7 +76,8 @@
             <button id="newAccountBtn" data-type="button" data-text="Create a new account" data-target="_blank" data-role="newButton" data-lib="WAF" data-constraint-top="true" data-constraint-right="true" data-constraint-left="false" data-constraint-bottom="false" data-action="simple" class="waf-widget waf-button waf-role-newButton"></button>
             <div id="login1" data-user-label="User: " data-user-display="Signed in as " data-type="login" data-password-label="Password: " data-logout-action="Logout" data-login-title="Login Dialog" data-login-button="Login" data-login-action="Login" data-lib="WAF" data-constraint-top="true" data-constraint-right="true" data-constraint-left="false" data-constraint-bottom="false" class="waf-widget waf-login"></div>
             <div id="titleTxt" data-type="richText" data-target="_blank" data-plainText="true" data-overflow="Hidden" data-lib="WAF" data-label-position="left" data-label="" data-constraint-top="true" data-constraint-right="true" data-constraint-left="true" data-constraint-bottom="false" data-autoWidth="false" class="waf-widget waf-richText ellipsis">Forums</div>
-        </div>
+        	<div id="passwordForgottenTxt" data-type="richText" data-target="_blank" data-plainText="true" data-overflow="Hidden" data-lib="WAF" data-label-position="left" data-label="" data-constraint-top="true" data-constraint-right="true" data-constraint-left="false" data-constraint-bottom="false" data-autoWidth="false" class="waf-widget waf-richText">Forget you password?</div>
+ 	</div>
         <div id="mainPage" data-type="container" data-lib="WAF" data-label-position="top" data-label="" data-constraint-top="true" data-constraint-right="true" data-constraint-left="true" data-constraint-bottom="true" class="waf-widget waf-container -level-0 waf-level-0">
             <div id="contNav" data-type="container" data-lib="WAF" data-label-position="top" data-label="" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="true" class="waf-widget waf-container -level-1 waf-level-1">
                 <div id="tabViewNav" data-type="tabView" data-padding="0" data-menu-position="top left" data-linked-tag="menuBar2,contCategory,contForum,contThread,contMessage" data-lib="WAF" data-constraint-top="true" data-constraint-right="true" data-constraint-left="true" data-constraint-bottom="true" class="waf-widget waf-tabView">
@@ -106,7 +138,8 @@
                                     <img src="/images/reply-active.png" class="waf-icon-state3"/>
                                     <img src="/images/reply-disabled.png" class="waf-icon-state4"/>
                                 </span>
-                            </div>
+                            	<div id="richText2" data-type="richText" data-lib="WAF" class="waf-widget waf-richText" data-autoWidth="false" data-label="" data-label-position="left" data-target="_blank" data-overflow="Hidden" data-plainText="true" data-constraint-left="true" data-constraint-top="true" data-constraint-bottom="false" data-constraint-right="false" data-binding="posts.title"></div>
+ 	 	 	 	 	 	</div>
                         </div>
                     </div>
                 </div>
@@ -201,7 +234,15 @@
                 <button id="modalDialog1-validDialogButton" class="modalDialogValidButton">Valid</button>
             </div>
         </div>
+	
+	
+	
+	
+	
+	
+		<div id="passwordResetDialog" data-validbuttontext="OK" data-type="ModalDialog" data-title="Password Reset" data-text="Your password was correctly reset. You will receive an email in few seconds." data-package="ModalDialog" data-lib="WAF" data-constraint-top="true" data-constraint-left="true" class="waf-widget waf-modaldialog"><div style="cursor: move; " id="modalDialog1-header" class="modalDialogHeader"><div style="cursor: move; " id="modalDialog1-title" class="modalDialogTitle">My Title</div><button style="cursor: move; " id="modalDialog1-closeDialogButton" class="modalDialogCloseButton"></button></div><div style="cursor: move; " id="modalDialog1-main" class="modalDialogMain">My Text</div><div style="cursor: move; " id="modalDialog1-footer" class="modalDialogFooter"><button style="cursor: move; " id="modalDialog1-cancelDialogButton" class="modalDialogCancelButton">Cancel</button><button style="cursor: move; " id="modalDialog1-validDialogButton" class="modalDialogValidButton">Valid</button></div></div>
+		
 		<script type="text/javascript" src="/waLib/WAF/Loader.js"></script>
-    </body>
+	</body>
 
 </html>

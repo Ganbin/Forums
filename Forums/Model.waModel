@@ -1703,6 +1703,13 @@
 					"userDefined" : true
 				},
 				{
+					"name" : "passwordForgotten",
+					"applyTo" : "dataClass",
+					"scope" : "public",
+					"from" : "$mainModel.User.methods.passwordForgotten",
+					"userDefined" : true
+				},
+				{
 					"name" : "updateUserInfos",
 					"applyTo" : "entity",
 					"scope" : "public",
