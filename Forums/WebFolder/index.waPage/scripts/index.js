@@ -146,7 +146,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 			}
 			
 			setTimeout(function(){
-				$('pre code').each(function(i, e) {hljs.highlightBlock(e)});
+				$('.xbbcode-code').each(function(i, e) {hljs.highlightBlock(e)});
 			},100);
 			
 			if(waf.sources.posts.getCurrentElement() !== null && typeof waf.sources.mainComp_post != 'undefined'){

@@ -116,10 +116,10 @@ var XBBCODE = (function() {
         },
         "code": {
             openTag: function(params,content) {
-                return '<pre><code>';
+                return '<div class="xbbcode-code">';
             },
             closeTag: function(params,content) {
-                return '</pre></code>';
+                return '</div>';
             },
             noParse: true
         },/*
@@ -599,7 +599,7 @@ var XBBCODE = (function() {
         }
         if (config.addInLineBreaks) {
             ret.html = ret.html.replace(/\r\n/g, "\n");
-            ret.html = ret.html.replace(/(\r|\n)/g, "$1<br/>");
+            ret.html = ret.html.replace(/(\r|\n)/g, "<br />");
         }
     
         ret.html = ret.html.replace("&#91;", "["); // put ['s back in

@@ -15,7 +15,7 @@ function constructor (id) {
 	$$(getHtmlId('postDateTxt')).setValue(moment(waf.sources.posts.stamp).zone(new Date().getTimezoneOffset()).format('MMMM Do YYYY, H:mm:ss Z'));
 	
 	setTimeout(function(){
-		$('pre code').each(function(i, e) {hljs.highlightBlock(e)});
+		$('.xbbcode-code').each(function(i, e) {hljs.highlightBlock(e)});
 	},100);
 	
 	getHtmlObj('rateDiv').rateit({ step : 1 , max : 5, value : waf.sources.posts.voteAverage, ispreset:true });
