@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html><section data-group="[]" class="waf-theme default">
+    <meta name="generator" content="Wakanda GUIDesigner"/>
+    <meta name="WAF.catalog" content="Category,Forum,Topic,Post"/>
+    <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="Category" data-scope="local" data-lib="WAF" data-initialOrderBy="title" data-id="{id}category" data-dataType="string" data-autoLoad="true" content="category"/>
+    <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="{id}category.forums" data-scope="local" data-lib="WAF" data-id="{id}forums" data-dataType="string" data-autoLoad="true" content="forums"/>
+    <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="{id}forums.topics" data-scope="local" data-lib="WAF" data-id="{id}topics" data-dataType="string" data-autoLoad="true" content="topics"/>
+    <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="{id}topics.posts" data-scope="local" data-lib="WAF" data-id="{id}posts" data-dataType="string" data-autoLoad="true" content="posts"/>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div id="{id}dataGrid1" data-type="dataGrid" data-selection-mode="single" data-role="gridAdminForum" data-lib="WAF" data-label-position="top" data-label="Categories" data-footer-text="item(s)" data-display-error="true" data-constraint-top="true" data-constraint-left="true" data-column="[{'sourceAttID':'title','colID':'title','width':'219','title':'title'},{'sourceAttID':'description','colID':'description','width':'280','title':'description'}]" data-binding="{id}category" class="waf-widget waf-dataGrid waf-role-gridAdminForum"></div>
+		<div id="{id}dataGrid2" data-type="dataGrid" data-selection-mode="single" data-role="gridAdminForum" data-lib="WAF" data-label-position="top" data-label="Forums" data-footer-text="item(s)" data-display-error="true" data-constraint-top="true" data-constraint-left="true" data-column="[{'sourceAttID':'title','colID':'title','width':'215','title':'title'},{'sourceAttID':'decsription','colID':'decsription','width':'291','title':'decsription'},{'sourceAttID':'visible','colID':'visible','width':'73','title':'Visible'}]" data-binding="{id}forums" class="waf-widget waf-dataGrid waf-role-gridAdminForum"></div>
+		<div id="{id}dataGrid3" data-type="dataGrid" data-selection-mode="single" data-role="gridAdminForum" data-lib="WAF" data-label-position="top" data-label="Topics" data-footer-text="item(s)" data-display-error="true" data-constraint-top="true" data-constraint-left="true" data-column="[{'sourceAttID':'title','colID':'title','width':'308','title':'title'},{'sourceAttID':'stamp','colID':'stamp','width':'100','title':'stamp'}]" data-binding="{id}topics" class="waf-widget waf-dataGrid waf-role-gridAdminForum"></div>
+		<div id="{id}dataGrid4" data-type="dataGrid" data-selection-mode="single" data-role="gridAdminForum" data-lib="WAF" data-label-position="top" data-label="Posts" data-footer-text="item(s)" data-display-error="true" data-constraint-top="true" data-constraint-left="true" data-column="[{'sourceAttID':'title','colID':'title','width':'269','title':'title'},{'sourceAttID':'content','colID':'content','width':'228','title':'content'},{'sourceAttID':'stamp','colID':'stamp','width':'100','title':'stamp'},{'sourceAttID':'enable','colID':'enable','width':'150','title':'enable'}]" data-binding="{id}posts" class="waf-widget waf-dataGrid waf-role-gridAdminForum"></div>
+		<label id="{id}label1" for="{id}dataGrid1" data-valign="middle" data-type="label" data-role="Grid2" data-margin="5" data-lib="WAF" data-constraint-top="true" data-constraint-left="true" class="waf-widget waf-label -dataGrid waf-label-datagrid waf-role-gridAdminForum">Categories</label>
+		<label id="{id}label2" for="{id}dataGrid2" data-valign="middle" data-type="label" data-role="Grid2" data-margin="5" data-lib="WAF" data-constraint-top="true" data-constraint-left="true" class="waf-widget waf-label -dataGrid waf-label-datagrid waf-role-gridAdminForum">Forums</label>
+		<label id="{id}label3" for="{id}dataGrid3" data-valign="middle" data-type="label" data-role="Grid2" data-margin="5" data-lib="WAF" data-constraint-top="true" data-constraint-left="true" class="waf-widget waf-label -dataGrid waf-label-datagrid waf-role-gridAdminForum">Topics</label>
+		<label id="{id}label4" for="{id}dataGrid4" data-valign="middle" data-type="label" data-role="Grid2" data-margin="5" data-lib="WAF" data-constraint-top="true" data-constraint-left="true" class="waf-widget waf-label -dataGrid waf-label-datagrid waf-role-gridAdminForum">Posts</label>
+	</section>

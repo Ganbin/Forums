@@ -1,0 +1,1 @@
+﻿directory.setLoginListener("customLoginListener", "Admin");// confirmation email http handleraddHttpRequestHandler('/confirmation', 'emailconf.js', 'emailConfirmation');

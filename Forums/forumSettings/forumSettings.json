@@ -1,0 +1,1 @@
+{    "forumTitle": "My Forum Title",    "validationByEmail": false,    "publicGroupID": 1,    "memberGroupID": 2,    "dataAdminGroupID": 3,    "mailSettings": {        "username": "username@mydomain.com",        "password": "***",        "smtp": "smtp.mydomain.ch",        "port": 25,        "SSL": true    },    "postViewTimeout" : 100}

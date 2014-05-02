@@ -1,0 +1,1 @@
+﻿model.UserGroup.events.init = function() {	this.stamp = new Date();};

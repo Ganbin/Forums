@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html><section data-group="[['addUserBtn','icon1'],['removeUserBtn','icon2'],['addGroupBtn','icon3'],['removeGroupBtn','icon4']]" class="forum waf-theme forum">
+    <meta name="generator" content="Wakanda GUIDesigner"/>
+    <meta name="WAF.catalog" content="User,Group"/>
+    <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="User" data-scope="local" data-lib="WAF" data-initialOrderBy="lastName" data-id="{id}user" data-dataType="string" data-autoLoad="true" content="user"/>
+    <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="Group" data-scope="local" data-lib="WAF" data-id="{id}group" data-dataType="string" data-autoLoad="true" content="group"/>
+    <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="{id}user.allGroups" data-scope="local" data-lib="WAF" data-id="{id}allGroups" data-dataType="string" data-autoLoad="true" content="allGroups"/>
+    <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="{id}group.allUsers" data-scope="local" data-lib="WAF" data-id="{id}allUsers" data-dataType="string" data-autoLoad="true" content="allUsers"/>
+    <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="Group" data-scope="local" data-lib="WAF" data-id="{id}group1" data-dataType="string" data-autoLoad="false" content="group1"/>
+    <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="User" data-scope="local" data-lib="WAF" data-initialOrderBy="lastName" data-id="{id}user1" data-dataType="string" data-autoLoad="false" content="user1"/>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div id="{id}userAndGroup" data-type="container" data-lib="WAF" data-label-position="top" data-label="" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-container -level-0 -level-0 waf-level-0">
+	 	<div id="{id}userGrid" data-type="dataGrid" data-selection-mode="single" data-lib="WAF" data-label-position="top" data-label="Users" data-footer-text="item(s)" data-footer-hide="true" data-display-error="true" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-column="[{'sourceAttID':'lastName','colID':'lastName','width':'150','title':'Last%20Name'},{'sourceAttID':'firstName','colID':'firstName','width':'150','title':'First%20Name'},{'sourceAttID':'email','colID':'email','width':'150','title':'Email'},{'sourceAttID':'login','colID':'login','width':'150','title':'Login'},{'sourceAttID':'password','colID':'password','width':'150','title':'Password'},{'sourceAttID':'statut','colID':'statut','width':'150','title':'Statut'}]" data-binding="{id}user" class="waf-widget waf-dataGrid"></div>
+ 		<div id="{id}allGroupsGrid" data-type="dataGrid" data-selection-mode="single" data-readOnly="true" data-lib="WAF" data-label-position="top" data-label="All Groups" data-footer-text="item(s)" data-footer-hide="true" data-display-error="true" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-column="[{'sourceAttID':'title','colID':'title','width':'284','title':'Title'}]" data-binding="{id}allGroups" class="waf-widget waf-dataGrid"></div>
+		<div id="{id}allUsersGrid" data-type="dataGrid" data-selection-mode="single" data-readOnly="true" data-lib="WAF" data-label-position="top" data-label="" data-footer-text="item(s)" data-footer-hide="true" data-display-error="true" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-column="[{'sourceAttID':'lastName','colID':'lastName','width':'150','title':'Last%20Name'},{'sourceAttID':'firstName','colID':'firstName','width':'150','title':'First%20Name'},{'sourceAttID':'email','colID':'email','width':'200','title':'Email'}]" data-binding="{id}allUsers" class="waf-widget waf-dataGrid"></div>	<div id="{id}dataGrid1" data-type="dataGrid" data-selection-mode="single" data-lib="WAF" data-label-position="top" data-label="" data-footer-text="item(s)" data-footer-hide="true" data-display-error="true" data-constraint-top="true" data-constraint-left="true" data-column="[{'sourceAttID':'title','colID':'title','width':'180','title':'Title'},{'sourceAttID':'description','colID':'description','width':'304','title':'Description'}]" data-binding="{id}group" class="waf-widget waf-dataGrid"></div>
+	 	
+	<label id="{id}label1" for="{id}allGroupsGrid" data-valign="middle" data-type="label" data-margin="5" data-lib="WAF" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-label -dataGrid -dataGrid -dataGrid -dataGrid -dataGrid -dataGrid -dataGrid -dataGrid -dataGrid -dataGrid -dataGrid -dataGrid -dataGrid waf-label-datagrid">All Groups</label>
+ 		<label id="{id}label2" for="{id}userGrid" data-valign="middle" data-type="label" data-margin="5" data-lib="WAF" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-label -dataGrid -dataGrid -dataGrid -dataGrid -dataGrid -dataGrid -dataGrid -dataGrid -dataGrid -dataGrid -dataGrid -dataGrid -dataGrid waf-label-datagrid">Users</label>
+ 		<button id="{id}addUserToGroupBtn" data-type="button" data-text="Add the user to the group" data-target="_blank" data-role="newButton" data-lib="WAF" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-action="simple" class="waf-widget waf-button waf-role-newButton"></button>
+ 		<button id="{id}removeGroupFromUserBtn" data-type="button" data-text="Remove this group for the user" data-target="_blank" data-role="newButton" data-lib="WAF" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-action="simple" class="waf-widget waf-button waf-role-newButton"></button>
+ 		<button id="{id}removeUserFromGroupBtn" data-type="button" data-text="Remove this user from the group" data-target="_blank" data-role="newButton" data-lib="WAF" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-action="simple" class="waf-widget waf-button waf-role-newButton"></button> 		
+		<div id="{id}addUserBtn" data-type="buttonImage" data-target="_blank" data-linked-tag="{id}icon1" data-lib="WAF" data-constraint-top="true" data-constraint-left="true" data-binding="{id}user" data-action="create" class="waf-widget waf-buttonImage">
+	 		<span id="{id}icon1" data-type="icon" data-linked-tag="{id}addUserBtn" data-lib="WAF" data-label-position="right" data-label="" data-image-state4="/images/plus-disabled.png" data-image-state3="/images/plus-active.png" data-image-state2="/images/plus-hover.png" data-image-state1="/images/plus.png" data-icon-type="images" data-context="['protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize']" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-icon "><img src="/images/plus.png" class="waf-icon-state1"/><img src="/images/plus-hover.png" class="waf-icon-state2"/><img src="/images/plus-active.png" class="waf-icon-state3"/><img src="/images/plus-disabled.png" class="waf-icon-state4"/></span>
+ 		</div>
+		<div id="{id}removeUserBtn" data-type="buttonImage" data-target="_blank" data-linked-tag="{id}icon2" data-lib="WAF" data-constraint-top="true" data-constraint-left="true" data-binding="{id}user" data-action="remove" class="waf-widget waf-buttonImage">
+	 		<span id="{id}icon2" data-type="icon" data-linked-tag="{id}removeUserBtn" data-lib="WAF" data-label-position="right" data-label="" data-image-state4="/images/minus-disabled.png" data-image-state3="/images/minus-active.png" data-image-state2="/images/minus-hover.png" data-image-state1="/images/minus.png" data-icon-type="images" data-context="['protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize']" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-icon "><img src="/images/minus.png" class="waf-icon-state1"/><img src="/images/minus-hover.png" class="waf-icon-state2"/><img src="/images/minus-active.png" class="waf-icon-state3"/><img src="/images/minus-disabled.png" class="waf-icon-state4"/></span>
+ 		</div>
+
+		<div id="{id}addGroupBtn" data-type="buttonImage" data-target="_blank" data-linked-tag="{id}icon3" data-lib="WAF" data-constraint-top="true" data-constraint-left="true" data-binding="{id}group" data-action="create" class="waf-widget waf-buttonImage">
+	 		<span id="{id}icon3" data-type="icon" data-linked-tag="{id}imageButton1" data-lib="WAF" data-label-position="right" data-label="" data-image-state4="/images/plus-disabled.png" data-image-state3="/images/plus-active.png" data-image-state2="/images/plus-hover.png" data-image-state1="/images/plus.png" data-icon-type="images" data-context="['protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize']" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-icon"><img src="/images/plus.png" class="waf-icon-state1"/><img src="/images/plus-hover.png" class="waf-icon-state2"/><img src="/images/plus-active.png" class="waf-icon-state3"/><img src="/images/plus-disabled.png" class="waf-icon-state4"/></span>
+ 		</div><div id="{id}removeGroupBtn" data-type="buttonImage" data-target="_blank" data-linked-tag="{id}icon4" data-lib="WAF" data-constraint-top="true" data-constraint-left="true" data-binding="{id}group" data-action="remove" class="waf-widget waf-buttonImage">
+	 		<span id="{id}icon4" data-type="icon" data-linked-tag="{id}removeGroupBtn" data-lib="WAF" data-label-position="right" data-label="" data-image-state4="/images/minus-disabled.png" data-image-state3="/images/minus-active.png" data-image-state2="/images/minus-hover.png" data-image-state1="/images/minus.png" data-icon-type="images" data-context="['protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize']" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-icon"><img src="/images/minus.png" class="waf-icon-state1"/><img src="/images/minus-hover.png" class="waf-icon-state2"/><img src="/images/minus-active.png" class="waf-icon-state3"/><img src="/images/minus-disabled.png" class="waf-icon-state4"/></span>
+ 		</div>
+ 	</div>
+	<input type="text" id="{id}userSearchField" data-type="textField" data-readOnly="false" data-password="false" data-multiline="false" data-lib="WAF" data-label-position="left" data-label="Global Search" data-datapicker-on="true" data-datapicker-icon-only="false" data-constraint-top="true" data-constraint-left="true" data-binding="{id}user1.lastName" data-autocomplete="true" class="waf-widget waf-textField"/>
+		<label id="{id}label3" for="{id}userSearchField" data-valign="middle" data-type="label" data-margin="5" data-lib="WAF" data-constraint-top="true" data-constraint-left="true" class="waf-widget waf-label waf-label-textfield">Global Search</label>
+		<div id="{id}richText1" data-type="richText" data-target="_blank" data-role="titleText" data-plainText="true" data-overflow="Hidden" data-lib="WAF" data-label-position="left" data-label="" data-constraint-top="true" data-constraint-left="true" data-autoWidth="true" class="waf-widget waf-richText waf-role-titleText">Users And Groups Administration</div>
+		<input type="text" id="{id}groupSearchField" data-type="textField" data-readOnly="false" data-password="false" data-multiline="false" data-lib="WAF" data-label-position="left" data-label="Global Search" data-datapicker-on="true" data-datapicker-icon-only="false" data-constraint-top="true" data-constraint-left="true" data-binding="{id}group1.title" data-autocomplete="true" class="waf-widget waf-textField"/>
+		<label id="{id}label4" for="{id}groupSearchField" data-valign="middle" data-type="label" data-margin="5" data-lib="WAF" data-constraint-top="true" data-constraint-left="true" class="waf-widget waf-label waf-label-textfield">Global Search</label>
+	</section>

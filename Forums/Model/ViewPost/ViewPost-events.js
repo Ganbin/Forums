@@ -1,0 +1,1 @@
+﻿model.ViewPost.events.init = function() {	this.stamp = new Date();};model.ViewPost.events.save = function() {	var viewPost = ds.ViewPost.find('user.ID == :1 and post.ID == :2',this.user.ID,this.post.ID);		if(viewPost !== null && viewPost.isNew() === true){		return {error:81,errorMessage:"This post is already viewed."};	}};

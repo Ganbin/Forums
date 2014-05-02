@@ -1,0 +1,1 @@
+model.Group.events.remove = function() {	var users = ds.User.query('allGroups.ID = :1',this.ID);			if(users.length !== 0){		return {error : 33, errorMessage:'You cannot remove this group because it contain user(s).'};	}};

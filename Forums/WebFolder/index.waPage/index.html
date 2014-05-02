@@ -1,0 +1,207 @@
+﻿<!DOCTYPE html><html>
+    
+    <head>
+        <title>Main Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="generator" content="Wakanda GUIDesigner"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+        <meta name="WAF.packageJson"/>
+        <meta name="WAF.catalog" content="Category,Forum,Topic,Post,User,Inscription"/>
+        <meta name="wakanda-version" content="Dev build 0.159743"/>
+        <meta name="wakanda-build" content="0.159743"/>
+        <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="Category" data-lib="WAF" data-initialOrderBy="title" data-id="category" data-dataType="string" data-autoLoad="true" content="category"/>
+        <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="category.forums" data-lib="WAF" data-initialOrderBy="visible DESC, title asc" data-id="forums" data-dataType="string" data-autoLoad="true" content="forums"/>
+        <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="forums.topics" data-lib="WAF" data-initialOrderBy="stamp DESC" data-id="topics" data-dataType="string" data-autoLoad="true" content="topics"/>
+        <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="topics.posts" data-lib="WAF" data-initialOrderBy="stamp DESC" data-id="posts" data-dataType="string" data-autoLoad="true" content="posts"/>
+        
+        
+        
+        
+        <meta name="WAF.config.rpc.file" content="/rpc-proxy/RPCUtils?namespace=RPCUtils"/>
+        <meta name="WAF.config.rpc.file" content="/rpc-proxy/xbbcode?namespace=xbbcode"/>
+        
+        
+        
+        
+    		<meta name="WAF.config.loadJS" content="scripts/namespace.js"/>
+		<meta name="WAF.config.loadJS" id="waf-script" content="scripts/index.js"/>
+		<meta name="WAF.config.loadJS" content="/scripts/moment-with-langs.min.js"/>
+		<meta name="WAF.config.loadJS" content="/scripts/jquery.dotdotdot.min.js"/>
+		<meta name="WAF.config.loadJS" content="/scripts/highlight/highlight.pack.js"/>
+		
+		
+		
+		
+		
+		<meta name="WAF.config.loadCSS" content="styles/index.css" id="waf-interface-css"/>
+		<meta name="WAF.config.loadCSS" content="/application.css" id="waf-project-css"/>
+		<meta name="WAF.config.loadCSS" content="styles/forums.css"/>
+		<meta name="WAF.config.loadCSS" content="styles/xbbcode.css"/>
+		<meta name="WAF.config.loadCSS" content="/scripts/highlight/styles/default.css"/>
+</head>
+    
+    <body id="waf-body" data-workspace-width="0" data-workspace-orientation="portrait" data-workspace-height="0" data-workspace-device="desktop" data-viewport-width="device-width" data-viewport-minimum-scale="1.0" data-viewport-maximum-scale="1.0" data-viewport-initial-scale="1.0" data-type="document" data-theme="default" data-rpc-validation="false" data-rpc-namespace="rpc" data-rpc-activate="false" data-platform="desktop" data-lib="WAF" data-group="[['addBtn','icon2'],['editBtn','icon3'],['deleteBtn','icon1'],['userPrefBtn','icon5']]" data-entire-model="false" data-apple-meta-tags-status-bar="default" class="waf-theme forum" style="bottom:;right:;visibility:hidden;">
+        <div id="header" data-type="container" data-role="containerHeader" data-lib="WAF" data-label-position="top" data-label="" data-constraint-right="true" class="waf-widget waf-container -level-0 waf-role-containerHeader waf-container-level-0 waf-level-0">
+            <button id="newAccountBtn" data-type="button" data-text="Create a new account" data-target="_blank" data-role="newButton" data-lib="WAF" data-constraint-top="true" data-constraint-right="true" data-constraint-left="false" data-constraint-bottom="false" data-action="simple" class="waf-widget waf-button waf-role-newButton"></button>
+            <div id="login1" data-user-label="User: " data-user-display="Signed in as " data-type="login" data-password-label="Password: " data-logout-action="Logout" data-login-title="Login Dialog" data-login-button="Login" data-login-action="Login" data-lib="WAF" data-constraint-top="true" data-constraint-right="true" data-constraint-left="false" data-constraint-bottom="false" class="waf-widget waf-login"></div>
+            <div id="titleTxt" data-type="richText" data-target="_blank" data-plainText="true" data-overflow="Hidden" data-lib="WAF" data-label-position="left" data-label="" data-constraint-top="true" data-constraint-right="true" data-constraint-left="true" data-constraint-bottom="false" data-autoWidth="false" class="waf-widget waf-richText ellipsis">Forums</div>
+        </div>
+        <div id="mainPage" data-type="container" data-lib="WAF" data-label-position="top" data-label="" data-constraint-top="true" data-constraint-right="true" data-constraint-left="true" data-constraint-bottom="true" class="waf-widget waf-container -level-0 waf-level-0">
+            <div id="contNav" data-type="container" data-lib="WAF" data-label-position="top" data-label="" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="true" class="waf-widget waf-container -level-1 waf-level-1">
+                <div id="tabViewNav" data-type="tabView" data-padding="0" data-menu-position="top left" data-linked-tag="menuBar2,contCategory,contForum,contThread,contMessage" data-lib="WAF" data-constraint-top="true" data-constraint-right="true" data-constraint-left="true" data-constraint-bottom="true" class="waf-widget waf-tabView">
+                    <ul id="menuBar2" data-type="menuBar" data-tab-margin="5" data-subMenuShow="hover" data-linked-tag="tabView2" data-lib="WAF" data-level="0" data-display="horizontal" data-context="['protected']" data-constraint-top="true" data-constraint-right="true" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-menuBar waf-tabView-menuBar waf-tabView-menuBar-top-left customMenuBar">
+                        <li id="menuCategory" data-type="menuItem" data-text="Categories" data-linked-tag="richText4,contCategory" data-lib="WAF" data-context="['protected','allowDrop','allowRemove']" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-menuItem waf-menuItem-level-0 waf-level-0 customMenuItemFirst customMenuItem">
+                            <div id="richText4" data-type="richText" data-target="_blank" data-plainText="true" data-overflow="Hidden" data-linked-tag="menuItem4" data-lib="WAF" data-label-position="left" data-label="" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-autoWidth="false" class="waf-widget waf-richText ellipsis">Categories</div>
+                        </li>
+                        <li id="menuForum" data-type="menuItem" data-text="Forums" data-linked-tag="richText5,contForum" data-lib="WAF" data-context="['protected','allowDrop','allowRemove']" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-menuItem waf-menuItem-level-0 waf-level-0 customMenuItem">
+                            <div id="richText5" data-type="richText" data-target="_blank" data-plainText="true" data-overflow="Hidden" data-linked-tag="menuItem5" data-lib="WAF" data-label-position="left" data-label="" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-autoWidth="false" class="waf-widget waf-richText ellipsis">Forums</div>
+                        </li>
+                        <li id="menuThread" data-type="menuItem" data-text="Threads" data-linked-tag="richText6,contThread" data-lib="WAF" data-context="['protected','allowDrop','allowRemove']" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-menuItem waf-menuItem-level-0 waf-level-0 customMenuItem">
+                            <div id="richText6" data-type="richText" data-target="_blank" data-plainText="true" data-overflow="Hidden" data-linked-tag="menuItem6" data-lib="WAF" data-label-position="left" data-label="" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-autoWidth="false" class="waf-widget waf-richText ellipsis">Threads</div>
+                        </li>
+                        <li id="menuMessages" data-type="menuItem" data-linked-tag="richText1,contMessage" data-lib="WAF" data-context="['protected','allowDrop','allowRemove']" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-menuItem waf-menuItem-level-0 waf-level-0  customMenuItemLast customMenuItem">
+                            <div id="richText1" data-type="richText" data-target="_blank" data-plainText="true" data-overflow="Hidden" data-linked-tag="menuItem1" data-lib="WAF" data-label-position="left" data-label="" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-autoWidth="false" class="waf-widget waf-richText ellipsis">Messages</div>
+                        </li>
+                    </ul>
+                    <div id="contCategory" data-type="container" data-role="contTabview" data-linked-tag="menuItem4" data-lib="WAF" data-label-position="top" data-label="" data-context="['protected','allowDrop','allowBind']" data-constraint-top="true" data-constraint-right="true" data-constraint-left="true" data-constraint-bottom="true" class="waf-widget waf-container -level-2 waf-level-2 waf-tabView-container-level-0 waf-role-contTabview">
+                        <div id="matrixCategory" data-type="matrix" data-scrolling="vertical" data-scrollbar="true" data-role="matrixTabview" data-margin="0" data-lib="WAF" data-fit="false" data-constraint-top="true" data-constraint-right="true" data-constraint-left="true" data-constraint-bottom="true" data-autosave="true" class="waf-widget waf-matrix waf-role-matrixTabview">
+                            <div id="categoryItem" data-type="container" data-role="rectlist" data-lib="WAF" data-label-position="top" data-label="" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-container -level-1 waf-level-1 waf-role-rectlist">
+                                <div id="categoryTitle" data-type="richText" data-target="_blank" data-role="textInputTitle" data-plainText="true" data-overflow="Hidden" data-lib="WAF" data-label-position="left" data-label="" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-binding="category.title" data-autoWidth="false" class="waf-widget waf-richText waf-role-textInputTitle ellipsis"></div>
+                                <div id="go2ForumButton" data-type="image" data-target="_blank" data-src="/images/next.png" data-lib="WAF" data-label-position="left" data-label="" data-fit="0" data-constraint-top="true" data-constraint-right="true" data-constraint-left="false" data-constraint-bottom="false" class="waf-widget waf-image"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="contForum" data-type="container" data-role="contTabview" data-linked-tag="menuItem5" data-lib="WAF" data-label-position="top" data-label="" data-hideonload="false" data-context="['protected','allowDrop','allowBind']" data-constraint-top="true" data-constraint-right="true" data-constraint-left="true" data-constraint-bottom="true" class="waf-widget waf-container -level-2 waf-level-2 waf-tabView-container-level-0 waf-role-contTabview">
+                        <div id="matrixForum" data-type="matrix" data-scrolling="vertical" data-scrollbar="true" data-margin="0" data-lib="WAF" data-fit="false" data-constraint-top="true" data-constraint-right="true" data-constraint-left="true" data-constraint-bottom="true" data-autosave="true" class="waf-widget waf-matrix">
+                            <div id="forumItem" data-type="container" data-role="rectlist" data-lib="WAF" data-label-position="top" data-label="" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-container -level-3 waf-level-3 waf-role-rectlist">
+                                <div id="richText11" data-type="richText" data-target="_blank" data-plainText="true" data-overflow="Hidden" data-lib="WAF" data-label-position="left" data-label="" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-binding="forums.title" data-autoWidth="false" class="waf-widget waf-richText ellipsis"></div>
+                                <div id="image4" data-type="image" data-target="_blank" data-src="/images/next.png" data-lib="WAF" data-label-position="left" data-label="" data-fit="0" data-constraint-top="true" data-constraint-right="true" data-constraint-left="false" data-constraint-bottom="false" class="waf-widget waf-image"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="contThread" data-type="container" data-role="contTabview" data-linked-tag="menuThread" data-lib="WAF" data-label-position="top" data-label="" data-context="['protected','allowDrop','allowBind']" data-constraint-top="true" data-constraint-right="true" data-constraint-left="true" data-constraint-bottom="true" class="waf-widget waf-container -level-2 waf-level-2 waf-tabView-container-level-0 waf-role-contTabview">
+                        <div id="matrixThread" data-type="matrix" data-scrolling="vertical" data-scrollbar="true" data-role="matrixTabview" data-margin="0" data-lib="WAF" data-fit="false" data-constraint-top="true" data-constraint-right="true" data-constraint-left="true" data-constraint-bottom="true" data-autosave="true" class="waf-widget waf-matrix waf-role-matrixTabview">
+                            <div id="threadItem" data-type="container" data-role="rectlist" data-lib="WAF" data-label-position="top" data-label="" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-container -level-3 waf-role-rectlist waf-container-level-0 waf-level-0">
+                                <div id="richText3" data-type="richText" data-target="_blank" data-role="textInputTitle" data-plainText="true" data-overflow="Hidden" data-lib="WAF" data-label-position="left" data-label="" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-binding="topics.title" data-autoWidth="false" class="waf-widget waf-richText waf-role-textInputTitle ellipsis"></div>
+                                <div id="image3" data-type="image" data-target="_blank" data-src="/images/next.png" data-lib="WAF" data-label-position="left" data-label="" data-fit="0" data-constraint-top="true" data-constraint-right="true" data-constraint-left="false" data-constraint-bottom="false" class="waf-widget waf-image"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="contMessage" data-type="container" data-role="contTabview" data-linked-tag="menuItem1" data-lib="WAF" data-label-position="top" data-label="" data-context="['protected','allowDrop','allowBind']" data-constraint-top="true" data-constraint-right="true" data-constraint-left="true" data-constraint-bottom="true" class="waf-widget waf-container -level-2 waf-level-2 waf-tabView-container-level-0 waf-role-contTabview">
+                        <div id="matrixMessage" data-type="matrix" data-scrolling="vertical" data-scrollbar="true" data-role="matrixTabview" data-margin="0" data-lib="WAF" data-fit="false" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-autosave="true" class="waf-widget waf-matrix waf-role-matrixTabview">
+                            <div id="messageItem" data-type="container" data-role="rectlist" data-lib="WAF" data-label-position="top" data-label="" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-container -level-0 waf-level-0 waf-role-rectlist">
+                                <div id="richText7" data-type="richText" data-target="_blank" data-role="textInputTitle" data-plainText="true" data-overflow="Hidden" data-lib="WAF" data-label-position="left" data-label="" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-binding="posts.user.fullName" data-autoWidth="false" class="waf-widget waf-richText waf-role-textInputTitle ellipsis"></div>
+                                <div id="richText8" data-type="richText" data-target="_blank" data-plainText="true" data-overflow="Hidden" data-lib="WAF" data-label-position="left" data-label="" data-constraint-top="true" data-constraint-right="true" data-constraint-left="false" data-constraint-bottom="false" data-autoWidth="false" class="waf-widget waf-richText"></div>
+                                <div id="richText9" data-type="richText" data-target="_blank" data-plainText="false" data-overflow="Hidden" data-lib="WAF" data-label-position="left" data-label="" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-binding="posts.contentHTML" data-autoWidth="false" class="waf-widget waf-richText ellipsis"></div>
+                                <div id="image1" data-type="image" data-target="_blank" data-lib="WAF" data-label-position="left" data-label="" data-fit="1" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-binding="posts.user.avatar" class="waf-widget waf-image"></div>
+                                <span id="icon7" data-type="icon" data-lib="WAF" data-label-position="left" data-label="" data-image-state4="/images/bullet_blue.png" data-image-state3="/images/bullet_blue.png" data-image-state2="/images/bullet_blue.png" data-image-state1="/images/unread.png" data-icon-type="images" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-icon">
+                                    <img src="/images/unread.png" class="waf-icon-state1"/>
+                                    <img src="/images/bullet_blue.png" class="waf-icon-state2"/>
+                                    <img src="/images/bullet_blue.png" class="waf-icon-state3"/>
+                                    <img src="/images/bullet_blue.png" class="waf-icon-state4"/>
+                                </span>
+                                <span id="replyToPostBtn" data-type="icon" data-lib="WAF" data-label-position="left" data-label="" data-image-state4="/images/reply-disabled.png" data-image-state3="/images/reply-active.png" data-image-state2="/images/reply-hover.png" data-image-state1="/images/reply.png" data-icon-type="images" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-icon">
+                                    <img src="/images/reply.png" class="waf-icon-state1"/>
+                                    <img src="/images/reply-hover.png" class="waf-icon-state2"/>
+                                    <img src="/images/reply-active.png" class="waf-icon-state3"/>
+                                    <img src="/images/reply-disabled.png" class="waf-icon-state4"/>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="mainContent" data-type="container" data-lib="WAF" data-label-position="top" data-label="" data-constraint-top="true" data-constraint-right="true" data-constraint-left="true" data-constraint-bottom="true" class="waf-widget waf-container -level-1 waf-container-level-1 waf-level-1">
+                <div id="mainComp" data-type="component" data-start-load="false" data-lib="WAF" data-constraint-top="true" data-constraint-right="true" data-constraint-left="true" data-constraint-bottom="true" class="waf-widget waf-component"></div>
+            </div>
+        </div>
+        <div id="footer" data-type="container" data-role="containerHeader" data-lib="WAF" data-label-position="top" data-label="" data-constraint-top="false" data-constraint-right="true" data-constraint-left="true" data-constraint-bottom="true" class="waf-widget waf-container -level-0 waf-level-0 waf-role-containerHeader">
+            <div id="managementBtn" data-type="buttonImage" data-target="_blank" data-linked-tag="icon4" data-lib="WAF" data-hideonload="true" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-action="simple" class="waf-widget waf-buttonImage">
+                <span id="icon4" data-type="icon" data-linked-tag="imageButton1" data-lib="WAF" data-label-position="right" data-label="" data-image-state4="/images/pref-disabled.png" data-image-state3="/images/pref-active.png" data-image-state2="/images/pref-hover.png" data-image-state1="/images/pref.png" data-icon-type="images" data-context="['protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize']" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-icon">
+                    <img src="/images/pref.png" class="waf-icon-state1"/>
+                    <img src="/images/pref-hover.png" class="waf-icon-state2"/>
+                    <img src="/images/pref-active.png" class="waf-icon-state3"/>
+                    <img src="/images/pref-disabled.png" class="waf-icon-state4"/>
+                </span>
+            </div>
+            <div id="addBtn" data-type="buttonImage" data-target="_blank" data-linked-tag="icon2" data-lib="WAF" data-hideonload="true" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-action="simple" class="waf-widget waf-buttonImage">
+                <span id="icon2" data-type="icon" data-linked-tag="addBtn" data-lib="WAF" data-label-position="right" data-label="" data-image-state4="/images/plus-disabled.png" data-image-state3="/images/plus-active.png" data-image-state2="/images/plus-hover.png" data-image-state1="/images/plus.png" data-icon-type="images" data-hideonload="false" data-context="['protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize']" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-icon">
+                    <img src="/images/plus.png" class="waf-icon-state1"/>
+                    <img src="/images/plus-hover.png" class="waf-icon-state2"/>
+                    <img src="/images/plus-active.png" class="waf-icon-state3"/>
+                    <img src="/images/plus-disabled.png" class="waf-icon-state4"/>
+                </span>
+            </div>
+            <div id="editBtn" data-type="buttonImage" data-target="_blank" data-linked-tag="icon3" data-lib="WAF" data-hideonload="true" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-action="simple" class="waf-widget waf-buttonImage">
+                <span id="icon3" data-type="icon" data-linked-tag="imageButton1" data-lib="WAF" data-label-position="right" data-label="" data-image-state3="/images/edit-active.png" data-image-state2="/images/edit-hover.png" data-image-state1="/images/edit.png" data-icon-type="images" data-context="['protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize']" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-icon">
+                    <img src="/images/edit.png" class="waf-icon-state1"/>
+                    <img src="/images/edit-hover.png" class="waf-icon-state2"/>
+                    <img src="/images/edit-active.png" class="waf-icon-state3"/>
+                </span>
+            </div>
+            <div id="deleteBtn" data-type="buttonImage" data-target="_blank" data-linked-tag="icon1" data-lib="WAF" data-hideonload="true" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-action="simple" class="waf-widget waf-buttonImage">
+                <span id="icon1" data-type="icon" data-linked-tag="deleteBtn" data-lib="WAF" data-label-position="right" data-label="" data-image-state4="/images/minus-disabled.png" data-image-state3="/images/minus-active.png" data-image-state2="/images/minus-hover.png" data-image-state1="/images/minus.png" data-icon-type="images" data-context="['protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize']" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-icon">
+                    <img src="/images/minus.png" class="waf-icon-state1"/>
+                    <img src="/images/minus-hover.png" class="waf-icon-state2"/>
+                    <img src="/images/minus-active.png" class="waf-icon-state3"/>
+                    <img src="/images/minus-disabled.png" class="waf-icon-state4"/>
+                </span>
+            </div>
+            <div id="userPrefBtn" data-type="buttonImage" data-target="_blank" data-linked-tag="icon5" data-lib="WAF" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-action="simple" class="waf-widget waf-buttonImage">
+                <span id="icon5" data-type="icon" data-linked-tag="userPrefBtn" data-lib="WAF" data-label-position="right" data-label="" data-image-state4="/images/user-disabled.png" data-image-state3="/images/user-active.png" data-image-state2="/images/user-hover.png" data-image-state1="/images/user.png" data-icon-type="images" data-context="['protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize']" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-icon">
+                    <img src="/images/user.png" class="waf-icon-state1"/>
+                    <img src="/images/user-hover.png" class="waf-icon-state2"/>
+                    <img src="/images/user-active.png" class="waf-icon-state3"/>
+                    <img src="/images/user-disabled.png" class="waf-icon-state4"/>
+                </span>
+            </div>
+        </div>
+        <div id="confirmPostDeleteDialog" data-validbuttontext="Yes" data-type="ModalDialog" data-title="Delete Post" data-text="Are you sure that you want to delete this post?" data-package="ModalDialog" data-lib="WAF" data-constraint-top="true" data-constraint-left="true" class="waf-widget waf-widget waf-widget waf-widget waf-widget waf-widget waf-widget waf-widget waf-widget waf-widget waf-widget waf-widget waf-widget waf-modaldialog">
+            <div id="modalDialog2-header" class="modalDialogHeader">
+                <div id="modalDialog2-title" class="modalDialogTitle">My Title</div>
+                <button id="modalDialog2-closeDialogButton" class="modalDialogCloseButton"></button>
+            </div>
+            <div id="modalDialog2-main" class="modalDialogMain">My Text</div>
+            <div id="modalDialog2-footer" class="modalDialogFooter">
+                <button id="modalDialog2-cancelDialogButton" class="modalDialogCancelButton">Cancel</button>
+                <button id="modalDialog2-validDialogButton" class="modalDialogValidButton">Valid</button>
+            </div>
+        </div>
+        <div id="subscriptionDialog" data-validbuttontext="Yes" data-type="ModalDialog" data-title="Subscription" data-text="You don't have access for this forum. Do you want to subscribe to this forum?" data-package="ModalDialog" data-lib="WAF" data-constraint-top="true" data-constraint-left="true" class="waf-widget waf-widget waf-widget waf-widget waf-widget waf-widget waf-widget waf-widget waf-widget waf-widget waf-widget waf-widget waf-modaldialog">
+            <div id="modalDialog1-header" class="modalDialogHeader">
+                <div id="modalDialog1-title" class="modalDialogTitle">My Title</div>
+                <button id="modalDialog1-closeDialogButton" class="modalDialogCloseButton"></button>
+            </div>
+            <div id="modalDialog1-main" class="modalDialogMain">My Text</div>
+            <div id="modalDialog1-footer" class="modalDialogFooter">
+                <button id="modalDialog1-cancelDialogButton" class="modalDialogCancelButton">Cancel</button>
+                <button id="modalDialog1-validDialogButton" class="modalDialogValidButton">Valid</button>
+            </div>
+        </div>
+        <div id="subscriptionOkDialog" data-validbuttontext="OK" data-type="ModalDialog" data-title="Subscription Done" data-text="Subscription to the forum done. Now you have to wait for the confirmation from a moderator." data-package="ModalDialog" data-lib="WAF" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-widget waf-widget waf-widget waf-widget waf-widget waf-widget waf-widget waf-widget waf-widget waf-widget waf-widget waf-modaldialog">
+            <div id="modalDialog2-header" class="modalDialogHeader">
+                <div id="modalDialog2-title" class="modalDialogTitle">My Title</div>
+                <button id="modalDialog2-closeDialogButton" class="modalDialogCloseButton"></button>
+            </div>
+            <div id="modalDialog2-main" class="modalDialogMain">My Text</div>
+            <div id="modalDialog2-footer" class="modalDialogFooter">
+                <button id="modalDialog2-cancelDialogButton" class="modalDialogCancelButton">Cancel</button>
+                <button id="modalDialog2-validDialogButton" class="modalDialogValidButton">Valid</button>
+            </div>
+        </div>
+        <div id="centerComp" data-type="component" data-start-load="false" data-modal="true" data-lib="WAF" data-hideonload="false" data-constraint-top="true" data-constraint-right="true" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-component"></div>
+        <div id="alreadySubscribedDialog" data-validbuttontext="OK" data-type="ModalDialog" data-title="Subscription Validation Pending" data-text="Your subscription for this forum is pending. Wait for a confirmation from the moderator." data-package="ModalDialog" data-lib="WAF" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-widget waf-widget waf-widget waf-widget waf-widget waf-widget waf-widget waf-widget waf-widget waf-modaldialog">
+            <div id="modalDialog1-header" class="modalDialogHeader">
+                <div id="modalDialog1-title" class="modalDialogTitle">My Title</div>
+                <button id="modalDialog1-closeDialogButton" class="modalDialogCloseButton"></button>
+            </div>
+            <div id="modalDialog1-main" class="modalDialogMain">My Text</div>
+            <div id="modalDialog1-footer" class="modalDialogFooter">
+                <button id="modalDialog1-cancelDialogButton" class="modalDialogCancelButton">Cancel</button>
+                <button id="modalDialog1-validDialogButton" class="modalDialogValidButton">Valid</button>
+            </div>
+        </div>
+		<script type="text/javascript" src="/waLib/WAF/Loader.js"></script>
+    </body>
+
+</html>
