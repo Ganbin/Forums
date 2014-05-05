@@ -4,9 +4,10 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	/*
 	* Declare widgets in the forum namespace
 	*/
-	
-	forums.widgets.newaccount = $$('newAccountBtn');
+	forums.widgets.loginBtn = $$('loginBtn');
+	forums.widgets.loggedTxt = $$('loggedTxt');
 	forums.widgets.centerComp = $$('centerComp');
+	forums.widgets.centerComp2 = $$('centerComp2');
 	forums.widgets.mainComp = $$('mainComp');
 	forums.widgets.tabViewNav = $$('tabViewNav');
 	forums.widgets.passwordForgottenTxt = $$('passwordForgottenTxt');
@@ -28,8 +29,8 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	
 	
 // @region namespaceDeclaration// @startlock
+	var loginBtn = {};	// @button
 	var passwordResetDialog = {};	// @ModalDialog
-	var passwordForgottenTxt = {};	// @richText
 	var replyToPostBtn = {};	// @icon
 	var userPrefBtn = {};	// @buttonImage
 	var alreadySubscribedDialog = {};	// @ModalDialog
@@ -51,21 +52,32 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	var managementBtn = {};	// @buttonImage
 	var categoryItem = {};	// @container
 	var editCategoryButton = {};	// @button
-	var newAccountBtn = {};	// @button
 	var documentEvent = {};	// @document
-	var login1 = {};	// @login
 // @endregion// @endlock
 
 // eventHandlers// @lock
 
+	loginBtn.click = function loginBtn_click (event)// @startlock
+	{// @endlock
+		if (WAF.directory.currentUser() == null){
+			forums.widgets.centerComp.loadComponent('/Components/loginDialog.waComponent');
+		}else{
+			WAF.directory.logout({onSuccess: function(event) { 
+	            forums.isLogged();
+		
+				forums.isAdmin();
+				
+				forums.widgets.mainComp.removeComponent();
+				
+				forums.goToCategoryView();
+				waf.sources.category.all({orderBy:'title'});
+	        }});      
+		}
+	};// @lock
+
 	passwordResetDialog.onValidClick = function passwordResetDialog_onValidClick (event)// @startlock
 	{// @endlock
 		forums.widgets.passwordResetDialog.closeDialog()
-	};// @lock
-
-	passwordForgottenTxt.click = function passwordForgottenTxt_click (event)// @startlock
-	{// @endlock
-		forums.widgets.centerComp.loadComponent('/Components/passwordForgotten.waComponent');
 	};// @lock
 
 	replyToPostBtn.click = function replyToPostBtn_click (event)// @startlock
@@ -113,11 +125,11 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	matrixMessage.onChildrenDraw = function matrixMessage_onChildrenDraw (event)// @startlock
 	{// @endlock
 		if(event.source.stamp != null){
-			event.htmlObject.children()[1].innerText = (moment(event.source.stamp).zone(new Date().getTimezoneOffset()).format('D/M/YY - H:m'))
+			event.htmlObject.children().last()[0].innerText = (moment(event.source.stamp).zone(new Date().getTimezoneOffset()).calendar())
 		}
 		
 		if(event.source.isViewed === true || event.pos === 0){ // if the isViewed attribute is true or if it's the first item
-			$(event.htmlObject[0].children[4]).hide(); // Hide the unread icon
+			$(event.htmlObject[0].children[3]).hide(); // Hide the unread icon
 		}
 		
 		if (event.source.enable === false) { 
@@ -225,12 +237,6 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 
 	};// @lock
 
-	newAccountBtn.click = function newAccountBtn_click (event)// @startlock
-	{// @endlock
-
-		forums.widgets.centerComp.loadComponent('/Components/newAccount.waComponent');
-	};// @lock
-
 	documentEvent.onLoad = function documentEvent_onLoad (event)// @startlock
 	{// @endlock
 		setTimeout(function(){
@@ -239,6 +245,19 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 			forums.displayMenuBarItem();
 			$$('titleTxt').setValue(RPCUtils.getForumTitle());
 			$('#menuBar2').appendTo('body');
+			
+			// Moment Config
+			moment.defaultFormat = 'D/M/YY - H:mm';
+			moment.lang('en', {
+			    calendar : {
+			        lastDay : '[Yesterday at] H:mm',
+			        sameDay : '[Today at] H:mm',
+			        nextDay : '[Tomorrow at] H:mm',
+			        lastWeek : 'dddd [at] H:mm',
+			        nextWeek : 'dddd [at] H:mm',
+			        sameElse : 'D/M/YY - H:mm'
+			    }
+			});
 		},100);
 		
 		window.onresize = function(){
@@ -246,31 +265,9 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		};
 	};// @lock
 
-	login1.logout = function login1_logout (event)// @startlock
-	{// @endlock
-		forums.isLogged();
-		
-		forums.isAdmin();
-		
-		forums.widgets.mainComp.removeComponent();
-		
-		forums.goToCategoryView();
-		waf.sources.category.all({orderBy:'title'});
-	};// @lock
-
-	login1.login = function login1_login (event)// @startlock
-	{// @endlock
-		forums.isLogged();
-		forums.isAdmin();
-		
-		forums.goToCategoryView();
-		waf.sources.category.all({orderBy:'title'});
-	
-	};// @lock
-
 // @region eventManager// @startlock
+	WAF.addListener("loginBtn", "click", loginBtn.click, "WAF");
 	WAF.addListener("passwordResetDialog", "onValidClick", passwordResetDialog.onValidClick, "WAF");
-	WAF.addListener("passwordForgottenTxt", "click", passwordForgottenTxt.click, "WAF");
 	WAF.addListener("posts", "oncontentHTMLAttributeChange", postsEvent.oncontentHTMLAttributeChange, "WAF", "contentHTML");
 	WAF.addListener("replyToPostBtn", "click", replyToPostBtn.click, "WAF");
 	WAF.addListener("userPrefBtn", "click", userPrefBtn.click, "WAF");
@@ -293,9 +290,6 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	WAF.addListener("managementBtn", "click", managementBtn.click, "WAF");
 	WAF.addListener("categoryItem", "click", categoryItem.click, "WAF");
 	WAF.addListener("editCategoryButton", "click", editCategoryButton.click, "WAF");
-	WAF.addListener("newAccountBtn", "click", newAccountBtn.click, "WAF");
 	WAF.addListener("document", "onLoad", documentEvent.onLoad, "WAF");
-	WAF.addListener("login1", "logout", login1.logout, "WAF");
-	WAF.addListener("login1", "login", login1.login, "WAF");
 // @endregion
 };// @endlock

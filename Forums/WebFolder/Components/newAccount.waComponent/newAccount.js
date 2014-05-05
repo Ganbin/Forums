@@ -89,11 +89,10 @@ function constructor (id) {
 	this.load = function (data) {// @lock
 
 	// @region namespaceDeclaration// @startlock
-	var closeWindow = {};	// @button
-	var lastName = {};	// @textField
-	var bCancel = {};	// @button
-	var firstName = {};	// @textField
 	var bvalid = {};	// @button
+	var icon1 = {};	// @icon
+	var lastName = {};	// @textField
+	var firstName = {};	// @textField
 	var pwdConfirm = {};	// @textField
 	var password = {};	// @textField
 	// @endregion// @endlock
@@ -102,34 +101,10 @@ function constructor (id) {
 	$$(this.id+'_bvalid').disable();
 
 	// Permet de centrer le contenu du component (qui est variable d'apres ce que l'on veut charger)
-	forums.widgets.centerComp.setWidth(getHtmlObj('form').css('width'));
-	forums.widgets.centerComp.setHeight(getHtmlObj('form').css('height'));
+	$comp.setWidth(getHtmlObj('form').css('width'));
+	$comp.setHeight(getHtmlObj('form').css('height'));
 	
 	// eventHandlers// @lock
-
-	closeWindow.click = function closeWindow_click (event)// @startlock
-	{// @endlock
-		forums.closeCenterComp($comp);
-	};// @lock
-
-	lastName.blur = function lastName_blur (event)// @startlock
-	{// @endlock
-		var name = (this.ref.value).toUpperCase();
-		$$(getHtmlId('lastName')).setValue(name);
-	};// @lock
-
-	bCancel.click = function bCancel_click (event)// @startlock
-	{// @endlock
-		forums.closeCenterComp($comp);
-	};// @lock
-
-	firstName.blur = function firstName_blur (event)// @startlock
-	{// @endlock
-
-		var wordCap = $comp.toCapitalize(this.ref.value);
-		$$(getHtmlId('firstName')).setValue(wordCap);
-
-	};// @lock
 
 	bvalid.click = function bvalid_click (event)// @startlock
 	{// @endlock
@@ -164,6 +139,25 @@ function constructor (id) {
 				default: $comp.displayFeedbackMessage(1,'nok','An error occured during the registration process. Please retry');
 			}
 		}});
+	};// @lock
+
+	icon1.click = function icon1_click (event)// @startlock
+	{// @endlock
+		forums.closeCenterComp($comp);
+	};// @lock
+
+	lastName.blur = function lastName_blur (event)// @startlock
+	{// @endlock
+		var name = (this.ref.value).toUpperCase();
+		$$(getHtmlId('lastName')).setValue(name);
+	};// @lock
+
+	firstName.blur = function firstName_blur (event)// @startlock
+	{// @endlock
+
+		var wordCap = $comp.toCapitalize(this.ref.value);
+		$$(getHtmlId('firstName')).setValue(wordCap);
+
 	};// @lock
 
 	pwdConfirm.keyup = function pwdConfirm_keyup (event)// @startlock
@@ -230,12 +224,11 @@ function constructor (id) {
 	};// @lock
 
 	// @region eventManager// @startlock
-	WAF.addListener(this.id + "_closeWindow", "click", closeWindow.click, "WAF");
+	WAF.addListener(this.id + "_bvalid", "click", bvalid.click, "WAF");
+	WAF.addListener(this.id + "_icon1", "click", icon1.click, "WAF");
 	WAF.addListener(this.id + "_lastName", "blur", lastName.blur, "WAF");
-	WAF.addListener(this.id + "_bCancel", "click", bCancel.click, "WAF");
 	WAF.addListener(this.id + "_firstName", "blur", firstName.blur, "WAF");
 	WAF.addListener(this.id + "_password", "keydown", password.keydown, "WAF");
-	WAF.addListener(this.id + "_bvalid", "click", bvalid.click, "WAF");
 	WAF.addListener(this.id + "_pwdConfirm", "keyup", pwdConfirm.keyup, "WAF");
 	WAF.addListener(this.id + "_password", "keyup", password.keyup, "WAF");
 	// @endregion// @endlock
