@@ -12,58 +12,56 @@ function constructor (id) {
 		// type :  ok : define the background color of the feedback zone and the font color of the message  if there is no error
 		
 		// get the height of the form container
-		var contFeedbackHeight = $$('centerComp_feedback').getHeight();
-		var formFieldsHeight = $$('centerComp_formFields').getHeight();
-		var contCloseWindowHeight = $$('centerComp_closeWindow').getHeight()+20;
-		var toReduce = ($$(getHtmlId('feedback')).isVisible() === true) ? (formFieldsHeight-contCloseWindowHeight) : (formFieldsHeight-contCloseWindowHeight-contFeedbackHeight) ;
+		var contFeedbackHeight = $$(getHtmlId('feedback')).getHeight();
+		var formFieldsHeight = $$(getHtmlId('formFields')).getHeight();
+		var toReduce = ($$(getHtmlId('feedback')).isVisible() === true) ? (formFieldsHeight) : (formFieldsHeight-contFeedbackHeight) ;
 	
 		if(display === 1){
 			if(!($$(getHtmlId('feedback')).isVisible())&& (type === 'nok')){
-				$('#centerComp_form').delay(0).animate({
+				$('#'+getHtmlId('newAccountform')).delay(0).animate({
 					height: '+='+ contFeedbackHeight
 				});
-				$('#centerComp').delay(0).animate({
+				$('#'+getHtmlId('form')).delay(0).animate({
 					height: '+='+ contFeedbackHeight
 				});
-				$('#centerComp_formFields').delay(0).animate({
+				$('#'+$comp.id).delay(0).animate({
+					height: '+='+ contFeedbackHeight
+				});
+				$('#'+getHtmlId('formFields')).delay(0).animate({
 					top: '+='+ contFeedbackHeight
 				});
 			}
 			if(type === 'nok'){
 				$$(getHtmlId('feedbackMessage')).setTextColor('#ffffff');
-				$$(getHtmlId('feedback')).setBackgroundColor('#ffaaaa');
+				$$(getHtmlId('feedback')).setBackgroundColor('#282828');
 				
 			}else{
-				$$(getHtmlId('feedbackMessage')).setTextColor('#000000');
-				$$(getHtmlId('feedback')).setBackgroundColor('#aaffff');
+				$$(getHtmlId('feedbackMessage')).setTextColor('#ffffff');
+				$$(getHtmlId('feedback')).setBackgroundColor('#282828');
 				// hide all the fields
 				$$(getHtmlId('formFields')).hide();
-				// Dim the container
-				//containerHeight = $$('centerComp_form').getHeight();
-				$('#centerComp_form').delay(0).animate({
+				$('#'+getHtmlId('newAccountform')).delay(0).animate({
 					height: '-='+toReduce
 				});
-				$('#centerComp').delay(0).animate({
+				$('#'+$comp.id).delay(0).animate({
 					height: '-='+toReduce
 				});
-				// Display the close windows button
-				$$(getHtmlId('closeWindow')).show();
 			}
-			$('#centerComp_feedback').slideDown();
+			$('#'+getHtmlId('feedback')).slideDown();
 			$$(getHtmlId('feedbackMessage')).show();
 			$$(getHtmlId('feedbackMessage')).setValue(message);
 		}else{
 			if($$(getHtmlId('feedback')).isVisible()){
-				$('#centerComp_form').delay(0).animate({
+				$('#'+getHtmlId('newAccountform')).delay(0).animate({
 					height: '-='+contFeedbackHeight
 				});
-				$('#centerComp').delay(0).animate({
+				$('#'+$comp.id).delay(0).animate({
 					height: '-='+contFeedbackHeight
 				});
-				$('#centerComp_formFields').delay(0).animate({
+				$('#'+getHtmlId('formFields')).delay(0).animate({
 					top: '-=' + contFeedbackHeight
 				});
-				$('#centerComp_feedback').slideUp();
+				$('#'+getHtmlId('feedback')).slideUp();
 				$$(getHtmlId('feedbackMessage')).hide();
 			}
 					
@@ -109,7 +107,6 @@ function constructor (id) {
 	bvalid.click = function bvalid_click (event)// @startlock
 	{// @endlock
 		$$(getHtmlId('feedbackMessage')).setValue('');
-		$$(getHtmlId('email')).setBackgroundColor('white')
 		
 		var user = {};
 		user.firstName = $$(getHtmlId('firstName')).getValue();
@@ -120,11 +117,9 @@ function constructor (id) {
 		ds.User.addNewUser(user, {onSuccess: function(event){
 			switch(event.result){
 				case 'email invalid':
-				$$(getHtmlId('email')).setBackgroundColor('pink');
 				$comp.displayFeedbackMessage(1,'nok','this email is invalid');
 				break;
 				case 'This account already exists':
-				$$(getHtmlId('email')).setBackgroundColor('pink');
 				$comp.displayFeedbackMessage(1,'nok',event.result);
 				break;
 				case 'emailSendError':
@@ -136,6 +131,8 @@ function constructor (id) {
 				case 'validationByEmailFalse':
 				$comp.displayFeedbackMessage(1,'ok','Your account is now create. You can start to use the forum as a member. Use your email for login.');
 				break;
+				case 'easy':
+					alert('Please let the process go on, don\'t click like a fool...');
 				default: $comp.displayFeedbackMessage(1,'nok','An error occured during the registration process. Please retry');
 			}
 		}});

@@ -1,1890 +1,1 @@
-
-{
-	"toJSON" : true,
-	"extraProperties" : 
-	{
-		"version" : "2",
-		"classes" : 
-		{
-			"Category" : 
-			{
-				"panelColor" : "#eee",
-				"panel" : 
-				{
-					"isOpen" : "true",
-					"pathVisible" : "true",
-					"position" : 
-					{
-						"X" : 75,
-						"Y" : 21
-					}
-				}
-			},
-			"Forum" : 
-			{
-				"panelColor" : "#B2A2C7",
-				"panel" : 
-				{
-					"isOpen" : "true",
-					"pathVisible" : "true",
-					"position" : 
-					{
-						"X" : 368,
-						"Y" : 15
-					}
-				}
-			},
-			"Topic" : 
-			{
-				"panelColor" : "#E5B9B7",
-				"panel" : 
-				{
-					"isOpen" : "true",
-					"pathVisible" : "true",
-					"position" : 
-					{
-						"X" : 792,
-						"Y" : 18
-					}
-				}
-			},
-			"Post" : 
-			{
-				"panelColor" : "#B8CCE4",
-				"panel" : 
-				{
-					"isOpen" : "true",
-					"pathVisible" : "true",
-					"position" : 
-					{
-						"X" : 1142,
-						"Y" : 19
-					}
-				},
-				"attributes" : 
-				{
-					"isViewed" : 
-					{
-						"note" : "Related to the current User"
-					},
-					"currentUserVote" : 
-					{
-						"note" : "Related to the current User"
-					}
-				}
-			},
-			"User" : 
-			{
-				"panelColor" : "#fff",
-				"panel" : 
-				{
-					"isOpen" : "true",
-					"pathVisible" : false,
-					"position" : 
-					{
-						"X" : 38,
-						"Y" : 530
-					}
-				},
-				"attributes" : 
-				{
-					"statut" : 
-					{
-						"note" : "\"validated\" if the user can use his account. Else is \"emailSentForValidation\""
-					}
-				}
-			},
-			"Group" : 
-			{
-				"panelColor" : "#7F7F7F",
-				"panel" : 
-				{
-					"isOpen" : "true",
-					"pathVisible" : "true",
-					"position" : 
-					{
-						"X" : 624,
-						"Y" : 843
-					}
-				}
-			},
-			"Access" : 
-			{
-				"panelColor" : "#996699",
-				"note" : "Access have a user or a group, not both !",
-				"panel" : 
-				{
-					"isOpen" : "true",
-					"pathVisible" : "true",
-					"position" : 
-					{
-						"X" : 778,
-						"Y" : 502
-					}
-				},
-				"attributes" : 
-				{
-					"statut" : 
-					{
-						"note" : "Moderator, Member"
-					}
-				}
-			},
-			"Action" : 
-			{
-				"panelColor" : "#7F7F7F",
-				"panel" : 
-				{
-					"isOpen" : "true",
-					"pathVisible" : true,
-					"position" : 
-					{
-						"X" : 1271,
-						"Y" : 731
-					}
-				}
-			},
-			"UserGroup" : 
-			{
-				"panelColor" : "#C4BD97",
-				"panel" : 
-				{
-					"isOpen" : "true",
-					"pathVisible" : true,
-					"position" : 
-					{
-						"X" : 336,
-						"Y" : 1009
-					}
-				}
-			},
-			"Inscription" : 
-			{
-				"panelColor" : "#B2A2C7",
-				"panel" : 
-				{
-					"isOpen" : "true",
-					"pathVisible" : true,
-					"position" : 
-					{
-						"X" : 57,
-						"Y" : 254
-					}
-				}
-			},
-			"OpenInscription" : 
-			{
-				"panelColor" : "#E5B9B7",
-				"panel" : 
-				{
-					"isOpen" : "true",
-					"position" : 
-					{
-						"X" : 57,
-						"Y" : 1399
-					}
-				}
-			},
-			"CloseInscription" : 
-			{
-				"panelColor" : "#996699",
-				"panel" : 
-				{
-					"isOpen" : "true",
-					"position" : 
-					{
-						"X" : 399,
-						"Y" : 1426
-					}
-				}
-			},
-			"ViewPost" : 
-			{
-				"panelColor" : "#eee",
-				"panel" : 
-				{
-					"isOpen" : "true",
-					"pathVisible" : true,
-					"position" : 
-					{
-						"X" : 1485,
-						"Y" : 247
-					}
-				}
-			}
-		},
-		"model" : 
-		{
-			"workspaceLeft" : 0,
-			"workspaceTop" : 0,
-			"scriptMode" : "manual",
-			"lastScriptLocation" : 
-			{
-				"User" : 
-				{
-					"method" : "User/User-methods.js",
-					"computed" : "User/User-events.js",
-					"events" : "User/User-events.js"
-				},
-				"Access" : 
-				{
-					"method" : "Access/Access-methods.js",
-					"events" : "Access/Access-events.js"
-				},
-				"Category" : 
-				{
-					"method" : "Category/Category-methods.js",
-					"events" : "Category/Category-events.js"
-				},
-				"UserGroup" : 
-				{
-					"method" : "UserGroup/UserGroup-methods.js",
-					"events" : "UserGroup/UserGroup-events.js"
-				},
-				"Forum" : 
-				{
-					"method" : "Forum/Forum-methods.js",
-					"events" : "Forum/Forum-events.js"
-				},
-				"Topic" : 
-				{
-					"events" : "Topic/Topic-events.js",
-					"method" : "Topic/Topic-methods.js",
-					"computed" : "Topic/Topic-events.js"
-				},
-				"Group" : 
-				{
-					"events" : "Group/Group-events.js"
-				},
-				"Post" : 
-				{
-					"method" : "Post/Post-methods.js",
-					"events" : "Post/Post-events.js",
-					"computed" : "Post/Post-events.js"
-				},
-				"Inscription" : 
-				{
-					"events" : "Inscription/Inscription-events.js",
-					"method" : "Inscription/Inscription-methods.js"
-				},
-				"OpenInscription" : 
-				{
-					"method" : "OpenInscription/OpenInscription-methods.js"
-				},
-				"CloseInscription" : 
-				{
-					"method" : "CloseInscription/CloseInscription-methods.js"
-				},
-				"ViewPost" : 
-				{
-					"events" : "ViewPost/ViewPost-events.js"
-				}
-			},
-			"relationCurve" : 
-			{
-				"run" : false,
-				"mode" : 2
-			}
-		}
-	},
-	"dataClasses" : 
-	[
-		{
-			"name" : "Access",
-			"className" : "Access",
-			"collectionName" : "Accesses",
-			"scope" : "public",
-			"attributes" : 
-			[
-				{
-					"name" : "ID",
-					"kind" : "storage",
-					"scope" : "public",
-					"indexed" : true,
-					"autosequence" : true,
-					"type" : "long",
-					"indexKind" : "btree"
-				},
-				{
-					"name" : "statut",
-					"kind" : "storage",
-					"scope" : "public",
-					"indexed" : true,
-					"not_null" : true,
-					"type" : "string",
-					"indexKind" : "cluster"
-				},
-				{
-					"name" : "stamp",
-					"kind" : "storage",
-					"scope" : "public",
-					"not_null" : true,
-					"type" : "date",
-					"simpleDate" : false
-				},
-				{
-					"name" : "user",
-					"kind" : "relatedEntity",
-					"scope" : "public",
-					"type" : "User",
-					"indexKind" : "auto",
-					"path" : "User"
-				},
-				{
-					"name" : "group",
-					"kind" : "relatedEntity",
-					"scope" : "public",
-					"type" : "Group",
-					"indexKind" : "auto",
-					"path" : "Group"
-				},
-				{
-					"name" : "forum",
-					"kind" : "relatedEntity",
-					"scope" : "public",
-					"type" : "Forum",
-					"indexKind" : "auto",
-					"path" : "Forum"
-				},
-				{
-					"name" : "restricted",
-					"kind" : "storage",
-					"scope" : "public",
-					"indexed" : true,
-					"type" : "bool",
-					"indexKind" : "cluster"
-				},
-				{
-					"name" : "action",
-					"kind" : "relatedEntity",
-					"scope" : "public",
-					"type" : "Action",
-					"path" : "Action"
-				}
-			],
-			"events" : 
-			[
-				{
-					"kind" : "save",
-					"from" : "$mainModel.Access.events.save"
-				},
-				{
-					"kind" : "save",
-					"from" : "$mainModel.Access.events.save"
-				},
-				{
-					"kind" : "save",
-					"from" : "$mainModel.Access.events.save",
-					"userDefined" : true
-				},
-				{
-					"kind" : "init",
-					"from" : "$mainModel.Access.events.init"
-				},
-				{
-					"kind" : "init",
-					"from" : "$mainModel.Access.events.init"
-				},
-				{
-					"kind" : "init",
-					"from" : "$mainModel.Access.events.init",
-					"userDefined" : true
-				}
-			],
-			"methods" : 
-			[
-				{
-					"name" : "createOrModifyAGroupOrUserAccess",
-					"applyTo" : "dataClass",
-					"scope" : "public",
-					"from" : "$mainModel.Access.methods.createOrModifyAGroupOrUserAccess",
-					"userDefined" : true
-				}
-			],
-			"key" : 
-			[
-				{
-					"name" : "ID"
-				}
-			]
-		},
-		{
-			"name" : "Action",
-			"className" : "Action",
-			"collectionName" : "ActionCollection",
-			"scope" : "public",
-			"attributes" : 
-			[
-				{
-					"name" : "ID",
-					"kind" : "storage",
-					"scope" : "public",
-					"indexed" : true,
-					"unique" : true,
-					"autosequence" : true,
-					"type" : "long",
-					"indexKind" : "btree"
-				},
-				{
-					"name" : "read",
-					"kind" : "storage",
-					"scope" : "public",
-					"not_null" : true,
-					"type" : "bool"
-				},
-				{
-					"name" : "write",
-					"kind" : "storage",
-					"scope" : "public",
-					"not_null" : true,
-					"type" : "bool"
-				},
-				{
-					"name" : "del",
-					"kind" : "storage",
-					"scope" : "public",
-					"not_null" : true,
-					"type" : "bool"
-				},
-				{
-					"name" : "modify",
-					"kind" : "storage",
-					"scope" : "public",
-					"not_null" : true,
-					"type" : "bool"
-				},
-				{
-					"name" : "vote",
-					"kind" : "storage",
-					"scope" : "public",
-					"not_null" : true,
-					"type" : "bool"
-				},
-				{
-					"name" : "allAccesses",
-					"kind" : "relatedEntities",
-					"scope" : "public",
-					"type" : "Accesses",
-					"reversePath" : true,
-					"path" : "action"
-				}
-			],
-			"key" : 
-			[
-				{
-					"name" : "ID"
-				}
-			]
-		},
-		{
-			"name" : "Category",
-			"className" : "Category",
-			"collectionName" : "Categories",
-			"scope" : "public",
-			"attributes" : 
-			[
-				{
-					"name" : "ID",
-					"kind" : "storage",
-					"scope" : "public",
-					"indexed" : true,
-					"autosequence" : true,
-					"type" : "long",
-					"indexKind" : "btree"
-				},
-				{
-					"name" : "title",
-					"kind" : "storage",
-					"scope" : "public",
-					"indexed" : true,
-					"not_null" : true,
-					"type" : "string",
-					"indexKind" : "auto"
-				},
-				{
-					"name" : "description",
-					"kind" : "storage",
-					"scope" : "public",
-					"type" : "string",
-					"indexKind" : "keywords"
-				},
-				{
-					"name" : "forums",
-					"kind" : "relatedEntities",
-					"scope" : "public",
-					"type" : "Forums",
-					"indexKind" : "auto",
-					"reversePath" : true,
-					"path" : "category"
-				}
-			],
-			"events" : 
-			[
-				{
-					"kind" : "save",
-					"from" : "$mainModel.Category.events.save"
-				},
-				{
-					"kind" : "save",
-					"from" : "$mainModel.Category.events.save"
-				},
-				{
-					"kind" : "save",
-					"from" : "$mainModel.Category.events.save",
-					"userDefined" : true
-				},
-				{
-					"kind" : "remove",
-					"from" : "$mainModel.Category.events.remove"
-				},
-				{
-					"kind" : "remove",
-					"from" : "$mainModel.Category.events.remove"
-				},
-				{
-					"kind" : "remove",
-					"from" : "$mainModel.Category.events.remove",
-					"userDefined" : true
-				},
-				{
-					"kind" : "validate",
-					"from" : "$mainModel.Category.events.validate"
-				},
-				{
-					"kind" : "validate",
-					"from" : "$mainModel.Category.events.validate"
-				},
-				{
-					"kind" : "validate",
-					"from" : "$mainModel.Category.events.validate",
-					"userDefined" : true
-				},
-				{
-					"kind" : "restrict",
-					"from" : "$mainModel.Category.events.restrict"
-				},
-				{
-					"kind" : "restrict",
-					"from" : "$mainModel.Category.events.restrict"
-				},
-				{
-					"kind" : "restrict",
-					"from" : "$mainModel.Category.events.restrict",
-					"userDefined" : true
-				}
-			],
-			"key" : 
-			[
-				{
-					"name" : "ID"
-				}
-			]
-		},
-		{
-			"name" : "Forum",
-			"className" : "Forum",
-			"collectionName" : "Forums",
-			"scope" : "public",
-			"attributes" : 
-			[
-				{
-					"name" : "ID",
-					"kind" : "storage",
-					"scope" : "public",
-					"indexed" : true,
-					"autosequence" : true,
-					"type" : "long",
-					"indexKind" : "btree"
-				},
-				{
-					"name" : "title",
-					"kind" : "storage",
-					"scope" : "public",
-					"indexed" : true,
-					"not_null" : true,
-					"type" : "string",
-					"indexKind" : "auto"
-				},
-				{
-					"name" : "decsription",
-					"kind" : "storage",
-					"scope" : "public",
-					"type" : "string",
-					"indexKind" : "keywords"
-				},
-				{
-					"name" : "category",
-					"kind" : "relatedEntity",
-					"scope" : "public",
-					"type" : "Category",
-					"path" : "Category"
-				},
-				{
-					"name" : "topics",
-					"kind" : "relatedEntities",
-					"scope" : "public",
-					"type" : "Topics",
-					"indexKind" : "auto",
-					"reversePath" : true,
-					"path" : "forum"
-				},
-				{
-					"name" : "allAccesses",
-					"kind" : "relatedEntities",
-					"scope" : "public",
-					"type" : "Accesses",
-					"indexKind" : "auto",
-					"reversePath" : true,
-					"path" : "forum"
-				},
-				{
-					"name" : "allGroups",
-					"kind" : "relatedEntities",
-					"scope" : "public",
-					"type" : "Groups",
-					"path" : "allAccesses.group"
-				},
-				{
-					"name" : "allUsers",
-					"kind" : "relatedEntities",
-					"scope" : "public",
-					"type" : "Users",
-					"path" : "allAccesses.user"
-				},
-				{
-					"name" : "allActions",
-					"kind" : "relatedEntities",
-					"scope" : "public",
-					"type" : "ActionCollection",
-					"path" : "allAccesses.action"
-				},
-				{
-					"name" : "visible",
-					"kind" : "storage",
-					"scope" : "public",
-					"type" : "bool"
-				},
-				{
-					"name" : "allInscriptions",
-					"kind" : "relatedEntities",
-					"scope" : "public",
-					"type" : "InscriptionCollection",
-					"reversePath" : true,
-					"path" : "forum"
-				},
-				{
-					"name" : "allUsersSubscripted",
-					"kind" : "relatedEntities",
-					"scope" : "public",
-					"type" : "Users",
-					"path" : "allInscriptions.user"
-				},
-				{
-					"name" : "allOpenInscriptions",
-					"kind" : "relatedEntities",
-					"scope" : "public",
-					"type" : "OpenInscriptionCollection",
-					"reversePath" : true,
-					"path" : "forum"
-				},
-				{
-					"name" : "allCloseInscriptions",
-					"kind" : "relatedEntities",
-					"scope" : "public",
-					"type" : "CloseInscriptionCollection",
-					"reversePath" : true,
-					"path" : "forum"
-				}
-			],
-			"events" : 
-			[
-				{
-					"kind" : "save",
-					"from" : "$mainModel.Forum.events.save"
-				},
-				{
-					"kind" : "save",
-					"from" : "$mainModel.Forum.events.save"
-				},
-				{
-					"kind" : "save",
-					"from" : "$mainModel.Forum.events.save",
-					"userDefined" : true
-				},
-				{
-					"kind" : "remove",
-					"from" : "$mainModel.Forum.events.remove"
-				},
-				{
-					"kind" : "remove",
-					"from" : "$mainModel.Forum.events.remove"
-				},
-				{
-					"kind" : "remove",
-					"from" : "$mainModel.Forum.events.remove",
-					"userDefined" : true
-				},
-				{
-					"kind" : "validate",
-					"from" : "$mainModel.Forum.events.validate"
-				},
-				{
-					"kind" : "validate",
-					"from" : "$mainModel.Forum.events.validate"
-				},
-				{
-					"kind" : "validate",
-					"from" : "$mainModel.Forum.events.validate",
-					"userDefined" : true
-				},
-				{
-					"kind" : "restrict",
-					"from" : "$mainModel.Forum.events.restrict"
-				},
-				{
-					"kind" : "restrict",
-					"from" : "$mainModel.Forum.events.restrict"
-				},
-				{
-					"kind" : "restrict",
-					"from" : "$mainModel.Forum.events.restrict",
-					"userDefined" : true
-				}
-			],
-			"methods" : 
-			[
-				{
-					"name" : "getUserAccess",
-					"applyTo" : "entity",
-					"scope" : "public",
-					"from" : "$mainModel.Forum.entityMethods.getUserAccess",
-					"userDefined" : true
-				},
-				{
-					"name" : "hasAccess",
-					"applyTo" : "entity",
-					"scope" : "public",
-					"from" : "$mainModel.Forum.entityMethods.hasAccess",
-					"userDefined" : true
-				},
-				{
-					"name" : "isModerator",
-					"applyTo" : "entity",
-					"scope" : "public",
-					"from" : "$mainModel.Forum.entityMethods.isModerator",
-					"userDefined" : true
-				},
-				{
-					"name" : "isSubscribed",
-					"applyTo" : "entity",
-					"scope" : "public",
-					"from" : "$mainModel.Forum.entityMethods.isSubscribed",
-					"userDefined" : true
-				}
-			],
-			"key" : 
-			[
-				{
-					"name" : "ID"
-				}
-			]
-		},
-		{
-			"name" : "Group",
-			"className" : "Group",
-			"collectionName" : "Groups",
-			"scope" : "public",
-			"attributes" : 
-			[
-				{
-					"name" : "ID",
-					"kind" : "storage",
-					"scope" : "public",
-					"indexed" : true,
-					"autosequence" : true,
-					"type" : "long",
-					"indexKind" : "btree"
-				},
-				{
-					"name" : "title",
-					"kind" : "storage",
-					"scope" : "public",
-					"indexed" : true,
-					"type" : "string",
-					"indexKind" : "auto"
-				},
-				{
-					"name" : "description",
-					"kind" : "storage",
-					"scope" : "public",
-					"type" : "string",
-					"indexKind" : "keywords"
-				},
-				{
-					"name" : "allAccesses",
-					"kind" : "relatedEntities",
-					"scope" : "public",
-					"type" : "Accesses",
-					"indexKind" : "auto",
-					"reversePath" : true,
-					"path" : "group"
-				},
-				{
-					"name" : "allForums",
-					"kind" : "relatedEntities",
-					"scope" : "public",
-					"type" : "Forums",
-					"indexKind" : "auto",
-					"path" : "allAccesses.forum"
-				},
-				{
-					"name" : "userGroupCollection",
-					"kind" : "relatedEntities",
-					"scope" : "public",
-					"type" : "UserGroupCollection",
-					"reversePath" : true,
-					"path" : "group"
-				},
-				{
-					"name" : "allUsers",
-					"kind" : "relatedEntities",
-					"scope" : "public",
-					"type" : "Users",
-					"path" : "userGroupCollection.user"
-				}
-			],
-			"events" : 
-			[
-				{
-					"kind" : "remove",
-					"from" : "$mainModel.Group.events.remove"
-				},
-				{
-					"kind" : "remove",
-					"from" : "$mainModel.Group.events.remove"
-				},
-				{
-					"kind" : "remove",
-					"from" : "$mainModel.Group.events.remove",
-					"userDefined" : true
-				}
-			],
-			"key" : 
-			[
-				{
-					"name" : "ID"
-				}
-			]
-		},
-		{
-			"name" : "Inscription",
-			"className" : "Inscription",
-			"collectionName" : "InscriptionCollection",
-			"scope" : "public",
-			"attributes" : 
-			[
-				{
-					"name" : "ID",
-					"kind" : "storage",
-					"scope" : "public",
-					"indexed" : true,
-					"unique" : true,
-					"autosequence" : true,
-					"type" : "long",
-					"indexKind" : "btree"
-				},
-				{
-					"name" : "forum",
-					"kind" : "relatedEntity",
-					"scope" : "public",
-					"type" : "Forum",
-					"path" : "Forum"
-				},
-				{
-					"name" : "user",
-					"kind" : "relatedEntity",
-					"scope" : "public",
-					"type" : "User",
-					"path" : "User"
-				},
-				{
-					"name" : "accepted",
-					"kind" : "storage",
-					"scope" : "public",
-					"type" : "bool"
-				},
-				{
-					"name" : "stamp",
-					"kind" : "storage",
-					"scope" : "public",
-					"type" : "date",
-					"simpleDate" : false
-				}
-			],
-			"events" : 
-			[
-				{
-					"kind" : "save",
-					"from" : "$mainModel.Inscription.events.save"
-				},
-				{
-					"kind" : "save",
-					"from" : "$mainModel.Inscription.events.save"
-				},
-				{
-					"kind" : "save",
-					"from" : "$mainModel.Inscription.events.save",
-					"userDefined" : true
-				},
-				{
-					"kind" : "init",
-					"from" : "$mainModel.Inscription.events.init"
-				},
-				{
-					"kind" : "init",
-					"from" : "$mainModel.Inscription.events.init"
-				},
-				{
-					"kind" : "init",
-					"from" : "$mainModel.Inscription.events.init",
-					"userDefined" : true
-				},
-				{
-					"kind" : "restrict",
-					"from" : "$mainModel.Inscription.events.restrict"
-				},
-				{
-					"kind" : "restrict",
-					"from" : "$mainModel.Inscription.events.restrict"
-				},
-				{
-					"kind" : "restrict",
-					"from" : "$mainModel.Inscription.events.restrict",
-					"userDefined" : true
-				}
-			],
-			"methods" : 
-			[
-				{
-					"name" : "subscribeToForum",
-					"applyTo" : "dataClass",
-					"scope" : "public",
-					"from" : "$mainModel.Inscription.methods.subscribeToForum",
-					"userDefined" : true
-				}
-			],
-			"key" : 
-			[
-				{
-					"name" : "ID"
-				}
-			]
-		},
-		{
-			"name" : "OpenInscription",
-			"className" : "OpenInscription",
-			"collectionName" : "OpenInscriptionCollection",
-			"scope" : "public",
-			"extends" : "Inscription",
-			"restrictingQuery" : 
-			[
-				{
-					"queryStatement" : "accepted == false"
-				}
-			],
-			"methods" : 
-			[
-				{
-					"name" : "acceptInscription",
-					"applyTo" : "entity",
-					"scope" : "public",
-					"from" : "$mainModel.OpenInscription.entityMethods.acceptInscription",
-					"userDefined" : true
-				},
-				{
-					"name" : "refuseInscription",
-					"applyTo" : "entity",
-					"scope" : "public",
-					"from" : "$mainModel.OpenInscription.entityMethods.refuseInscription",
-					"userDefined" : true
-				}
-			]
-		},
-		{
-			"name" : "CloseInscription",
-			"className" : "CloseInscription",
-			"collectionName" : "CloseInscriptionCollection",
-			"scope" : "public",
-			"extends" : "Inscription",
-			"restrictingQuery" : 
-			[
-				{
-					"queryStatement" : "accepted == true"
-				}
-			],
-			"methods" : 
-			[
-				{
-					"name" : "removeInscription",
-					"applyTo" : "entity",
-					"scope" : "public",
-					"from" : "$mainModel.CloseInscription.entityMethods.removeInscription",
-					"userDefined" : true
-				}
-			]
-		},
-		{
-			"name" : "Post",
-			"className" : "Post",
-			"collectionName" : "Posts",
-			"scope" : "public",
-			"attributes" : 
-			[
-				{
-					"name" : "ID",
-					"kind" : "storage",
-					"scope" : "public",
-					"indexed" : true,
-					"autosequence" : true,
-					"type" : "long",
-					"indexKind" : "btree"
-				},
-				{
-					"name" : "title",
-					"kind" : "storage",
-					"scope" : "public",
-					"indexed" : true,
-					"not_null" : true,
-					"type" : "string",
-					"indexKind" : "auto"
-				},
-				{
-					"name" : "content",
-					"kind" : "storage",
-					"scope" : "public",
-					"not_null" : true,
-					"type" : "string",
-					"indexKind" : "keywords"
-				},
-				{
-					"name" : "stamp",
-					"kind" : "storage",
-					"scope" : "public",
-					"indexed" : true,
-					"not_null" : true,
-					"type" : "date",
-					"simpleDate" : false,
-					"indexKind" : "auto"
-				},
-				{
-					"name" : "topic",
-					"kind" : "relatedEntity",
-					"scope" : "public",
-					"type" : "Topic",
-					"indexKind" : "auto",
-					"path" : "Topic"
-				},
-				{
-					"name" : "user",
-					"kind" : "relatedEntity",
-					"scope" : "public",
-					"type" : "User",
-					"path" : "User"
-				},
-				{
-					"name" : "enable",
-					"kind" : "storage",
-					"scope" : "public",
-					"not_null" : true,
-					"type" : "bool"
-				},
-				{
-					"name" : "replyTo",
-					"kind" : "relatedEntity",
-					"scope" : "public",
-					"type" : "Post",
-					"path" : "Post"
-				},
-				{
-					"name" : "posts",
-					"kind" : "relatedEntities",
-					"scope" : "public",
-					"type" : "Posts",
-					"reversePath" : true,
-					"path" : "replyTo"
-				},
-				{
-					"name" : "userStatut",
-					"kind" : "calculated",
-					"scope" : "public",
-					"type" : "string",
-					"scriptKind" : "javascript",
-					"onGet" : 
-					[
-						{
-							"from" : "$mainModel.Post.userStatut.onGet",
-							"userDefined" : true
-						}
-					]
-				},
-				{
-					"name" : "contentHTML",
-					"kind" : "calculated",
-					"scope" : "public",
-					"type" : "string",
-					"scriptKind" : "javascript",
-					"onGet" : 
-					[
-						{
-							"from" : "$mainModel.Post.contentHTML.onGet",
-							"userDefined" : true
-						}
-					]
-				},
-				{
-					"name" : "forum",
-					"kind" : "alias",
-					"scope" : "public",
-					"type" : "string",
-					"path" : "topic.forum.title"
-				},
-				{
-					"name" : "allViewPosts",
-					"kind" : "relatedEntities",
-					"matchColumn" : "viewPostCollection",
-					"scope" : "public",
-					"type" : "ViewPostCollection",
-					"reversePath" : true,
-					"path" : "post"
-				},
-				{
-					"name" : "allUsersView",
-					"kind" : "relatedEntities",
-					"scope" : "public",
-					"type" : "Users",
-					"path" : "allViewPosts.user"
-				},
-				{
-					"name" : "isViewed",
-					"kind" : "calculated",
-					"scope" : "public",
-					"type" : "bool",
-					"scriptKind" : "javascript",
-					"onGet" : 
-					[
-						{
-							"from" : "$mainModel.Post.isViewed.onGet",
-							"userDefined" : true
-						}
-					]
-				},
-				{
-					"name" : "currentUserVote",
-					"kind" : "calculated",
-					"scope" : "public",
-					"type" : "number",
-					"scriptKind" : "javascript",
-					"onGet" : 
-					[
-						{
-							"from" : "$mainModel.Post.currentUserVote.onGet",
-							"userDefined" : true
-						}
-					]
-				},
-				{
-					"name" : "voteAverage",
-					"kind" : "calculated",
-					"scope" : "public",
-					"type" : "number",
-					"scriptKind" : "javascript",
-					"onGet" : 
-					[
-						{
-							"from" : "$mainModel.Post.voteAverage.onGet",
-							"userDefined" : true
-						}
-					]
-				}
-			],
-			"events" : 
-			[
-				{
-					"kind" : "save",
-					"from" : "$mainModel.Post.events.save"
-				},
-				{
-					"kind" : "save",
-					"from" : "$mainModel.Post.events.save"
-				},
-				{
-					"kind" : "save",
-					"from" : "$mainModel.Post.events.save",
-					"userDefined" : true
-				},
-				{
-					"kind" : "load",
-					"from" : "$mainModel.Post.events.load"
-				},
-				{
-					"kind" : "load",
-					"from" : "$mainModel.Post.events.load"
-				},
-				{
-					"kind" : "init",
-					"from" : "$mainModel.Post.events.init"
-				},
-				{
-					"kind" : "init",
-					"from" : "$mainModel.Post.events.init"
-				},
-				{
-					"kind" : "init",
-					"from" : "$mainModel.Post.events.init",
-					"userDefined" : true
-				},
-				{
-					"kind" : "restrict",
-					"from" : "$mainModel.Post.events.restrict"
-				},
-				{
-					"kind" : "restrict",
-					"from" : "$mainModel.Post.events.restrict"
-				},
-				{
-					"kind" : "restrict",
-					"from" : "$mainModel.Post.events.restrict",
-					"userDefined" : true
-				}
-			],
-			"methods" : 
-			[
-				{
-					"name" : "disable",
-					"applyTo" : "entity",
-					"scope" : "public",
-					"from" : "$mainModel.Post.entityMethods.disable",
-					"userDefined" : true
-				},
-				{
-					"name" : "edit",
-					"applyTo" : "entity",
-					"scope" : "public",
-					"from" : "$mainModel.Post.entityMethods.edit",
-					"userDefined" : true
-				},
-				{
-					"name" : "isMyPost",
-					"applyTo" : "entity",
-					"scope" : "public",
-					"from" : "$mainModel.Post.entityMethods.isMyPost",
-					"userDefined" : true
-				},
-				{
-					"name" : "reply",
-					"applyTo" : "entity",
-					"scope" : "public",
-					"from" : "$mainModel.Post.entityMethods.reply",
-					"userDefined" : true
-				},
-				{
-					"name" : "viewPost",
-					"applyTo" : "entity",
-					"scope" : "public",
-					"from" : "$mainModel.Post.entityMethods.viewPost",
-					"userDefined" : true
-				},
-				{
-					"name" : "vote",
-					"applyTo" : "entity",
-					"scope" : "public",
-					"from" : "$mainModel.Post.entityMethods.vote",
-					"userDefined" : true
-				}
-			],
-			"key" : 
-			[
-				{
-					"name" : "ID"
-				}
-			]
-		},
-		{
-			"name" : "Topic",
-			"className" : "Topic",
-			"collectionName" : "Topics",
-			"scope" : "public",
-			"attributes" : 
-			[
-				{
-					"name" : "ID",
-					"kind" : "storage",
-					"scope" : "public",
-					"indexed" : true,
-					"autosequence" : true,
-					"type" : "long",
-					"indexKind" : "btree"
-				},
-				{
-					"name" : "title",
-					"kind" : "storage",
-					"scope" : "public",
-					"indexed" : true,
-					"not_null" : true,
-					"type" : "string",
-					"indexKind" : "auto"
-				},
-				{
-					"name" : "stamp",
-					"kind" : "storage",
-					"scope" : "public",
-					"indexed" : true,
-					"not_null" : true,
-					"type" : "date",
-					"simpleDate" : false,
-					"indexKind" : "auto"
-				},
-				{
-					"name" : "forum",
-					"kind" : "relatedEntity",
-					"scope" : "public",
-					"type" : "Forum",
-					"indexKind" : "auto",
-					"path" : "Forum"
-				},
-				{
-					"name" : "posts",
-					"kind" : "relatedEntities",
-					"scope" : "public",
-					"type" : "Posts",
-					"reversePath" : true,
-					"path" : "topic"
-				},
-				{
-					"name" : "user",
-					"kind" : "relatedEntity",
-					"scope" : "public",
-					"type" : "User",
-					"path" : "User"
-				}
-			],
-			"events" : 
-			[
-				{
-					"kind" : "save",
-					"from" : "$mainModel.Topic.events.save"
-				},
-				{
-					"kind" : "save",
-					"from" : "$mainModel.Topic.events.save"
-				},
-				{
-					"kind" : "save",
-					"from" : "$mainModel.Topic.events.save",
-					"userDefined" : true
-				},
-				{
-					"kind" : "init",
-					"from" : "$mainModel.Topic.events.init"
-				},
-				{
-					"kind" : "init",
-					"from" : "$mainModel.Topic.events.init"
-				},
-				{
-					"kind" : "init",
-					"from" : "$mainModel.Topic.events.init",
-					"userDefined" : true
-				},
-				{
-					"kind" : "remove",
-					"from" : "$mainModel.Topic.events.remove"
-				},
-				{
-					"kind" : "remove",
-					"from" : "$mainModel.Topic.events.remove"
-				},
-				{
-					"kind" : "remove",
-					"from" : "$mainModel.Topic.events.remove",
-					"userDefined" : true
-				},
-				{
-					"kind" : "restrict",
-					"from" : "$mainModel.Topic.events.restrict"
-				},
-				{
-					"kind" : "restrict",
-					"from" : "$mainModel.Topic.events.restrict"
-				},
-				{
-					"kind" : "restrict",
-					"from" : "$mainModel.Topic.events.restrict",
-					"userDefined" : true
-				}
-			],
-			"methods" : 
-			[
-				{
-					"name" : "createTopic",
-					"applyTo" : "dataClass",
-					"scope" : "public",
-					"from" : "$mainModel.Topic.methods.createTopic",
-					"userDefined" : true
-				},
-				{
-					"name" : "edit",
-					"applyTo" : "entity",
-					"scope" : "public",
-					"from" : "$mainModel.Topic.entityMethods.edit",
-					"userDefined" : true
-				}
-			],
-			"key" : 
-			[
-				{
-					"name" : "ID"
-				}
-			]
-		},
-		{
-			"name" : "User",
-			"className" : "User",
-			"collectionName" : "Users",
-			"scope" : "public",
-			"attributes" : 
-			[
-				{
-					"name" : "ID",
-					"kind" : "storage",
-					"scope" : "public",
-					"indexed" : true,
-					"unique" : true,
-					"autosequence" : true,
-					"type" : "long",
-					"indexKind" : "btree"
-				},
-				{
-					"name" : "lastName",
-					"kind" : "storage",
-					"scope" : "public",
-					"indexed" : true,
-					"type" : "string",
-					"indexKind" : "btree",
-					"autoComplete" : true,
-					"identifying" : true
-				},
-				{
-					"name" : "firstName",
-					"kind" : "storage",
-					"scope" : "public",
-					"indexed" : true,
-					"type" : "string",
-					"indexKind" : "btree",
-					"autoComplete" : true,
-					"identifying" : true
-				},
-				{
-					"name" : "fullName",
-					"kind" : "calculated",
-					"scope" : "public",
-					"type" : "string",
-					"scriptKind" : "javascript",
-					"onGet" : 
-					[
-						{
-							"from" : "$mainModel.User.fullName.onGet",
-							"userDefined" : true
-						}
-					]
-				},
-				{
-					"name" : "email",
-					"kind" : "storage",
-					"scope" : "public",
-					"indexed" : true,
-					"unique" : true,
-					"type" : "string",
-					"indexKind" : "btree",
-					"identifying" : true
-				},
-				{
-					"name" : "login",
-					"kind" : "storage",
-					"scope" : "public",
-					"indexed" : true,
-					"type" : "string",
-					"indexKind" : "btree",
-					"identifying" : true
-				},
-				{
-					"name" : "avatar",
-					"kind" : "storage",
-					"scope" : "public",
-					"type" : "image"
-				},
-				{
-					"name" : "ha1key",
-					"kind" : "storage",
-					"scope" : "publicOnServer",
-					"type" : "string"
-				},
-				{
-					"name" : "password",
-					"kind" : "calculated",
-					"scope" : "public",
-					"type" : "string",
-					"scriptKind" : "javascript",
-					"onGet" : 
-					[
-						{
-							"from" : "$mainModel.User.password.onGet",
-							"userDefined" : true
-						}
-					],
-					"onSet" : 
-					[
-						{
-							"from" : "$mainModel.User.password.onSet",
-							"userDefined" : true
-						}
-					]
-				},
-				{
-					"name" : "allAccesses",
-					"kind" : "relatedEntities",
-					"scope" : "public",
-					"type" : "Accesses",
-					"reversePath" : true,
-					"path" : "user"
-				},
-				{
-					"name" : "topics",
-					"kind" : "relatedEntities",
-					"scope" : "public",
-					"type" : "Topics",
-					"reversePath" : true,
-					"path" : "user"
-				},
-				{
-					"name" : "posts",
-					"kind" : "relatedEntities",
-					"scope" : "public",
-					"type" : "Posts",
-					"reversePath" : true,
-					"path" : "user"
-				},
-				{
-					"name" : "statut",
-					"kind" : "storage",
-					"scope" : "public",
-					"indexed" : true,
-					"type" : "string",
-					"indexKind" : "cluster"
-				},
-				{
-					"name" : "validationId",
-					"kind" : "storage",
-					"scope" : "publicOnServer",
-					"unique" : true,
-					"type" : "string"
-				},
-				{
-					"name" : "allForums",
-					"kind" : "relatedEntities",
-					"scope" : "public",
-					"type" : "Forums",
-					"path" : "allAccesses.forum"
-				},
-				{
-					"name" : "userGroupCollection",
-					"kind" : "relatedEntities",
-					"scope" : "public",
-					"type" : "UserGroupCollection",
-					"reversePath" : true,
-					"path" : "user"
-				},
-				{
-					"name" : "allGroups",
-					"kind" : "relatedEntities",
-					"scope" : "public",
-					"type" : "Groups",
-					"path" : "userGroupCollection.group"
-				},
-				{
-					"name" : "allInscription",
-					"kind" : "relatedEntities",
-					"scope" : "public",
-					"type" : "InscriptionCollection",
-					"reversePath" : true,
-					"path" : "user"
-				},
-				{
-					"name" : "allForumsSubscripted",
-					"kind" : "relatedEntities",
-					"scope" : "public",
-					"type" : "Forums",
-					"path" : "allInscription.forum"
-				},
-				{
-					"name" : "allViewPosts",
-					"kind" : "relatedEntities",
-					"scope" : "public",
-					"type" : "ViewPostCollection",
-					"reversePath" : true,
-					"path" : "user"
-				},
-				{
-					"name" : "allViewedPosts",
-					"kind" : "relatedEntities",
-					"scope" : "public",
-					"type" : "Posts",
-					"path" : "allViewPosts.post"
-				}
-			],
-			"events" : 
-			[
-				{
-					"kind" : "init",
-					"from" : "$mainModel.User.events.init"
-				},
-				{
-					"kind" : "init",
-					"from" : "$mainModel.User.events.init"
-				},
-				{
-					"kind" : "init",
-					"from" : "$mainModel.User.events.init",
-					"userDefined" : true
-				},
-				{
-					"kind" : "restrict",
-					"from" : "$mainModel.User.events.restrict"
-				},
-				{
-					"kind" : "restrict",
-					"from" : "$mainModel.User.events.restrict"
-				},
-				{
-					"kind" : "restrict",
-					"from" : "$mainModel.User.events.restrict",
-					"userDefined" : true
-				}
-			],
-			"methods" : 
-			[
-				{
-					"name" : "addAvatar",
-					"applyTo" : "entity",
-					"scope" : "public",
-					"from" : "$mainModel.User.entityMethods.addAvatar",
-					"userDefined" : true
-				},
-				{
-					"name" : "addNewUser",
-					"applyTo" : "dataClass",
-					"scope" : "public",
-					"from" : "$mainModel.User.methods.addNewUser",
-					"userDefined" : true
-				},
-				{
-					"name" : "changePassword",
-					"applyTo" : "entity",
-					"scope" : "public",
-					"from" : "$mainModel.User.entityMethods.changePassword",
-					"userDefined" : true
-				},
-				{
-					"name" : "getCurrentUserID",
-					"applyTo" : "dataClass",
-					"scope" : "public",
-					"from" : "$mainModel.User.methods.getCurrentUserID",
-					"userDefined" : true
-				},
-				{
-					"name" : "passwordForgotten",
-					"applyTo" : "dataClass",
-					"scope" : "public",
-					"from" : "$mainModel.User.methods.passwordForgotten",
-					"userDefined" : true
-				},
-				{
-					"name" : "updateUserInfos",
-					"applyTo" : "entity",
-					"scope" : "public",
-					"from" : "$mainModel.User.entityMethods.updateUserInfos",
-					"userDefined" : true
-				},
-				{
-					"name" : "validatePassword",
-					"applyTo" : "entity",
-					"scope" : "publicOnServer",
-					"from" : "$mainModel.User.entityMethods.validatePassword",
-					"userDefined" : true
-				}
-			],
-			"key" : 
-			[
-				{
-					"name" : "ID"
-				}
-			]
-		},
-		{
-			"name" : "UserGroup",
-			"className" : "UserGroup",
-			"collectionName" : "UserGroupCollection",
-			"scope" : "public",
-			"attributes" : 
-			[
-				{
-					"name" : "ID",
-					"kind" : "storage",
-					"scope" : "public",
-					"indexed" : true,
-					"unique" : true,
-					"autosequence" : true,
-					"type" : "long",
-					"indexKind" : "btree"
-				},
-				{
-					"name" : "user",
-					"kind" : "relatedEntity",
-					"scope" : "public",
-					"type" : "User",
-					"path" : "User"
-				},
-				{
-					"name" : "group",
-					"kind" : "relatedEntity",
-					"scope" : "public",
-					"type" : "Group",
-					"path" : "Group"
-				},
-				{
-					"name" : "stamp",
-					"kind" : "storage",
-					"scope" : "public",
-					"type" : "date",
-					"simpleDate" : false
-				}
-			],
-			"events" : 
-			[
-				{
-					"kind" : "init",
-					"from" : "$mainModel.UserGroup.events.init"
-				},
-				{
-					"kind" : "init",
-					"from" : "$mainModel.UserGroup.events.init"
-				},
-				{
-					"kind" : "init",
-					"from" : "$mainModel.UserGroup.events.init",
-					"userDefined" : true
-				}
-			],
-			"methods" : 
-			[
-				{
-					"name" : "addUserToGroup",
-					"applyTo" : "dataClass",
-					"scope" : "public",
-					"from" : "$mainModel.UserGroup.methods.addUserToGroup",
-					"userDefined" : true
-				},
-				{
-					"name" : "removeUserInGroup",
-					"applyTo" : "dataClass",
-					"scope" : "public",
-					"from" : "$mainModel.UserGroup.methods.removeUserInGroup",
-					"userDefined" : true
-				}
-			],
-			"key" : 
-			[
-				{
-					"name" : "ID"
-				}
-			]
-		},
-		{
-			"name" : "ViewPost",
-			"className" : "ViewPost",
-			"collectionName" : "ViewPostCollection",
-			"matchTable" : "ViewPost",
-			"scope" : "public",
-			"attributes" : 
-			[
-				{
-					"name" : "ID",
-					"kind" : "storage",
-					"scope" : "public",
-					"indexed" : true,
-					"unique" : true,
-					"autosequence" : true,
-					"type" : "long",
-					"indexKind" : "btree"
-				},
-				{
-					"name" : "post",
-					"kind" : "relatedEntity",
-					"scope" : "public",
-					"type" : "Post",
-					"path" : "Post"
-				},
-				{
-					"name" : "stamp",
-					"kind" : "storage",
-					"scope" : "public",
-					"type" : "date",
-					"simpleDate" : false
-				},
-				{
-					"name" : "vote",
-					"kind" : "storage",
-					"scope" : "public",
-					"type" : "number",
-					"minValue" : "-1",
-					"maxValue" : "5",
-					"defaultValue" : "-1"
-				},
-				{
-					"name" : "user",
-					"kind" : "relatedEntity",
-					"scope" : "public",
-					"type" : "User",
-					"path" : "User"
-				}
-			],
-			"events" : 
-			[
-				{
-					"kind" : "save",
-					"from" : "$mainModel.ViewPost.events.save",
-					"userDefined" : true
-				},
-				{
-					"kind" : "init",
-					"from" : "$mainModel.ViewPost.events.init"
-				},
-				{
-					"kind" : "init",
-					"from" : "$mainModel.ViewPost.events.init"
-				},
-				{
-					"kind" : "init",
-					"from" : "$mainModel.ViewPost.events.init",
-					"userDefined" : true
-				}
-			],
-			"key" : 
-			[
-				{
-					"name" : "ID"
-				}
-			]
-		}
-	]
-}
+﻿{	"toJSON": true,	"extraProperties": {		"version": "2",		"classes": {			"Category": {				"panelColor": "#eee",				"panel": {					"isOpen": "true",					"pathVisible": "true",					"position": {						"X": 75,						"Y": 21					}				}			},			"Forum": {				"panelColor": "#B2A2C7",				"panel": {					"isOpen": "true",					"pathVisible": "true",					"position": {						"X": 368,						"Y": 15					}				}			},			"Topic": {				"panelColor": "#E5B9B7",				"panel": {					"isOpen": "true",					"pathVisible": "true",					"position": {						"X": 792,						"Y": 18					}				}			},			"Post": {				"panelColor": "#B8CCE4",				"panel": {					"isOpen": "true",					"pathVisible": "true",					"position": {						"X": 1142,						"Y": 19					}				},				"attributes": {					"isViewed": {						"note": "Related to the current User"					},					"currentUserVote": {						"note": "Related to the current User"					}				}			},			"User": {				"panelColor": "#fff",				"panel": {					"isOpen": "true",					"pathVisible": true,					"position": {						"X": 38,						"Y": 530					}				},				"attributes": {					"statut": {						"note": "\"validated\" if the user can use his account. Else is \"emailSentForValidation\""					}				}			},			"Group": {				"panelColor": "#7F7F7F",				"panel": {					"isOpen": "true",					"pathVisible": "true",					"position": {						"X": 624,						"Y": 843					}				}			},			"Access": {				"panelColor": "#996699",				"note": "Access have a user or a group, not both !",				"panel": {					"isOpen": "true",					"pathVisible": "true",					"position": {						"X": 778,						"Y": 502					}				},				"attributes": {					"statut": {						"note": "Moderator, Member"					}				}			},			"Action": {				"panelColor": "#7F7F7F",				"panel": {					"isOpen": "true",					"pathVisible": true,					"position": {						"X": 1271,						"Y": 731					}				}			},			"UserGroup": {				"panelColor": "#C4BD97",				"panel": {					"isOpen": "true",					"pathVisible": true,					"position": {						"X": 336,						"Y": 1009					}				}			},			"Inscription": {				"panelColor": "#B2A2C7",				"panel": {					"isOpen": "true",					"pathVisible": true,					"position": {						"X": 57,						"Y": 254					}				}			},			"OpenInscription": {				"panelColor": "#E5B9B7",				"panel": {					"isOpen": "true",					"position": {						"X": 57,						"Y": 1399					}				}			},			"CloseInscription": {				"panelColor": "#996699",				"panel": {					"isOpen": "true",					"position": {						"X": 399,						"Y": 1426					}				}			},			"ViewPost": {				"panelColor": "#eee",				"panel": {					"isOpen": "true",					"pathVisible": true,					"position": {						"X": 1485,						"Y": 247					}				}			}		},		"model": {			"workspaceLeft": 0,			"workspaceTop": 0,			"scriptMode": "manual",			"lastScriptLocation": {				"User": {					"method": "User/User-methods.js",					"computed": "User/User-events.js",					"events": "User/User-events.js"				},				"Access": {					"method": "Access/Access-methods.js",					"events": "Access/Access-events.js"				},				"Category": {					"method": "Category/Category-methods.js",					"events": "Category/Category-events.js"				},				"UserGroup": {					"method": "UserGroup/UserGroup-methods.js",					"events": "UserGroup/UserGroup-events.js"				},				"Forum": {					"method": "Forum/Forum-methods.js",					"events": "Forum/Forum-events.js"				},				"Topic": {					"events": "Topic/Topic-events.js",					"method": "Topic/Topic-methods.js",					"computed": "Topic/Topic-events.js"				},				"Group": {					"events": "Group/Group-events.js"				},				"Post": {					"method": "Post/Post-methods.js",					"events": "Post/Post-events.js",					"computed": "Post/Post-events.js"				},				"Inscription": {					"events": "Inscription/Inscription-events.js",					"method": "Inscription/Inscription-methods.js"				},				"OpenInscription": {					"method": "OpenInscription/OpenInscription-methods.js"				},				"CloseInscription": {					"method": "CloseInscription/CloseInscription-methods.js"				},				"ViewPost": {					"events": "ViewPost/ViewPost-events.js"				}			},			"relationCurve": {				"run": true,				"mode": 2			}		}	},	"dataClasses": [		{			"name": "Access",			"className": "Access",			"collectionName": "Accesses",			"scope": "public",			"attributes": [				{					"name": "ID",					"kind": "storage",					"scope": "public",					"autosequence": true,					"type": "long",					"indexKind": "btree",					"primKey": true				},				{					"name": "statut",					"kind": "storage",					"scope": "public",					"not_null": true,					"type": "string",					"indexKind": "cluster"				},				{					"name": "stamp",					"kind": "storage",					"scope": "public",					"not_null": true,					"type": "date",					"simpleDate": false				},				{					"name": "user",					"kind": "relatedEntity",					"scope": "public",					"type": "User",					"indexKind": "auto",					"path": "User"				},				{					"name": "group",					"kind": "relatedEntity",					"scope": "public",					"type": "Group",					"indexKind": "auto",					"path": "Group"				},				{					"name": "forum",					"kind": "relatedEntity",					"scope": "public",					"type": "Forum",					"indexKind": "auto",					"path": "Forum"				},				{					"name": "restricted",					"kind": "storage",					"scope": "public",					"type": "bool",					"indexKind": "cluster"				},				{					"name": "action",					"kind": "relatedEntity",					"scope": "public",					"type": "Action",					"path": "Action"				}			],			"events": [				{					"kind": "save",					"from": "$mainModel.Access.events.save"				},				{					"kind": "save",					"from": "$mainModel.Access.events.save"				},				{					"kind": "save",					"from": "$mainModel.Access.events.save"				},				{					"kind": "save",					"from": "$mainModel.Access.events.save"				},				{					"kind": "save",					"from": "$mainModel.Access.events.save",					"userDefined": true				},				{					"kind": "init",					"from": "$mainModel.Access.events.init"				},				{					"kind": "init",					"from": "$mainModel.Access.events.init"				},				{					"kind": "init",					"from": "$mainModel.Access.events.init"				},				{					"kind": "init",					"from": "$mainModel.Access.events.init"				},				{					"kind": "init",					"from": "$mainModel.Access.events.init",					"userDefined": true				}			],			"methods": [				{					"name": "createOrModifyAGroupOrUserAccess",					"applyTo": "dataClass",					"scope": "public",					"from": "$mainModel.Access.methods.createOrModifyAGroupOrUserAccess",					"userDefined": true				}			]		},		{			"name": "Action",			"className": "Action",			"collectionName": "ActionCollection",			"scope": "public",			"attributes": [				{					"name": "ID",					"kind": "storage",					"scope": "public",					"unique": true,					"autosequence": true,					"type": "long",					"indexKind": "btree",					"primKey": true				},				{					"name": "read",					"kind": "storage",					"scope": "public",					"not_null": true,					"type": "bool"				},				{					"name": "write",					"kind": "storage",					"scope": "public",					"not_null": true,					"type": "bool"				},				{					"name": "del",					"kind": "storage",					"scope": "public",					"not_null": true,					"type": "bool"				},				{					"name": "modify",					"kind": "storage",					"scope": "public",					"not_null": true,					"type": "bool"				},				{					"name": "vote",					"kind": "storage",					"scope": "public",					"not_null": true,					"type": "bool"				},				{					"name": "allAccesses",					"kind": "relatedEntities",					"scope": "public",					"type": "Accesses",					"reversePath": true,					"path": "action"				}			]		},		{			"name": "Category",			"className": "Category",			"collectionName": "Categories",			"scope": "public",			"attributes": [				{					"name": "ID",					"kind": "storage",					"scope": "public",					"autosequence": true,					"type": "long",					"indexKind": "btree",					"primKey": true				},				{					"name": "title",					"kind": "storage",					"scope": "public",					"not_null": true,					"type": "string",					"indexKind": "auto"				},				{					"name": "description",					"kind": "storage",					"scope": "public",					"type": "string",					"indexKind": "keywords"				},				{					"name": "forums",					"kind": "relatedEntities",					"scope": "public",					"type": "Forums",					"indexKind": "auto",					"reversePath": true,					"path": "category"				}			],			"events": [				{					"kind": "save",					"from": "$mainModel.Category.events.save"				},				{					"kind": "save",					"from": "$mainModel.Category.events.save"				},				{					"kind": "save",					"from": "$mainModel.Category.events.save"				},				{					"kind": "save",					"from": "$mainModel.Category.events.save"				},				{					"kind": "save",					"from": "$mainModel.Category.events.save",					"userDefined": true				},				{					"kind": "remove",					"from": "$mainModel.Category.events.remove"				},				{					"kind": "remove",					"from": "$mainModel.Category.events.remove"				},				{					"kind": "remove",					"from": "$mainModel.Category.events.remove"				},				{					"kind": "remove",					"from": "$mainModel.Category.events.remove"				},				{					"kind": "remove",					"from": "$mainModel.Category.events.remove",					"userDefined": true				},				{					"kind": "validate",					"from": "$mainModel.Category.events.validate"				},				{					"kind": "validate",					"from": "$mainModel.Category.events.validate"				},				{					"kind": "validate",					"from": "$mainModel.Category.events.validate"				},				{					"kind": "validate",					"from": "$mainModel.Category.events.validate"				},				{					"kind": "validate",					"from": "$mainModel.Category.events.validate",					"userDefined": true				},				{					"kind": "restrict",					"from": "$mainModel.Category.events.restrict"				},				{					"kind": "restrict",					"from": "$mainModel.Category.events.restrict"				},				{					"kind": "restrict",					"from": "$mainModel.Category.events.restrict"				},				{					"kind": "restrict",					"from": "$mainModel.Category.events.restrict"				},				{					"kind": "restrict",					"from": "$mainModel.Category.events.restrict",					"userDefined": true				}			]		},		{			"name": "Forum",			"className": "Forum",			"collectionName": "Forums",			"scope": "public",			"attributes": [				{					"name": "ID",					"kind": "storage",					"scope": "public",					"autosequence": true,					"type": "long",					"indexKind": "btree",					"primKey": true				},				{					"name": "title",					"kind": "storage",					"scope": "public",					"not_null": true,					"type": "string",					"indexKind": "auto"				},				{					"name": "decsription",					"kind": "storage",					"scope": "public",					"type": "string",					"indexKind": "keywords"				},				{					"name": "category",					"kind": "relatedEntity",					"scope": "public",					"type": "Category",					"path": "Category"				},				{					"name": "topics",					"kind": "relatedEntities",					"scope": "public",					"type": "Topics",					"indexKind": "auto",					"reversePath": true,					"path": "forum"				},				{					"name": "allAccesses",					"kind": "relatedEntities",					"scope": "public",					"type": "Accesses",					"indexKind": "auto",					"reversePath": true,					"path": "forum"				},				{					"name": "allGroups",					"kind": "relatedEntities",					"scope": "public",					"type": "Groups",					"path": "allAccesses.group"				},				{					"name": "allUsers",					"kind": "relatedEntities",					"scope": "public",					"type": "Users",					"path": "allAccesses.user"				},				{					"name": "allActions",					"kind": "relatedEntities",					"scope": "public",					"type": "ActionCollection",					"path": "allAccesses.action"				},				{					"name": "visible",					"kind": "storage",					"scope": "public",					"type": "bool"				},				{					"name": "allInscriptions",					"kind": "relatedEntities",					"scope": "public",					"type": "InscriptionCollection",					"reversePath": true,					"path": "forum"				},				{					"name": "allUsersSubscripted",					"kind": "relatedEntities",					"scope": "public",					"type": "Users",					"path": "allInscriptions.user"				},				{					"name": "allOpenInscriptions",					"kind": "relatedEntities",					"scope": "public",					"type": "OpenInscriptionCollection",					"reversePath": true,					"path": "forum"				},				{					"name": "allCloseInscriptions",					"kind": "relatedEntities",					"scope": "public",					"type": "CloseInscriptionCollection",					"reversePath": true,					"path": "forum"				}			],			"events": [				{					"kind": "save",					"from": "$mainModel.Forum.events.save"				},				{					"kind": "save",					"from": "$mainModel.Forum.events.save"				},				{					"kind": "save",					"from": "$mainModel.Forum.events.save"				},				{					"kind": "save",					"from": "$mainModel.Forum.events.save"				},				{					"kind": "save",					"from": "$mainModel.Forum.events.save",					"userDefined": true				},				{					"kind": "remove",					"from": "$mainModel.Forum.events.remove"				},				{					"kind": "remove",					"from": "$mainModel.Forum.events.remove"				},				{					"kind": "remove",					"from": "$mainModel.Forum.events.remove"				},				{					"kind": "remove",					"from": "$mainModel.Forum.events.remove"				},				{					"kind": "remove",					"from": "$mainModel.Forum.events.remove",					"userDefined": true				},				{					"kind": "validate",					"from": "$mainModel.Forum.events.validate"				},				{					"kind": "validate",					"from": "$mainModel.Forum.events.validate"				},				{					"kind": "validate",					"from": "$mainModel.Forum.events.validate"				},				{					"kind": "validate",					"from": "$mainModel.Forum.events.validate"				},				{					"kind": "validate",					"from": "$mainModel.Forum.events.validate",					"userDefined": true				},				{					"kind": "restrict",					"from": "$mainModel.Forum.events.restrict"				},				{					"kind": "restrict",					"from": "$mainModel.Forum.events.restrict"				},				{					"kind": "restrict",					"from": "$mainModel.Forum.events.restrict"				},				{					"kind": "restrict",					"from": "$mainModel.Forum.events.restrict"				},				{					"kind": "restrict",					"from": "$mainModel.Forum.events.restrict",					"userDefined": true				}			],			"methods": [				{					"name": "getUserAccess",					"applyTo": "entity",					"scope": "public",					"from": "$mainModel.Forum.entityMethods.getUserAccess",					"userDefined": true				},				{					"name": "hasAccess",					"applyTo": "entity",					"scope": "public",					"from": "$mainModel.Forum.entityMethods.hasAccess",					"userDefined": true				},				{					"name": "isModerator",					"applyTo": "entity",					"scope": "public",					"from": "$mainModel.Forum.entityMethods.isModerator",					"userDefined": true				},				{					"name": "isSubscribed",					"applyTo": "entity",					"scope": "public",					"from": "$mainModel.Forum.entityMethods.isSubscribed",					"userDefined": true				}			]		},		{			"name": "Group",			"className": "Group",			"collectionName": "Groups",			"scope": "public",			"attributes": [				{					"name": "ID",					"kind": "storage",					"scope": "public",					"autosequence": true,					"type": "long",					"indexKind": "btree",					"primKey": true				},				{					"name": "title",					"kind": "storage",					"scope": "public",					"type": "string",					"indexKind": "auto"				},				{					"name": "description",					"kind": "storage",					"scope": "public",					"type": "string",					"indexKind": "keywords"				},				{					"name": "allAccesses",					"kind": "relatedEntities",					"scope": "public",					"type": "Accesses",					"indexKind": "auto",					"reversePath": true,					"path": "group"				},				{					"name": "allForums",					"kind": "relatedEntities",					"scope": "public",					"type": "Forums",					"indexKind": "auto",					"path": "allAccesses.forum"				},				{					"name": "userGroupCollection",					"kind": "relatedEntities",					"scope": "public",					"type": "UserGroupCollection",					"reversePath": true,					"path": "group"				},				{					"name": "allUsers",					"kind": "relatedEntities",					"scope": "public",					"type": "Users",					"path": "userGroupCollection.user"				}			],			"events": [				{					"kind": "remove",					"from": "$mainModel.Group.events.remove"				},				{					"kind": "remove",					"from": "$mainModel.Group.events.remove"				},				{					"kind": "remove",					"from": "$mainModel.Group.events.remove"				},				{					"kind": "remove",					"from": "$mainModel.Group.events.remove"				},				{					"kind": "remove",					"from": "$mainModel.Group.events.remove",					"userDefined": true				}			]		},		{			"name": "Inscription",			"className": "Inscription",			"collectionName": "InscriptionCollection",			"scope": "public",			"attributes": [				{					"name": "ID",					"kind": "storage",					"scope": "public",					"unique": true,					"autosequence": true,					"type": "long",					"indexKind": "btree",					"primKey": true				},				{					"name": "forum",					"kind": "relatedEntity",					"scope": "public",					"type": "Forum",					"path": "Forum"				},				{					"name": "user",					"kind": "relatedEntity",					"scope": "public",					"type": "User",					"path": "User"				},				{					"name": "accepted",					"kind": "storage",					"scope": "public",					"type": "bool"				},				{					"name": "stamp",					"kind": "storage",					"scope": "public",					"type": "date",					"simpleDate": false				}			],			"events": [				{					"kind": "save",					"from": "$mainModel.Inscription.events.save"				},				{					"kind": "save",					"from": "$mainModel.Inscription.events.save"				},				{					"kind": "save",					"from": "$mainModel.Inscription.events.save"				},				{					"kind": "save",					"from": "$mainModel.Inscription.events.save"				},				{					"kind": "save",					"from": "$mainModel.Inscription.events.save",					"userDefined": true				},				{					"kind": "init",					"from": "$mainModel.Inscription.events.init"				},				{					"kind": "init",					"from": "$mainModel.Inscription.events.init"				},				{					"kind": "init",					"from": "$mainModel.Inscription.events.init"				},				{					"kind": "init",					"from": "$mainModel.Inscription.events.init"				},				{					"kind": "init",					"from": "$mainModel.Inscription.events.init",					"userDefined": true				},				{					"kind": "restrict",					"from": "$mainModel.Inscription.events.restrict"				},				{					"kind": "restrict",					"from": "$mainModel.Inscription.events.restrict"				},				{					"kind": "restrict",					"from": "$mainModel.Inscription.events.restrict"				},				{					"kind": "restrict",					"from": "$mainModel.Inscription.events.restrict"				},				{					"kind": "restrict",					"from": "$mainModel.Inscription.events.restrict",					"userDefined": true				}			],			"methods": [				{					"name": "subscribeToForum",					"applyTo": "dataClass",					"scope": "public",					"from": "$mainModel.Inscription.methods.subscribeToForum",					"userDefined": true				}			]		},		{			"name": "OpenInscription",			"className": "OpenInscription",			"collectionName": "OpenInscriptionCollection",			"scope": "public",			"extends": "Inscription",			"restrictingQuery": [				{					"queryStatement": "accepted == false"				}			],			"methods": [				{					"name": "acceptInscription",					"applyTo": "entity",					"scope": "public",					"from": "$mainModel.OpenInscription.entityMethods.acceptInscription",					"userDefined": true				},				{					"name": "refuseInscription",					"applyTo": "entity",					"scope": "public",					"from": "$mainModel.OpenInscription.entityMethods.refuseInscription",					"userDefined": true				}			]		},		{			"name": "CloseInscription",			"className": "CloseInscription",			"collectionName": "CloseInscriptionCollection",			"scope": "public",			"extends": "Inscription",			"restrictingQuery": [				{					"queryStatement": "accepted == true"				}			],			"methods": [				{					"name": "removeInscription",					"applyTo": "entity",					"scope": "public",					"from": "$mainModel.CloseInscription.entityMethods.removeInscription",					"userDefined": true				}			]		},		{			"name": "Post",			"className": "Post",			"collectionName": "Posts",			"scope": "public",			"attributes": [				{					"name": "ID",					"kind": "storage",					"scope": "public",					"autosequence": true,					"type": "long",					"indexKind": "btree",					"primKey": true				},				{					"name": "title",					"kind": "storage",					"scope": "public",					"not_null": true,					"type": "string",					"indexKind": "auto"				},				{					"name": "content",					"kind": "storage",					"scope": "public",					"not_null": true,					"type": "string",					"indexKind": "keywords"				},				{					"name": "stamp",					"kind": "storage",					"scope": "public",					"not_null": true,					"type": "date",					"simpleDate": false,					"indexKind": "auto"				},				{					"name": "topic",					"kind": "relatedEntity",					"scope": "public",					"type": "Topic",					"indexKind": "auto",					"path": "Topic"				},				{					"name": "user",					"kind": "relatedEntity",					"scope": "public",					"type": "User",					"path": "User"				},				{					"name": "enable",					"kind": "storage",					"scope": "public",					"not_null": true,					"type": "bool"				},				{					"name": "replyTo",					"kind": "relatedEntity",					"scope": "public",					"type": "Post",					"path": "Post"				},				{					"name": "posts",					"kind": "relatedEntities",					"scope": "public",					"type": "Posts",					"reversePath": true,					"path": "replyTo"				},				{					"name": "userStatut",					"kind": "calculated",					"scope": "public",					"type": "string",					"scriptKind": "javascript",					"onGet": [						{							"from": "$mainModel.Post.userStatut.onGet",							"userDefined": true						}					]				},				{					"name": "contentHTML",					"kind": "calculated",					"scope": "public",					"type": "string",					"scriptKind": "javascript",					"onGet": [						{							"from": "$mainModel.Post.contentHTML.onGet",							"userDefined": true						}					]				},				{					"name": "forum",					"kind": "alias",					"scope": "public",					"type": "string",					"path": "topic.forum.title"				},				{					"name": "allViewPosts",					"kind": "relatedEntities",					"matchColumn": "viewPostCollection",					"scope": "public",					"type": "ViewPostCollection",					"reversePath": true,					"path": "post"				},				{					"name": "allUsersView",					"kind": "relatedEntities",					"scope": "public",					"type": "Users",					"path": "allViewPosts.user"				},				{					"name": "isViewed",					"kind": "calculated",					"scope": "public",					"type": "bool",					"scriptKind": "javascript",					"onGet": [						{							"from": "$mainModel.Post.isViewed.onGet",							"userDefined": true						}					]				},				{					"name": "currentUserVote",					"kind": "calculated",					"scope": "public",					"type": "number",					"scriptKind": "javascript",					"onGet": [						{							"from": "$mainModel.Post.currentUserVote.onGet",							"userDefined": true						}					]				},				{					"name": "voteAverage",					"kind": "calculated",					"scope": "public",					"type": "number",					"scriptKind": "javascript",					"onGet": [						{							"from": "$mainModel.Post.voteAverage.onGet",							"userDefined": true						}					]				}			],			"events": [				{					"kind": "save",					"from": "$mainModel.Post.events.save"				},				{					"kind": "save",					"from": "$mainModel.Post.events.save"				},				{					"kind": "save",					"from": "$mainModel.Post.events.save"				},				{					"kind": "save",					"from": "$mainModel.Post.events.save"				},				{					"kind": "save",					"from": "$mainModel.Post.events.save",					"userDefined": true				},				{					"kind": "load",					"from": "$mainModel.Post.events.load"				},				{					"kind": "load",					"from": "$mainModel.Post.events.load"				},				{					"kind": "init",					"from": "$mainModel.Post.events.init"				},				{					"kind": "init",					"from": "$mainModel.Post.events.init"				},				{					"kind": "init",					"from": "$mainModel.Post.events.init"				},				{					"kind": "init",					"from": "$mainModel.Post.events.init"				},				{					"kind": "init",					"from": "$mainModel.Post.events.init",					"userDefined": true				},				{					"kind": "restrict",					"from": "$mainModel.Post.events.restrict"				},				{					"kind": "restrict",					"from": "$mainModel.Post.events.restrict"				},				{					"kind": "restrict",					"from": "$mainModel.Post.events.restrict"				},				{					"kind": "restrict",					"from": "$mainModel.Post.events.restrict"				},				{					"kind": "restrict",					"from": "$mainModel.Post.events.restrict",					"userDefined": true				}			],			"methods": [				{					"name": "disable",					"applyTo": "entity",					"scope": "public",					"from": "$mainModel.Post.entityMethods.disable",					"userDefined": true				},				{					"name": "edit",					"applyTo": "entity",					"scope": "public",					"from": "$mainModel.Post.entityMethods.edit",					"userDefined": true				},				{					"name": "isMyPost",					"applyTo": "entity",					"scope": "public",					"from": "$mainModel.Post.entityMethods.isMyPost",					"userDefined": true				},				{					"name": "reply",					"applyTo": "entity",					"scope": "public",					"from": "$mainModel.Post.entityMethods.reply",					"userDefined": true				},				{					"name": "viewPost",					"applyTo": "entity",					"scope": "public",					"from": "$mainModel.Post.entityMethods.viewPost",					"userDefined": true				},				{					"name": "vote",					"applyTo": "entity",					"scope": "public",					"from": "$mainModel.Post.entityMethods.vote",					"userDefined": true				}			]		},		{			"name": "Topic",			"className": "Topic",			"collectionName": "Topics",			"scope": "public",			"attributes": [				{					"name": "ID",					"kind": "storage",					"scope": "public",					"autosequence": true,					"type": "long",					"indexKind": "btree",					"primKey": true				},				{					"name": "title",					"kind": "storage",					"scope": "public",					"not_null": true,					"type": "string",					"indexKind": "auto"				},				{					"name": "stamp",					"kind": "storage",					"scope": "public",					"not_null": true,					"type": "date",					"simpleDate": false,					"indexKind": "auto"				},				{					"name": "forum",					"kind": "relatedEntity",					"scope": "public",					"type": "Forum",					"indexKind": "auto",					"path": "Forum"				},				{					"name": "posts",					"kind": "relatedEntities",					"scope": "public",					"type": "Posts",					"reversePath": true,					"path": "topic"				},				{					"name": "user",					"kind": "relatedEntity",					"scope": "public",					"type": "User",					"path": "User"				}			],			"events": [				{					"kind": "save",					"from": "$mainModel.Topic.events.save"				},				{					"kind": "save",					"from": "$mainModel.Topic.events.save"				},				{					"kind": "save",					"from": "$mainModel.Topic.events.save"				},				{					"kind": "save",					"from": "$mainModel.Topic.events.save"				},				{					"kind": "save",					"from": "$mainModel.Topic.events.save",					"userDefined": true				},				{					"kind": "init",					"from": "$mainModel.Topic.events.init"				},				{					"kind": "init",					"from": "$mainModel.Topic.events.init"				},				{					"kind": "init",					"from": "$mainModel.Topic.events.init"				},				{					"kind": "init",					"from": "$mainModel.Topic.events.init"				},				{					"kind": "init",					"from": "$mainModel.Topic.events.init",					"userDefined": true				},				{					"kind": "remove",					"from": "$mainModel.Topic.events.remove"				},				{					"kind": "remove",					"from": "$mainModel.Topic.events.remove"				},				{					"kind": "remove",					"from": "$mainModel.Topic.events.remove"				},				{					"kind": "remove",					"from": "$mainModel.Topic.events.remove"				},				{					"kind": "remove",					"from": "$mainModel.Topic.events.remove",					"userDefined": true				},				{					"kind": "restrict",					"from": "$mainModel.Topic.events.restrict"				},				{					"kind": "restrict",					"from": "$mainModel.Topic.events.restrict"				},				{					"kind": "restrict",					"from": "$mainModel.Topic.events.restrict"				},				{					"kind": "restrict",					"from": "$mainModel.Topic.events.restrict"				},				{					"kind": "restrict",					"from": "$mainModel.Topic.events.restrict",					"userDefined": true				}			],			"methods": [				{					"name": "createTopic",					"applyTo": "dataClass",					"scope": "public",					"from": "$mainModel.Topic.methods.createTopic",					"userDefined": true				},				{					"name": "edit",					"applyTo": "entity",					"scope": "public",					"from": "$mainModel.Topic.entityMethods.edit",					"userDefined": true				}			]		},		{			"name": "User",			"className": "User",			"collectionName": "Users",			"scope": "public",			"attributes": [				{					"name": "ID",					"kind": "storage",					"scope": "public",					"unique": true,					"autosequence": true,					"type": "long",					"indexKind": "btree",					"primKey": true				},				{					"name": "lastName",					"kind": "storage",					"scope": "public",					"type": "string",					"indexKind": "btree",					"autoComplete": true,					"identifying": true				},				{					"name": "firstName",					"kind": "storage",					"scope": "public",					"type": "string",					"indexKind": "btree",					"autoComplete": true,					"identifying": true				},				{					"name": "fullName",					"kind": "calculated",					"scope": "public",					"type": "string",					"scriptKind": "javascript",					"onGet": [						{							"from": "$mainModel.User.fullName.onGet",							"userDefined": true						}					]				},				{					"name": "email",					"kind": "storage",					"scope": "public",					"unique": true,					"type": "string",					"indexKind": "btree",					"identifying": true				},				{					"name": "login",					"kind": "storage",					"scope": "public",					"type": "string",					"indexKind": "btree",					"identifying": true				},				{					"name": "avatar",					"kind": "storage",					"scope": "public",					"type": "image"				},				{					"name": "ha1key",					"kind": "storage",					"scope": "publicOnServer",					"type": "string"				},				{					"name": "password",					"kind": "calculated",					"scope": "public",					"type": "string",					"scriptKind": "javascript",					"onGet": [						{							"from": "$mainModel.User.password.onGet",							"userDefined": true						}					],					"onSet": [						{							"from": "$mainModel.User.password.onSet",							"userDefined": true						}					]				},				{					"name": "allAccesses",					"kind": "relatedEntities",					"scope": "public",					"type": "Accesses",					"reversePath": true,					"path": "user"				},				{					"name": "topics",					"kind": "relatedEntities",					"scope": "public",					"type": "Topics",					"reversePath": true,					"path": "user"				},				{					"name": "posts",					"kind": "relatedEntities",					"scope": "public",					"type": "Posts",					"reversePath": true,					"path": "user"				},				{					"name": "statut",					"kind": "storage",					"scope": "public",					"type": "string",					"indexKind": "cluster"				},				{					"name": "validationId",					"kind": "storage",					"scope": "publicOnServer",					"unique": true,					"type": "string"				},				{					"name": "allForums",					"kind": "relatedEntities",					"scope": "public",					"type": "Forums",					"path": "allAccesses.forum"				},				{					"name": "userGroupCollection",					"kind": "relatedEntities",					"scope": "public",					"type": "UserGroupCollection",					"reversePath": true,					"path": "user"				},				{					"name": "allGroups",					"kind": "relatedEntities",					"scope": "public",					"type": "Groups",					"path": "userGroupCollection.group"				},				{					"name": "allInscription",					"kind": "relatedEntities",					"scope": "public",					"type": "InscriptionCollection",					"reversePath": true,					"path": "user"				},				{					"name": "allForumsSubscripted",					"kind": "relatedEntities",					"scope": "public",					"type": "Forums",					"path": "allInscription.forum"				},				{					"name": "allViewPosts",					"kind": "relatedEntities",					"scope": "public",					"type": "ViewPostCollection",					"reversePath": true,					"path": "user"				},				{					"name": "allViewedPosts",					"kind": "relatedEntities",					"scope": "public",					"type": "Posts",					"path": "allViewPosts.post"				}			],			"events": [				{					"kind": "init",					"from": "$mainModel.User.events.init"				},				{					"kind": "init",					"from": "$mainModel.User.events.init"				},				{					"kind": "init",					"from": "$mainModel.User.events.init"				},				{					"kind": "init",					"from": "$mainModel.User.events.init",					"userDefined": true				},				{					"kind": "remove",					"from": "$mainModel.User.events.remove",					"userDefined": true				},				{					"kind": "restrict",					"from": "$mainModel.User.events.restrict"				},				{					"kind": "restrict",					"from": "$mainModel.User.events.restrict"				},				{					"kind": "restrict",					"from": "$mainModel.User.events.restrict"				},				{					"kind": "restrict",					"from": "$mainModel.User.events.restrict",					"userDefined": true				}			],			"methods": [				{					"name": "addAvatar",					"applyTo": "entity",					"scope": "public",					"from": "$mainModel.User.entityMethods.addAvatar",					"userDefined": true				},				{					"name": "addNewUser",					"applyTo": "dataClass",					"scope": "public",					"from": "$mainModel.User.methods.addNewUser",					"userDefined": true				},				{					"name": "changePassword",					"applyTo": "entity",					"scope": "public",					"from": "$mainModel.User.entityMethods.changePassword",					"userDefined": true				},				{					"name": "getCurrentUserID",					"applyTo": "dataClass",					"scope": "public",					"from": "$mainModel.User.methods.getCurrentUserID",					"userDefined": true				},				{					"name": "passwordForgotten",					"applyTo": "dataClass",					"scope": "public",					"from": "$mainModel.User.methods.passwordForgotten",					"userDefined": true				},				{					"name": "updateUserInfos",					"applyTo": "entity",					"scope": "public",					"from": "$mainModel.User.entityMethods.updateUserInfos",					"userDefined": true				},				{					"name": "validatePassword",					"applyTo": "entity",					"scope": "publicOnServer",					"from": "$mainModel.User.entityMethods.validatePassword",					"userDefined": true				}			]		},		{			"name": "UserGroup",			"className": "UserGroup",			"collectionName": "UserGroupCollection",			"scope": "public",			"attributes": [				{					"name": "ID",					"kind": "storage",					"scope": "public",					"unique": true,					"autosequence": true,					"type": "long",					"indexKind": "btree",					"primKey": true				},				{					"name": "user",					"kind": "relatedEntity",					"scope": "public",					"type": "User",					"path": "User"				},				{					"name": "group",					"kind": "relatedEntity",					"scope": "public",					"type": "Group",					"path": "Group"				},				{					"name": "stamp",					"kind": "storage",					"scope": "public",					"type": "date",					"simpleDate": false				}			],			"events": [				{					"kind": "init",					"from": "$mainModel.UserGroup.events.init"				},				{					"kind": "init",					"from": "$mainModel.UserGroup.events.init"				},				{					"kind": "init",					"from": "$mainModel.UserGroup.events.init"				},				{					"kind": "init",					"from": "$mainModel.UserGroup.events.init",					"userDefined": true				}			],			"methods": [				{					"name": "addUserToGroup",					"applyTo": "dataClass",					"scope": "public",					"from": "$mainModel.UserGroup.methods.addUserToGroup",					"userDefined": true				},				{					"name": "removeUserInGroup",					"applyTo": "dataClass",					"scope": "public",					"from": "$mainModel.UserGroup.methods.removeUserInGroup",					"userDefined": true				}			]		},		{			"name": "ViewPost",			"className": "ViewPost",			"collectionName": "ViewPostCollection",			"matchTable": "ViewPost",			"scope": "public",			"attributes": [				{					"name": "ID",					"kind": "storage",					"scope": "public",					"unique": true,					"autosequence": true,					"type": "long",					"indexKind": "btree",					"primKey": true				},				{					"name": "post",					"kind": "relatedEntity",					"scope": "public",					"type": "Post",					"path": "Post"				},				{					"name": "stamp",					"kind": "storage",					"scope": "public",					"type": "date",					"simpleDate": false				},				{					"name": "vote",					"kind": "storage",					"scope": "public",					"type": "number",					"minValue": "-1",					"maxValue": "5",					"defaultValue": "-1"				},				{					"name": "user",					"kind": "relatedEntity",					"scope": "public",					"type": "User",					"path": "User"				}			],			"events": [				{					"kind": "save",					"from": "$mainModel.ViewPost.events.save"				},				{					"kind": "save",					"from": "$mainModel.ViewPost.events.save",					"userDefined": true				},				{					"kind": "init",					"from": "$mainModel.ViewPost.events.init"				},				{					"kind": "init",					"from": "$mainModel.ViewPost.events.init"				},				{					"kind": "init",					"from": "$mainModel.ViewPost.events.init"				},				{					"kind": "init",					"from": "$mainModel.ViewPost.events.init",					"userDefined": true				}			]		}	]}
