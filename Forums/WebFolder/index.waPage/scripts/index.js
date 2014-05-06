@@ -42,12 +42,9 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	var deleteBtn = {};	// @buttonImage
 	var messageItem = {};	// @container
 	var threadItem = {};	// @container
-	var menuThread = {};	// @menuItem
 	var postsEvent = {};	// @dataSource
 	var editBtn = {};	// @buttonImage
 	var addBtn = {};	// @buttonImage
-	var menuCategory = {};	// @menuItem
-	var menuForum = {};	// @menuItem
 	var forumItem = {};	// @container
 	var managementBtn = {};	// @buttonImage
 	var categoryItem = {};	// @container
@@ -144,20 +141,35 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		forums.widgets.confirmPostDeleteDialog.setText('Are you sure that you want to delete this post "'+waf.sources.posts.title+'" and all the posts linked ?');
 	};// @lock
 
+	messageItem.mouseover = function messageItem_mouseover (event)// @startlock
+	{// @endlock
+		$(event.currentTarget).addClass('messageItem-hover');
+	};// @lock
+
+	messageItem.mouseout = function messageItem_mouseout (event)// @startlock
+	{// @endlock
+		$(event.currentTarget).removeClass('messageItem-hover');
+	};// @lock
+
 	messageItem.click = function messageItem_click (event)// @startlock
 	{// @endlock
 		$(this.$domNode[0].children[4]).hide();
 		forums.displayMessage();
 	};// @lock
 
+	threadItem.mouseover = function threadItem_mouseover (event)// @startlock
+	{// @endlock
+		$(event.currentTarget).addClass('threadItem-hover');
+	};// @lock
+
+	threadItem.mouseout = function threadItem_mouseout (event)// @startlock
+	{// @endlock
+		$(event.currentTarget).removeClass('threadItem-hover');
+	};// @lock
+
 	threadItem.click = function threadItem_click (event)// @startlock
 	{// @endlock
 		forums.goToMessageView();
-	};// @lock
-
-	menuThread.click = function menuThread_click (event)// @startlock
-	{// @endlock
-		forums.goToThreadView();
 	};// @lock
 
 	postsEvent.onCurrentElementChange = function postsEvent_onCurrentElementChange (event)// @startlock
@@ -195,14 +207,14 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		
 	};// @lock
 
-	menuCategory.click = function menuCategory_click (event)// @startlock
+	forumItem.mouseover = function forumItem_mouseover (event)// @startlock
 	{// @endlock
-		forums.goToCategoryView();
+		$(event.currentTarget).addClass('forumItem-hover');
 	};// @lock
 
-	menuForum.click = function menuForum_click (event)// @startlock
+	forumItem.mouseout = function forumItem_mouseout (event)// @startlock
 	{// @endlock
-		forums.goToForumView();
+		$(event.currentTarget).removeClass('forumItem-hover');
 	};// @lock
 
 	forumItem.click = function forumItem_click (event)// @startlock
@@ -227,6 +239,16 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 
 
 
+	categoryItem.mouseout = function categoryItem_mouseout (event)// @startlock
+	{// @endlock
+		$(event.currentTarget).removeClass('categoryItem-hover');
+	};// @lock
+
+	categoryItem.mouseover = function categoryItem_mouseover (event)// @startlock
+	{// @endlock
+		$(event.currentTarget).addClass('categoryItem-hover');
+	};// @lock
+
 	categoryItem.click = function categoryItem_click (event)// @startlock
 	{// @endlock
 		forums.goToForumView();
@@ -244,7 +266,19 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 			forums.isAdmin();
 			forums.displayMenuBarItem();
 			$$('titleTxt').setValue(RPCUtils.getForumTitle());
-			$('#menuBar2').appendTo('body');
+			$('#menuBar2').hide();
+			
+			// Listener for click on the menuBarItems
+			
+			$('#menuCategory').click(function(){
+				forums.goToCategoryView();
+			});
+			$('#menuForum').click(function(){
+				forums.goToForumView();
+			});
+			$('#menuThread').click(function(){
+				forums.goToThreadView();
+			});
 			
 			// Moment Config
 			moment.defaultFormat = 'D/M/YY - H:mm';
@@ -266,6 +300,14 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	};// @lock
 
 // @region eventManager// @startlock
+	WAF.addListener("messageItem", "mouseover", messageItem.mouseover, "WAF");
+	WAF.addListener("messageItem", "mouseout", messageItem.mouseout, "WAF");
+	WAF.addListener("threadItem", "mouseover", threadItem.mouseover, "WAF");
+	WAF.addListener("threadItem", "mouseout", threadItem.mouseout, "WAF");
+	WAF.addListener("forumItem", "mouseover", forumItem.mouseover, "WAF");
+	WAF.addListener("forumItem", "mouseout", forumItem.mouseout, "WAF");
+	WAF.addListener("categoryItem", "mouseout", categoryItem.mouseout, "WAF");
+	WAF.addListener("categoryItem", "mouseover", categoryItem.mouseover, "WAF");
 	WAF.addListener("loginBtn", "click", loginBtn.click, "WAF");
 	WAF.addListener("passwordResetDialog", "onValidClick", passwordResetDialog.onValidClick, "WAF");
 	WAF.addListener("posts", "oncontentHTMLAttributeChange", postsEvent.oncontentHTMLAttributeChange, "WAF", "contentHTML");
@@ -280,12 +322,9 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	WAF.addListener("deleteBtn", "click", deleteBtn.click, "WAF");
 	WAF.addListener("messageItem", "click", messageItem.click, "WAF");
 	WAF.addListener("threadItem", "click", threadItem.click, "WAF");
-	WAF.addListener("menuThread", "click", menuThread.click, "WAF");
 	WAF.addListener("posts", "onCurrentElementChange", postsEvent.onCurrentElementChange, "WAF");
 	WAF.addListener("editBtn", "click", editBtn.click, "WAF");
 	WAF.addListener("addBtn", "click", addBtn.click, "WAF");
-	WAF.addListener("menuCategory", "click", menuCategory.click, "WAF");
-	WAF.addListener("menuForum", "click", menuForum.click, "WAF");
 	WAF.addListener("forumItem", "click", forumItem.click, "WAF");
 	WAF.addListener("managementBtn", "click", managementBtn.click, "WAF");
 	WAF.addListener("categoryItem", "click", categoryItem.click, "WAF");
