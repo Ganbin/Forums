@@ -84,6 +84,15 @@ function constructor (id) {
 
 	deleteAccessBtn.click = function deleteAccessBtn_click (event)// @startlock
 	{// @endlock
+		
+		$comp.sources.allAccesses.remove({onSuccess:function(evt){
+			$comp.sources.forum.serverRefresh();
+			$comp.sources.group.serverRefresh();
+			$comp.sources.user.serverRefresh();
+			//$$(getHtmlId("deleteConfirmDialog")).closeDialog(); //ok button
+		}});
+		
+		/* FOR THE MODAL DIALOG WHEN BUG IS FIXED
 		$$(getHtmlId('deleteConfirmDialog')).openDialog();
 		
 		var text = 'Are you sure that you want to delete this access : '+$comp.sources.forum.title+' for this ';
@@ -92,6 +101,7 @@ function constructor (id) {
 		text += '?';
 		
 		$$(getHtmlId('deleteConfirmDialog')).setText(text);
+		*/
 		
 	};// @lock
 

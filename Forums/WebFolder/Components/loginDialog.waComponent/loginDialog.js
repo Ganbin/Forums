@@ -22,6 +22,19 @@ function constructor (id) {
 	$comp.setWidth(getHtmlObj('loginForm').css('width'));
 	$comp.setHeight(getHtmlObj('loginForm').css('height'));
 	
+	getHtmlObj('loginField').focus();
+	
+	getHtmlObj('loginField').keyup(function (e){
+	    if(e.keyCode == 13){
+	        getHtmlObj('loginBtn').click();
+	    }
+	});
+	getHtmlObj('passwordField').keyup(function (e){
+	    if(e.keyCode == 13){
+	        getHtmlObj('loginBtn').click();
+	    }
+	});
+	
 	// @region namespaceDeclaration// @startlock
 	var loginBtn = {};	// @button
 	var newAccountTxt = {};	// @richText
@@ -39,10 +52,14 @@ function constructor (id) {
 				forums.isAdmin();
 				
 				forums.goToCategoryView();
-				waf.sources.category.all({orderBy:'title'});
+				waf.sources.category.all({keepOrderBy:true});
 				forums.closeCenterComp($comp);
 	        }else{
 	            $$(getHtmlId('errorDiv1')).setValue("Incorrect login credentials.");
+	            getHtmlObj('errorDiv1').fadeOut(1000,'easeInBack',function(){
+	            	$$(getHtmlId('errorDiv1')).setValue('');
+					$$(getHtmlId('errorDiv1')).show();
+				});
 	        }
 	    }});
 	};// @lock
@@ -52,7 +69,7 @@ function constructor (id) {
 		forums.closeCenterComp($comp);
 		setTimeout(function(){
 			forums.widgets.centerComp2.loadComponent('/Components/newAccount.waComponent');
-		},300);
+		},500);
 	};// @lock
 
 	icon1.click = function icon1_click (event)// @startlock
@@ -65,7 +82,7 @@ function constructor (id) {
 		forums.closeCenterComp($comp);
 		setTimeout(function(){
 			forums.widgets.centerComp2.loadComponent('/Components/passwordForgotten.waComponent');
-		},300);
+		},500);
 	};// @lock
 
 	// @region eventManager// @startlock

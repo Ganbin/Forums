@@ -29,9 +29,11 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	
 	
 // @region namespaceDeclaration// @startlock
+	var moveThreadBtn = {};	// @buttonImage
+	var closeThreadBtn = {};	// @buttonImage
+	var resolvedBtn = {};	// @buttonImage
 	var loginBtn = {};	// @button
 	var passwordResetDialog = {};	// @ModalDialog
-	var replyToPostBtn = {};	// @icon
 	var userPrefBtn = {};	// @buttonImage
 	var alreadySubscribedDialog = {};	// @ModalDialog
 	var subscriptionOkDialog = {};	// @ModalDialog
@@ -54,6 +56,21 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 
 // eventHandlers// @lock
 
+	moveThreadBtn.click = function moveThreadBtn_click (event)// @startlock
+	{// @endlock
+		forums.widgets.centerComp.loadComponent('/Components/userInterface.waComponent');
+	};// @lock
+
+	closeThreadBtn.click = function closeThreadBtn_click (event)// @startlock
+	{// @endlock
+		forums.widgets.centerComp.loadComponent('/Components/userInterface.waComponent');
+	};// @lock
+
+	resolvedBtn.click = function resolvedBtn_click (event)// @startlock
+	{// @endlock
+		forums.widgets.centerComp.loadComponent('/Components/userInterface.waComponent');
+	};// @lock
+
 	loginBtn.click = function loginBtn_click (event)// @startlock
 	{// @endlock
 		if (WAF.directory.currentUser() == null){
@@ -67,7 +84,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 				forums.widgets.mainComp.removeComponent();
 				
 				forums.goToCategoryView();
-				waf.sources.category.all({orderBy:'title'});
+				waf.sources.category.all({keepOrderBy:true});
 	        }});      
 		}
 	};// @lock
@@ -75,11 +92,6 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	passwordResetDialog.onValidClick = function passwordResetDialog_onValidClick (event)// @startlock
 	{// @endlock
 		forums.widgets.passwordResetDialog.closeDialog()
-	};// @lock
-
-	replyToPostBtn.click = function replyToPostBtn_click (event)// @startlock
-	{// @endlock
-		forums.loadCorrectComponent('replyBtn');
 	};// @lock
 
 	userPrefBtn.click = function userPrefBtn_click (event)// @startlock
@@ -153,7 +165,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 
 	messageItem.click = function messageItem_click (event)// @startlock
 	{// @endlock
-		$(this.$domNode[0].children[4]).hide();
+		$(this.$domNode[0].children[3]).hide();
 		forums.displayMessage();
 	};// @lock
 
@@ -300,6 +312,9 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	};// @lock
 
 // @region eventManager// @startlock
+	WAF.addListener("moveThreadBtn", "click", moveThreadBtn.click, "WAF");
+	WAF.addListener("closeThreadBtn", "click", closeThreadBtn.click, "WAF");
+	WAF.addListener("resolvedBtn", "click", resolvedBtn.click, "WAF");
 	WAF.addListener("messageItem", "mouseover", messageItem.mouseover, "WAF");
 	WAF.addListener("messageItem", "mouseout", messageItem.mouseout, "WAF");
 	WAF.addListener("threadItem", "mouseover", threadItem.mouseover, "WAF");
@@ -311,7 +326,6 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	WAF.addListener("loginBtn", "click", loginBtn.click, "WAF");
 	WAF.addListener("passwordResetDialog", "onValidClick", passwordResetDialog.onValidClick, "WAF");
 	WAF.addListener("posts", "oncontentHTMLAttributeChange", postsEvent.oncontentHTMLAttributeChange, "WAF", "contentHTML");
-	WAF.addListener("replyToPostBtn", "click", replyToPostBtn.click, "WAF");
 	WAF.addListener("userPrefBtn", "click", userPrefBtn.click, "WAF");
 	WAF.addListener("alreadySubscribedDialog", "onValidClick", alreadySubscribedDialog.onValidClick, "WAF");
 	WAF.addListener("subscriptionOkDialog", "onValidClick", subscriptionOkDialog.onValidClick, "WAF");

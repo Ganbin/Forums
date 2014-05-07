@@ -532,6 +532,12 @@
 					"indexKind" : "auto",
 					"reversePath" : true,
 					"path" : "category"
+				},
+				{
+					"name" : "order",
+					"kind" : "storage",
+					"scope" : "public",
+					"type" : "number"
 				}
 			],
 			"events" : 
@@ -742,6 +748,12 @@
 					"type" : "CloseInscriptionCollection",
 					"reversePath" : true,
 					"path" : "forum"
+				},
+				{
+					"name" : "order",
+					"kind" : "storage",
+					"scope" : "public",
+					"type" : "number"
 				}
 			],
 			"events" : 
@@ -1495,6 +1507,18 @@
 					"indexKind" : "auto"
 				},
 				{
+					"name" : "resolved",
+					"kind" : "storage",
+					"scope" : "public",
+					"type" : "bool"
+				},
+				{
+					"name" : "closed",
+					"kind" : "storage",
+					"scope" : "public",
+					"type" : "bool"
+				},
+				{
 					"name" : "forum",
 					"kind" : "relatedEntity",
 					"scope" : "public",
@@ -1768,7 +1792,6 @@
 					"name" : "validationId",
 					"kind" : "storage",
 					"scope" : "publicOnServer",
-					"indexed" : true,
 					"unique" : true,
 					"type" : "string"
 				},

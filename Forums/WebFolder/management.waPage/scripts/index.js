@@ -37,7 +37,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 				}else if(x === 'accessesComp_user'){
 					waf.sources[x].query('allGroups.title != "dataAdmin"');
 				}else{
-					waf.sources[x].all();
+					waf.sources[x].all({keepOrderBy:true});
 				}
 			}catch(e){
 				
