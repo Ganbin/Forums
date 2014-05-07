@@ -232,6 +232,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	forumItem.click = function forumItem_click (event)// @startlock
 	{// @endlock
 		if(waf.sources.forums.hasAccess('read')){
+			$('#menuMessages').hide();
 			forums.goToThreadView();
 		}else{
 			if(waf.sources.forums.isSubscribed()){
@@ -263,6 +264,8 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 
 	categoryItem.click = function categoryItem_click (event)// @startlock
 	{// @endlock
+		$('#menuThread').hide();
+		$('#menuMessages').hide();
 		forums.goToForumView();
 	};// @lock
 
@@ -285,11 +288,14 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 			$('#menuCategory').click(function(){
 				forums.goToCategoryView();
 			});
-			$('#menuForum').click(function(){
+			$('#menuForum').hide().click(function(){
 				forums.goToForumView();
 			});
-			$('#menuThread').click(function(){
+			$('#menuThread').hide().click(function(){
 				forums.goToThreadView();
+			});
+			$('#menuMessages').hide().click(function(){
+				forums.goToMessageView();
 			});
 			
 			// Moment Config

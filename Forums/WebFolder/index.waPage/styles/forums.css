@@ -167,7 +167,7 @@
 #waf-body .customMenuItem.waf-state-selected {
 	border-bottom: 0px;
 	margin : 0px;
-	background-color: rgba(64, 140, 199, 0.3) !important;
+	background-color: rgba(139, 185, 223, 1) !important;
 	color:black !important;
 	text-shadow : none;
 }
@@ -207,5 +207,8 @@
 	border-radius: 0 5px 0 50px;
 }
 #waf-body .customMenuItemLast:after{
-	content:none;
+	content:;
+	background: rgba(139, 185, 223, 1);
+	/*stylish arrow design using box shadow*/
+	box-shadow: 1px -1px 0 1px rgba(200, 200, 200, 1);
 }

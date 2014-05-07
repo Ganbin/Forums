@@ -81,6 +81,9 @@ forums.displayMenuBarItem = function(){
 	// We look in which tabView navigation we are, and then we hide/show et add/remove the right class to have the correct visual effect.
 	switch(forums.widgets.tabViewNav.getSelectedTab().index){
 		case 1:
+			forum.removeClass('customMenuItemLast');
+			thread.removeClass('customMenuItemLast');
+			message.removeClass('customMenuItemLast');
 			category.addClass('customMenuItemLast');
 			
 			forum.removeClass('waf-state-selected');
@@ -92,12 +95,14 @@ forums.displayMenuBarItem = function(){
 			category.html('Categories');
 			
 			category.show();
-			forum.hide();
-			thread.hide();
-			message.hide();
+//			forum.hide();
+//			thread.hide();
+//			message.hide();
 			break;
 		case 2:
 			category.removeClass('customMenuItemLast');
+			thread.removeClass('customMenuItemLast');
+			message.removeClass('customMenuItemLast');
 			forum.addClass('customMenuItemLast');
 			
 			category.removeClass('waf-state-selected');
@@ -108,13 +113,15 @@ forums.displayMenuBarItem = function(){
 			
 			forum.html(waf.sources.category.title);
 			
-			category.show();
+//			category.show();
 			forum.show();
-			thread.hide();
-			message.hide();
+//			thread.hide();
+//			message.hide();
 			break;
 		case 3:
+			category.removeClass('customMenuItemLast');
 			forum.removeClass('customMenuItemLast');
+			message.removeClass('customMenuItemLast');
 			thread.addClass('customMenuItemLast');
 			
 			category.removeClass('waf-state-selected');
@@ -123,15 +130,17 @@ forums.displayMenuBarItem = function(){
 			
 			thread.addClass('waf-state-selected');
 			
-			category.show();
+//			category.show();
 			
 			thread.html(waf.sources.forums.title);
 			
-			forum.show();
+//			forum.show();
 			thread.show();
-			message.hide();
+//			message.hide();
 			break;
 		case 4:
+			category.removeClass('customMenuItemLast');
+			forum.removeClass('customMenuItemLast');
 			thread.removeClass('customMenuItemLast');
 			message.addClass('customMenuItemLast');
 			
@@ -141,12 +150,12 @@ forums.displayMenuBarItem = function(){
 			
 			message.addClass('waf-state-selected');
 			
-			category.show();
-			forum.show();
+//			category.show();
+//			forum.show();
 			
 			message.html(waf.sources.topics.title);
 			
-			thread.show();
+//			thread.show();
 			message.show();
 			break;
 	}
