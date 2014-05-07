@@ -554,7 +554,7 @@ var XBBCODE = (function() {
     // public functions
     // -----------------------------------------------------------------------------
     
-    me.process = function(config) {
+    me.process = function(config,removeTag) {
     
         var ret = {html: "", error: false},
             errQueue = [];
@@ -562,12 +562,17 @@ var XBBCODE = (function() {
         config.text = config.text.replace(/</g, "&lt;"); // escape HTML tag brackets
         config.text = config.text.replace(/>/g, "&gt;"); // escape HTML tag brackets
         
-        config.text = config.text.replace(openTags, function(matchStr, openB, contents, closeB) {
-        	return "<" + contents + ">";
-        });
-        config.text = config.text.replace(closeTags, function(matchStr, openB, contents, closeB) {
-            return "<" + contents + ">";
-        });
+        if(removeTag === undefined || removeTag === false){
+	        config.text = config.text.replace(openTags, function(matchStr, openB, contents, closeB) {
+	        	return "<" + contents + ">";
+	        });
+	        config.text = config.text.replace(closeTags, function(matchStr, openB, contents, closeB) {
+	            return "<" + contents + ">";
+	        });
+        }else if(removeTag === true){
+        	config.text = config.text.replace(openTags,'');
+	        config.text = config.text.replace(closeTags, '');
+        }
         
         config.text = config.text.replace(/\[/g, "&#91;"); // escape ['s that aren't apart of tags
         config.text = config.text.replace(/\]/g, "&#93;"); // escape ['s that aren't apart of tags
