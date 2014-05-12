@@ -16,6 +16,7 @@ function constructor (id) {
 	
 	setTimeout(function(){
 		$('.xbbcode-code').each(function(i, e) {hljs.highlightBlock(e)});
+		forums.displayThreadActionButtons();
 	},100);
 	
 	getHtmlObj('rateDiv').rateit({ step : 1 , max : 5, value : waf.sources.posts.voteAverage, ispreset:true });

@@ -95,9 +95,6 @@ forums.displayMenuBarItem = function(){
 			category.html('Categories');
 			
 			category.show();
-//			forum.hide();
-//			thread.hide();
-//			message.hide();
 			break;
 		case 2:
 			category.removeClass('customMenuItemLast');
@@ -113,10 +110,7 @@ forums.displayMenuBarItem = function(){
 			
 			forum.html(waf.sources.category.title);
 			
-//			category.show();
 			forum.show();
-//			thread.hide();
-//			message.hide();
 			break;
 		case 3:
 			category.removeClass('customMenuItemLast');
@@ -130,13 +124,10 @@ forums.displayMenuBarItem = function(){
 			
 			thread.addClass('waf-state-selected');
 			
-//			category.show();
 			
 			thread.html(waf.sources.forums.title);
 			
-//			forum.show();
 			thread.show();
-//			message.hide();
 			break;
 		case 4:
 			category.removeClass('customMenuItemLast');
@@ -150,12 +141,9 @@ forums.displayMenuBarItem = function(){
 			
 			message.addClass('waf-state-selected');
 			
-//			category.show();
-//			forum.show();
 			
 			message.html(waf.sources.topics.title);
 			
-//			thread.show();
 			message.show();
 			break;
 	}
@@ -172,6 +160,11 @@ forums.goToCategoryView = function(){
 	forums.widgets.addBtn.hide();
 	forums.widgets.editBtn.hide();
 	forums.widgets.deleteBtn.hide();
+	forums.widgets.moveThreadBtn.hide();
+	forums.widgets.closeThreadBtn.hide();
+	forums.widgets.unCloseThreadBtn.hide();
+	forums.widgets.resolvedBtn.hide();
+	forums.widgets.unresolvedBtn.hide();
 	$(".ellipsis").dotdotdot();
 };
 
@@ -185,6 +178,11 @@ forums.goToForumView = function(){
 	forums.widgets.addBtn.hide();
 	forums.widgets.editBtn.hide();
 	forums.widgets.deleteBtn.hide();
+	forums.widgets.moveThreadBtn.hide();
+	forums.widgets.closeThreadBtn.hide();
+	forums.widgets.unCloseThreadBtn.hide();
+	forums.widgets.resolvedBtn.hide();
+	forums.widgets.unresolvedBtn.hide();
 	$(".ellipsis").dotdotdot();
 };
 
@@ -196,6 +194,11 @@ forums.goToThreadView = function(){
 	forums.displayMenuBarItem();
 	forums.widgets.editBtn.hide();
 	forums.widgets.deleteBtn.hide();
+	forums.widgets.moveThreadBtn.hide();
+	forums.widgets.closeThreadBtn.hide();
+	forums.widgets.unCloseThreadBtn.hide();
+	forums.widgets.resolvedBtn.hide();
+	forums.widgets.unresolvedBtn.hide();
 	
 	if(sources.forums.hasAccess('write')){ // Check if the user has write access and display the add button
 		forums.widgets.addBtn.show();
@@ -217,30 +220,30 @@ forums.goToThreadView = function(){
 forums.goToMessageView = function(){
 	forums.widgets.tabViewNav.selectTab(4);
 	forums.displayMenuBarItem();
-	forums.widgets.managementBtn.hide();
-	forums.widgets.addBtn.hide();
 	
-	if(sources.forums.hasAccess('write')){ // Check if the user has write access and display the add button
-		forums.widgets.addBtn.show();
-		$('.waf-clone-replyToPostBtn').show();
-	}else{
-		forums.widgets.addBtn.hide();
-		$('.waf-clone-replyToPostBtn').hide();
-	}
+//	if(sources.forums.hasAccess('write')){ // Check if the user has write access and display the add button
+//		forums.widgets.addBtn.show();
+//	}else{
+//		forums.widgets.addBtn.hide();
+//	}
+//	
+//	if(sources.forums.isModerator()){ // Check if the user is a moderator and display the management button
+//		forums.widgets.managementBtn.show();
+//		forums.widgets.editBtn.show();
+//		forums.widgets.deleteBtn.show();
+//	}else{
+//		forums.widgets.managementBtn.hide();
+//		
+//		if(waf.sources.posts.isMyPost()){
+//			forums.widgets.editBtn.show();
+//			forums.widgets.deleteBtn.show();
+//		}else{
+//			forums.widgets.editBtn.hide();
+//			forums.widgets.deleteBtn.hide();
+//		}
+//	}
 	
-	if(sources.forums.isModerator() === true || waf.sources.posts.isMyPost()){
-		forums.widgets.editBtn.show();
-		forums.widgets.deleteBtn.show();
-	}else{
-		forums.widgets.editBtn.hide();
-		forums.widgets.deleteBtn.hide();
-	}
-	
-	if(sources.forums.isModerator()){ // Check if the user is a moderator and display the management button
-		forums.widgets.managementBtn.show();
-	}else{
-		forums.widgets.managementBtn.hide();
-	}
+	forums.displayThreadActionButtons();
 	
 	forums.displayMessage();
 	$(".ellipsis").dotdotdot();
@@ -252,15 +255,147 @@ forums.goToMessageView = function(){
 */
 forums.displayMessage = function(){
 	waf.sources.posts.viewPost();
-	//waf.sources.posts.serverRefresh({onSuccess:function(evt){
-		forums.widgets.mainComp.loadComponent({path:'/Components/displayMessage.waComponent',onSuccess:function(){
-			var newCol = ds.Post.newCollection(); // Create a new empty collection
-			newCol.add(waf.sources.posts.getCurrentElement()); // Add the current post selected in the page to the new empty collection
-			waf.sources.mainComp_post.setEntityCollection(newCol);	// Set the new entityCollection of the local source of the component. So that way we always have the correct post displayed
-			$(".ellipsis").dotdotdot();
-		}});
-	//}});
+	forums.widgets.mainComp.loadComponent({path:'/Components/displayMessage.waComponent',onSuccess:function(){
+		var newCol = ds.Post.newCollection(); // Create a new empty collection
+		newCol.add(waf.sources.posts.getCurrentElement()); // Add the current post selected in the page to the new empty collection
+		waf.sources.mainComp_post.setEntityCollection(newCol);	// Set the new entityCollection of the local source of the component. So that way we always have the correct post displayed
+		$(".ellipsis").dotdotdot();
+	}});
+};
+
+forums.displayThreadActionButtons = function(){
 	
+	var displayMEDButtons = function(){
+		if(sources.forums.isModerator()){ // Check if the user is a moderator and display the management button
+			forums.widgets.managementBtn.show();
+			
+			if(sources.forums.hasAccess('modify')){ // Check if the user has write access and display the add button
+				forums.widgets.editBtn.show();
+			}else{
+				forums.widgets.editBtn.hide();
+			}
+			
+			if(sources.forums.hasAccess('del')){ // Check if the user has write access and display the add button
+				forums.widgets.deleteBtn.show();
+			}else{
+				forums.widgets.deleteBtn.hide();
+			}
+		}else{
+			forums.widgets.managementBtn.hide();
+			
+			if(waf.sources.posts.isMyPost()){
+				if(sources.forums.hasAccess('modify')){ // Check if the user has write access and display the add button
+					forums.widgets.editBtn.show();
+				}else{
+					forums.widgets.editBtn.hide();
+				}
+				
+				if(sources.forums.hasAccess('del')){ // Check if the user has write access and display the add button
+					forums.widgets.deleteBtn.show();
+				}else{
+					forums.widgets.deleteBtn.hide();
+				}
+			}else{
+				forums.widgets.editBtn.hide();
+				forums.widgets.deleteBtn.hide();
+			}
+		}
+	};
+	
+	if(waf.sources.posts.isMyThread()){
+		
+		forums.widgets.moveThreadBtn.show();
+		displayMEDButtons();
+				
+		if(waf.sources.topics.closed === true){
+			if($$('mainComp_closedImg') !== undefined){
+				$$('mainComp_closedImg').show();
+				$$('mainComp_resolvedImg').hide();
+			}
+			
+			forums.widgets.addBtn.hide();
+			forums.widgets.editBtn.hide();
+			forums.widgets.deleteBtn.hide();
+			forums.widgets.resolvedBtn.hide();
+			forums.widgets.unresolvedBtn.hide();
+			forums.widgets.closeThreadBtn.hide();
+			forums.widgets.unCloseThreadBtn.show();
+			
+		}else if(waf.sources.topics.resolved === true){
+			if($$('mainComp_resolvedImg') !== undefined){
+				$$('mainComp_closedImg').hide();
+				$$('mainComp_resolvedImg').show();
+				forums.widgets.resolvedBtn.hide();
+				forums.widgets.unresolvedBtn.show();
+			}
+			forums.widgets.closeThreadBtn.show();
+			
+		}else if(waf.sources.topics.closed !== true || waf.sources.topics.resolved !== true){
+			if($$('mainComp_closedImg') !== undefined){
+				$$('mainComp_closedImg').hide();
+			}
+			
+			if($$('mainComp_resolvedImg') !== undefined){
+				$$('mainComp_resolvedImg').hide();
+			}
+			
+			forums.widgets.addBtn.show();
+			
+			forums.widgets.closeThreadBtn.show();
+			forums.widgets.unCloseThreadBtn.hide();
+			forums.widgets.unresolvedBtn.hide();
+			forums.widgets.resolvedBtn.show();
+		}
+		
+	}else{
+		
+		if(waf.sources.topics.closed === true){
+			if($$('mainComp_closedImg') !== undefined){
+				$$('mainComp_closedImg').show();
+			}
+			
+			forums.widgets.addBtn.hide();
+			forums.widgets.editBtn.hide();
+			forums.widgets.deleteBtn.hide();
+			forums.widgets.managementBtn.hide();
+			
+			waf.sources.posts.isMyThread({onSuccess:function(evt){
+				if(evt.result === true){
+					forums.widgets.editBtn.show();
+				}
+			}});
+			
+			
+		}else{
+			if($$('mainComp_closedImg') !== undefined){
+				$$('mainComp_closedImg').hide();
+			}
+			
+			if(sources.forums.hasAccess('write')){ // Check if the user has write access and display the add button
+				forums.widgets.addBtn.show();
+			}else{
+				forums.widgets.addBtn.hide();
+			}
+			
+			displayMEDButtons();
+			
+		}
+		
+		if(waf.sources.topics.resolved === true){
+			if($$('mainComp_resolvedImg') !== undefined){
+				$$('mainComp_resolvedImg').show();
+			}
+		}else{
+			if($$('mainComp_resolvedImg') !== undefined){
+				$$('mainComp_resolvedImg').hide();
+			}
+		}
+		
+		forums.widgets.moveThreadBtn.hide();
+		forums.widgets.closeThreadBtn.hide();
+		forums.widgets.resolvedBtn.hide();
+		forums.widgets.unresolvedBtn.hide();
+	}
 };
 
 forums.closeCenterComp = function(comp){

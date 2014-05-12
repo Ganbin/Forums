@@ -1,4 +1,9 @@
-﻿body {
+﻿
+#mainComp_resolvedImg{
+	opacity : 0.7;
+}
+#mainComp_closedImg{
+	opacity : 0.7;
 }
 
 .categoryItem-hover{

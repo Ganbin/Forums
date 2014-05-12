@@ -19,6 +19,11 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	forums.widgets.deleteBtn = $$('deleteBtn');
 	forums.widgets.userPrefBtn = $$('userPrefBtn');
 	forums.widgets.replyToPostBtn = $$('replyToPostBtn');
+	forums.widgets.moveThreadBtn = $$('moveThreadBtn');
+	forums.widgets.closeThreadBtn = $$('closeThreadBtn');
+	forums.widgets.unCloseThreadBtn = $$('unCloseThreadBtn');
+	forums.widgets.resolvedBtn = $$('resolvedBtn');
+	forums.widgets.unresolvedBtn = $$('unresolvedBtn');
 	
 	// Dialog widgets
 	forums.widgets.alreadySubscribedDialog = $$('alreadySubscribedDialog');
@@ -29,6 +34,10 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	
 	
 // @region namespaceDeclaration// @startlock
+	var threadMovedDialog = {};	// @ModalDialog
+	var unresolvedBtn = {};	// @buttonImage
+	var matrixThread = {};	// @matrix
+	var unCloseThreadBtn = {};	// @buttonImage
 	var moveThreadBtn = {};	// @buttonImage
 	var closeThreadBtn = {};	// @buttonImage
 	var resolvedBtn = {};	// @buttonImage
@@ -56,19 +65,111 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 
 // eventHandlers// @lock
 
+	threadMovedDialog.onValidClick = function threadMovedDialog_onValidClick (event)// @startlock
+	{// @endlock
+		$$('threadMovedDialog').closeDialog();
+	};// @lock
+
+	unresolvedBtn.click = function unresolvedBtn_click (event)// @startlock
+	{// @endlock
+		if(waf.sources.topics.resolved === true){
+			var message = 'Do you want to set this message as unresolved?';
+			var toResolve = false;
+		}else{
+			var message = 'Do you want to set this message as resolved?';
+			var toResolve = true;
+		}
+		
+		alertify.confirm(message, function (e) {
+		    if (e) {
+		        waf.sources.topics.resolve(toResolve,{onSuccess:function(evt){
+		        	waf.sources.topics.serverRefresh({forceReload:true,onSuccess:function(evt){
+		        		forums.displayThreadActionButtons();
+		        	}});
+		    	}});
+		    } else {
+		        // user clicked "cancel"
+		    }
+		});
+	};// @lock
+
+	matrixThread.onChildrenDraw = function matrixThread_onChildrenDraw (event)// @startlock
+	{// @endlock
+		if(event.source.closed){
+			$(event.htmlObject.selector+' .waf-clone-closedThreadImg').show();
+		}else{
+			$(event.htmlObject.selector+' .waf-clone-closedThreadImg').hide();
+		}
+		
+		if(event.source.resolved){
+			$(event.htmlObject.selector+' .waf-clone-resolvedThreadImg').show();
+		}else{
+			$(event.htmlObject.selector+' .waf-clone-resolvedThreadImg').hide();
+		}
+	};// @lock
+
+	unCloseThreadBtn.click = function unCloseThreadBtn_click (event)// @startlock
+	{// @endlock
+		var message = 'Do you want to set this message as not close?';
+		var toClose = false;
+		
+		alertify.confirm(message, function (e) {
+		    if (e) {
+		        waf.sources.topics.close(toClose,{onSuccess:function(evt){
+		        	waf.sources.topics.serverRefresh({forceReload:true,onSuccess:function(evt){
+		        		forums.displayThreadActionButtons();
+		        	}});
+		    	}});
+		    } else {
+		        // user clicked "cancel"
+		    }
+		});
+	};// @lock
+
 	moveThreadBtn.click = function moveThreadBtn_click (event)// @startlock
 	{// @endlock
-		forums.widgets.centerComp.loadComponent('/Components/userInterface.waComponent');
+		forums.widgets.centerComp.loadComponent('/Components/moveThread.waComponent');
 	};// @lock
 
 	closeThreadBtn.click = function closeThreadBtn_click (event)// @startlock
 	{// @endlock
-		forums.widgets.centerComp.loadComponent('/Components/userInterface.waComponent');
+		var message = 'Do you want to set this message as close?';
+		var toClose = true;
+		
+		alertify.confirm(message, function (e) {
+		    if (e) {
+		        waf.sources.topics.close(toClose,{onSuccess:function(evt){
+		        	waf.sources.topics.serverRefresh({forceReload:true,onSuccess:function(evt){
+		        		forums.displayThreadActionButtons();
+		        	}});
+		    	}});
+		    } else {
+		        // user clicked "cancel"
+		    }
+		});
 	};// @lock
 
 	resolvedBtn.click = function resolvedBtn_click (event)// @startlock
 	{// @endlock
-		forums.widgets.centerComp.loadComponent('/Components/userInterface.waComponent');
+		if(waf.sources.topics.resolved === true){
+			var message = 'Do you want to set this message as unresolved?';
+			var toResolve = false;
+		}else{
+			var message = 'Do you want to set this message as resolved?';
+			var toResolve = true;
+		}
+		
+		alertify.confirm(message, function (e) {
+		    if (e) {
+		        waf.sources.topics.resolve(toResolve,{onSuccess:function(evt){
+		        	waf.sources.topics.serverRefresh({forceReload:true,onSuccess:function(evt){
+		        		forums.displayThreadActionButtons();
+		        	}});
+		    	}});
+		    } else {
+		        // user clicked "cancel"
+		    }
+		});
 	};// @lock
 
 	loginBtn.click = function loginBtn_click (event)// @startlock
@@ -84,7 +185,9 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 				forums.widgets.mainComp.removeComponent();
 				
 				forums.goToCategoryView();
-				waf.sources.category.all({keepOrderBy:true});
+				waf.sources.category.all({keepOrderBy:true,onSuccess:function(evt){
+					waf.sources.category.serverRefresh();
+				}});
 	        }});      
 		}
 	};// @lock
@@ -187,22 +290,14 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	postsEvent.onCurrentElementChange = function postsEvent_onCurrentElementChange (event)// @startlock
 	{// @endlock
 		if(forums.widgets.tabViewNav.getSelectedTab().index === 4){
-			if(sources.forums.isModerator() === true || waf.sources.posts.isMyPost()){
-				forums.widgets.editBtn.show();
-				forums.widgets.deleteBtn.show();
-			}else{
-				forums.widgets.editBtn.hide();
-				forums.widgets.deleteBtn.hide();
-			}
 			
-			setTimeout(function(){
-				$('.xbbcode-code').each(function(i, e) {hljs.highlightBlock(e)});
-			},100);
+			forums.displayThreadActionButtons();
 			
 			if(waf.sources.posts.getCurrentElement() !== null && typeof waf.sources.mainComp_post != 'undefined'){
 				var newCol = ds.Post.newCollection();
 				newCol.add(waf.sources.posts.getCurrentElement());
 				waf.sources.mainComp_post.setEntityCollection(newCol);
+				waf.sources.posts.viewPost();
 			}
 		}
 			
@@ -318,6 +413,10 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	};// @lock
 
 // @region eventManager// @startlock
+	WAF.addListener("threadMovedDialog", "onValidClick", threadMovedDialog.onValidClick, "WAF");
+	WAF.addListener("unresolvedBtn", "click", unresolvedBtn.click, "WAF");
+	WAF.addListener("matrixThread", "onChildrenDraw", matrixThread.onChildrenDraw, "WAF");
+	WAF.addListener("unCloseThreadBtn", "click", unCloseThreadBtn.click, "WAF");
 	WAF.addListener("moveThreadBtn", "click", moveThreadBtn.click, "WAF");
 	WAF.addListener("closeThreadBtn", "click", closeThreadBtn.click, "WAF");
 	WAF.addListener("resolvedBtn", "click", resolvedBtn.click, "WAF");

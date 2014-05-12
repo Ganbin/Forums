@@ -16,6 +16,7 @@ function constructor (id) {
 
 
 	// @region namespaceDeclaration// @startlock
+	var codeBtn = {};	// @button
 	var urlBtn = {};	// @button
 	var underlineBtn = {};	// @button
 	var italicBtn = {};	// @button
@@ -55,6 +56,11 @@ function constructor (id) {
 	}
 
 	// eventHandlers// @lock
+
+	codeBtn.click = function codeBtn_click (event)// @startlock
+	{// @endlock
+		forums.insertTag('[code]','[/code]',getHtmlId('messageContentTxt'));
+	};// @lock
 
 	urlBtn.click = function urlBtn_click (event)// @startlock
 	{// @endlock
@@ -171,6 +177,7 @@ function constructor (id) {
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_codeBtn", "click", codeBtn.click, "WAF");
 	WAF.addListener(this.id + "_urlBtn", "click", urlBtn.click, "WAF");
 	WAF.addListener(this.id + "_underlineBtn", "click", underlineBtn.click, "WAF");
 	WAF.addListener(this.id + "_italicBtn", "click", italicBtn.click, "WAF");

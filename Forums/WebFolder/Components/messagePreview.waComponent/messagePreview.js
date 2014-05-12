@@ -30,7 +30,7 @@ function constructor (id) {
 	}
 	
 	setTimeout(function(){
-		$('pre code').each(function(i, e) {hljs.highlightBlock(e)});
+		$('.xbbcode-code').each(function(i, e) {hljs.highlightBlock(e)});
 	},100);
 	
 	// eventHandlers// @lock

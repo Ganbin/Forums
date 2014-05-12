@@ -846,6 +846,13 @@
 			"methods" : 
 			[
 				{
+					"name" : "getModeratedForums",
+					"applyTo" : "dataClass",
+					"scope" : "public",
+					"from" : "$mainModel.Forum.methods.getModeratedForums",
+					"userDefined" : true
+				},
+				{
 					"name" : "getUserAccess",
 					"applyTo" : "entity",
 					"scope" : "public",
@@ -1443,6 +1450,13 @@
 					"userDefined" : true
 				},
 				{
+					"name" : "isMyThread",
+					"applyTo" : "entity",
+					"scope" : "public",
+					"from" : "$mainModel.Post.entityMethods.isMyThread",
+					"userDefined" : true
+				},
+				{
 					"name" : "reply",
 					"applyTo" : "entity",
 					"scope" : "public",
@@ -1632,6 +1646,13 @@
 			"methods" : 
 			[
 				{
+					"name" : "close",
+					"applyTo" : "entity",
+					"scope" : "public",
+					"from" : "$mainModel.Topic.entityMethods.close",
+					"userDefined" : true
+				},
+				{
 					"name" : "createTopic",
 					"applyTo" : "dataClass",
 					"scope" : "public",
@@ -1643,6 +1664,20 @@
 					"applyTo" : "entity",
 					"scope" : "public",
 					"from" : "$mainModel.Topic.entityMethods.edit",
+					"userDefined" : true
+				},
+				{
+					"name" : "move",
+					"applyTo" : "entity",
+					"scope" : "public",
+					"from" : "$mainModel.Topic.entityMethods.move",
+					"userDefined" : true
+				},
+				{
+					"name" : "resolve",
+					"applyTo" : "entity",
+					"scope" : "public",
+					"from" : "$mainModel.Topic.entityMethods.resolve",
 					"userDefined" : true
 				}
 			],
@@ -1792,6 +1827,7 @@
 					"name" : "validationId",
 					"kind" : "storage",
 					"scope" : "publicOnServer",
+					"indexed" : true,
 					"unique" : true,
 					"type" : "string"
 				},
