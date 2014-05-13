@@ -92,11 +92,12 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		alertify.confirm(message, function (e) {
 		    if (e) {
 		        waf.sources.topics.resolve(toResolve,{onSuccess:function(evt){
-		        	forums.refreshForum();
-		        	forums.displayActionButtons();
-//		        	waf.sources.topics.serverRefresh({forceReload:true,onSuccess:function(evt){
-//		        		forums.displayActionButtons();
-//		        	}});
+		        	
+		        	waf.sources.topics.serverRefresh({forceReload:true,onSuccess:function(evt){
+		        		forums.displayActionButtons();
+		        		forums.refreshForum();
+		        	}});
+		        	
 		    	}});
 		    } else {
 		        // user clicked "cancel"
@@ -127,11 +128,11 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		alertify.confirm(message, function (e) {
 		    if (e) {
 		        waf.sources.topics.close(toClose,{onSuccess:function(evt){
-		        	forums.refreshForum();
-		        	forums.displayActionButtons();
-//		        	waf.sources.topics.serverRefresh({forceReload:true,onSuccess:function(evt){
-//		        		forums.displayActionButtons();
-//		        	}});
+		        	
+		        	waf.sources.topics.serverRefresh({forceReload:true,onSuccess:function(evt){
+		        		forums.displayActionButtons();
+		        		forums.refreshForum();
+		        	}});
 		    	}});
 		    } else {
 		        // user clicked "cancel"
@@ -153,12 +154,10 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		    if (e) {
 		        waf.sources.topics.close(toClose,{onSuccess:function(evt){
 		        	
-		        	forums.refreshForum();
-		        	forums.displayActionButtons();
-		        	
-//		        	waf.sources.topics.serverRefresh({forceReload:true,onSuccess:function(evt){
-//		        		forums.displayActionButtons();
-//		        	}});
+		        	waf.sources.topics.serverRefresh({forceReload:true,onSuccess:function(evt){
+		        		forums.displayActionButtons();
+		        		forums.refreshForum();
+		        	}});
 		    	}});
 		    } else {
 		        // user clicked "cancel"
@@ -180,12 +179,13 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		    if (e) {
 		        waf.sources.topics.resolve(toResolve,{onSuccess:function(evt){
 		        	
-		        	forums.refreshForum();
-		        	forums.displayActionButtons();
+		        	waf.sources.topics.serverRefresh({forceReload:true,onSuccess:function(evt){
+		        		forums.displayActionButtons();
+		        		forums.refreshForum();
+		        	}});
 		        	
-//		        	waf.sources.topics.serverRefresh({forceReload:true,onSuccess:function(evt){
-//		        		forums.displayActionButtons();
-//		        	}});
+		        	
+		        	
 		    	}});
 		    } else {
 		        // user clicked "cancel"

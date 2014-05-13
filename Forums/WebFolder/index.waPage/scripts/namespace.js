@@ -440,7 +440,6 @@ forums.refreshForum = function(){
 				waf.sources.topics.selectByKey(forums.threadTempID,{onSuccess:function(e){
 					waf.sources.topics.removeListener({ID:forums.threadListenerID});
 					forums.displayMenuBarItem();
-					forums.displayMessage();
 				},onError:function(err){
 					waf.sources.topics.removeListener({ID:forums.threadListenerID});
 					forums.displayMenuBarItem();
@@ -454,6 +453,7 @@ forums.refreshForum = function(){
 				waf.sources.posts.selectByKey(forums.postTempID,{onSuccess:function(e){
 					waf.sources.posts.removeListener({ID:forums.postListenerID});
 					forums.displayMenuBarItem();
+					forums.displayMessage();
 				},onError:function(err){
 					waf.sources.posts.removeListener({ID:forums.postListenerID});
 					forums.displayMenuBarItem();
