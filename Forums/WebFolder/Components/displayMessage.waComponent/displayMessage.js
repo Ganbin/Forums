@@ -12,24 +12,26 @@ function constructor (id) {
 
 	this.load = function (data) {// @lock
 		
-	$$(getHtmlId('postDateTxt')).setValue(moment(waf.sources.posts.stamp).zone(new Date().getTimezoneOffset()).format('MMMM Do YYYY, H:mm:ss Z'));
+
 	
 	setTimeout(function(){
+		$$(getHtmlId('postDateTxt')).setValue(moment(waf.sources.posts.stamp).zone(new Date().getTimezoneOffset()).format('MMMM Do YYYY, H:mm:ss Z'));
 		$('.xbbcode-code').each(function(i, e) {hljs.highlightBlock(e)});
-		forums.displayThreadActionButtons();
+		forums.displayActionButtons();
+		getHtmlObj('rateDiv').rateit({ step : 1 , max : 5, value : waf.sources.posts.voteAverage, ispreset:true });
 	},100);
-	
-	getHtmlObj('rateDiv').rateit({ step : 1 , max : 5, value : waf.sources.posts.voteAverage, ispreset:true });
 	
 	getHtmlObj('rateDiv').bind('rated', function (event, value) {
 		waf.sources.posts.vote(value,{onSuccess:function(evt){
-			waf.sources.posts.serverRefresh({forceReload:true});
+			forums.refreshThread();
+			//waf.sources.posts.serverRefresh({forceReload:true});
 		}});
 	});
 
 	getHtmlObj('rateDiv').bind('reset', function () {
 		waf.sources.posts.vote(-1,{onSuccess:function(evt){
-			waf.sources.posts.serverRefresh({forceReload:true});
+			forums.refreshThread();
+			//waf.sources.posts.serverRefresh({forceReload:true});
 		}});
 	});
 	// @region namespaceDeclaration// @startlock

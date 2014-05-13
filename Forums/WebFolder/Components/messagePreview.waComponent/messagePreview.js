@@ -76,23 +76,35 @@ function constructor (id) {
 					waf.sources.topics.edit({onSuccess:function(evt){
 							
 						waf.sources.posts.edit({onSuccess:function(evt2){
-							waf.sources.posts.serverRefresh({onSuccess:function(e2){
-								$('pre code').each(function(i, e) {hljs.highlightBlock(e)});
+							
+							forums.refreshForum();
+							forums.closeCenterComp($comp);
+							
+							// OLD CODE
+							/*waf.sources.posts.serverRefresh({onSuccess:function(e2){
+								$('.xbbcode-code').each(function(i, e) {hljs.highlightBlock(e)});
 								forums.closeCenterComp($comp);
 							},onError:function(err2){
 								$$(getHtmlId('errorDiv1')).setValue(err2.error[0].message);
-							},forceReload:true});
+							},forceReload:true});*/
+							
 						}},data.userData.content,data.userData.title,true);
 							
 					}},data.userData.title);
 				}else{
 					waf.sources.posts.edit({onSuccess:function(evt){
-						waf.sources.posts.serverRefresh({onSuccess:function(e){
-							$('pre code').each(function(i, e) {hljs.highlightBlock(e)});
+						
+						forums.refreshThread();
+						forums.closeCenterComp($comp);
+						
+						// OLD CODE
+						/*waf.sources.posts.serverRefresh({onSuccess:function(e){
+							$('.xbbcode-code').each(function(i, e) {hljs.highlightBlock(e)});
 							forums.closeCenterComp($comp);
 						},onError:function(err){
 							$$(getHtmlId('errorDiv1')).setValue(err.error[0].message);
-						},forceReload:true});
+						},forceReload:true});*/
+						
 					}},data.userData.content,data.userData.title,true);
 				}
 				

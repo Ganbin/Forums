@@ -131,22 +131,36 @@ function constructor (id) {
 					if(waf.sources.posts.getPosition() === (waf.sources.posts.length -1)){
 						waf.sources.topics.edit({onSuccess:function(evt){
 								waf.sources.posts.edit({onSuccess:function(evt2){
-									waf.sources.posts.serverRefresh({onSuccess:function(e2){
-										$('pre code').each(function(i, e) {hljs.highlightBlock(e)});
-										forums.closeCenterComp($comp);
-									},onError:function(err2){
-										$$(getHtmlId('errorDiv1')).setValue(err2.error[0].message);
-									},forceReload:true});
+									
+									forums.refreshForum();
+									forums.closeCenterComp($comp);
+									
+									//OLD CODE
+//									waf.sources.posts.serverRefresh({onSuccess:function(e2){
+//										$('pre code').each(function(i, e) {hljs.highlightBlock(e)});
+//										forums.closeCenterComp($comp);
+//									},onError:function(err2){
+//										$$(getHtmlId('errorDiv1')).setValue(err2.error[0].message);
+//									},forceReload:true});
+									
+									
 								}},$$(getHtmlId('messageContentTxt')).getValue(),$$(getHtmlId('messageTitleTxt')).getValue(),true);
 						}},$$(getHtmlId('messageTitleTxt')).getValue());
 					}else{
 						waf.sources.posts.edit({onSuccess:function(evt){
-							waf.sources.posts.serverRefresh({onSuccess:function(e){
-								$('pre code').each(function(i, e) {hljs.highlightBlock(e)});
-								forums.closeCenterComp($comp);
-							},onError:function(err){
-								$$(getHtmlId('errorDiv1')).setValue(err.error[0].message);
-							},forceReload:true});
+							
+							forums.refreshThread();
+							forums.closeCenterComp($comp);
+							
+							//OLD CODE
+//							waf.sources.posts.serverRefresh({onSuccess:function(e){
+//								$('pre code').each(function(i, e) {hljs.highlightBlock(e)});
+//								forums.closeCenterComp($comp);
+//							},onError:function(err){
+//								$$(getHtmlId('errorDiv1')).setValue(err.error[0].message);
+//							},forceReload:true});
+							
+							
 						}},$$(getHtmlId('messageContentTxt')).getValue(),$$(getHtmlId('messageTitleTxt')).getValue(),true);
 					}
 					

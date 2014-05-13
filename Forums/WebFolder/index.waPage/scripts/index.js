@@ -4,6 +4,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	/*
 	* Declare widgets in the forum namespace
 	*/
+		
 	forums.widgets.loginBtn = $$('loginBtn');
 	forums.widgets.loggedTxt = $$('loggedTxt');
 	forums.widgets.centerComp = $$('centerComp');
@@ -31,6 +32,14 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	forums.widgets.subscriptionDialog = $$('subscriptionDialog');
 	forums.widgets.confirmPostDeleteDialog = $$('confirmPostDeleteDialog');
 	forums.widgets.passwordResetDialog = $$('passwordResetDialog');
+	
+	// Temp Variables
+	forums.forumTempID = 0;
+	forums.threadTempID = 0;
+	forums.postTempID = 0;
+	forums.forumListenerID = 0;
+	forums.threadListenerID = 0;
+	forums.postListenerID = 0;
 	
 	
 // @region namespaceDeclaration// @startlock
@@ -83,9 +92,11 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		alertify.confirm(message, function (e) {
 		    if (e) {
 		        waf.sources.topics.resolve(toResolve,{onSuccess:function(evt){
-		        	waf.sources.topics.serverRefresh({forceReload:true,onSuccess:function(evt){
-		        		forums.displayThreadActionButtons();
-		        	}});
+		        	forums.refreshForum();
+		        	forums.displayActionButtons();
+//		        	waf.sources.topics.serverRefresh({forceReload:true,onSuccess:function(evt){
+//		        		forums.displayActionButtons();
+//		        	}});
 		    	}});
 		    } else {
 		        // user clicked "cancel"
@@ -96,15 +107,15 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	matrixThread.onChildrenDraw = function matrixThread_onChildrenDraw (event)// @startlock
 	{// @endlock
 		if(event.source.closed){
-			$(event.htmlObject.selector+' .waf-clone-closedThreadImg').show();
+			$('#'+event.htmlObject[0].id+' .waf-clone-closedThreadImg').show();
 		}else{
-			$(event.htmlObject.selector+' .waf-clone-closedThreadImg').hide();
+			$('#'+event.htmlObject[0].id+' .waf-clone-closedThreadImg').hide();
 		}
 		
 		if(event.source.resolved){
-			$(event.htmlObject.selector+' .waf-clone-resolvedThreadImg').show();
+			$('#'+event.htmlObject[0].id+' .waf-clone-resolvedThreadImg').show();
 		}else{
-			$(event.htmlObject.selector+' .waf-clone-resolvedThreadImg').hide();
+			$('#'+event.htmlObject[0].id+' .waf-clone-resolvedThreadImg').hide();
 		}
 	};// @lock
 
@@ -116,9 +127,11 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		alertify.confirm(message, function (e) {
 		    if (e) {
 		        waf.sources.topics.close(toClose,{onSuccess:function(evt){
-		        	waf.sources.topics.serverRefresh({forceReload:true,onSuccess:function(evt){
-		        		forums.displayThreadActionButtons();
-		        	}});
+		        	forums.refreshForum();
+		        	forums.displayActionButtons();
+//		        	waf.sources.topics.serverRefresh({forceReload:true,onSuccess:function(evt){
+//		        		forums.displayActionButtons();
+//		        	}});
 		    	}});
 		    } else {
 		        // user clicked "cancel"
@@ -139,9 +152,13 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		alertify.confirm(message, function (e) {
 		    if (e) {
 		        waf.sources.topics.close(toClose,{onSuccess:function(evt){
-		        	waf.sources.topics.serverRefresh({forceReload:true,onSuccess:function(evt){
-		        		forums.displayThreadActionButtons();
-		        	}});
+		        	
+		        	forums.refreshForum();
+		        	forums.displayActionButtons();
+		        	
+//		        	waf.sources.topics.serverRefresh({forceReload:true,onSuccess:function(evt){
+//		        		forums.displayActionButtons();
+//		        	}});
 		    	}});
 		    } else {
 		        // user clicked "cancel"
@@ -162,9 +179,13 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		alertify.confirm(message, function (e) {
 		    if (e) {
 		        waf.sources.topics.resolve(toResolve,{onSuccess:function(evt){
-		        	waf.sources.topics.serverRefresh({forceReload:true,onSuccess:function(evt){
-		        		forums.displayThreadActionButtons();
-		        	}});
+		        	
+		        	forums.refreshForum();
+		        	forums.displayActionButtons();
+		        	
+//		        	waf.sources.topics.serverRefresh({forceReload:true,onSuccess:function(evt){
+//		        		forums.displayActionButtons();
+//		        	}});
 		    	}});
 		    } else {
 		        // user clicked "cancel"
@@ -223,6 +244,8 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	{// @endlock
 		if(!event.source.hasAccess('read')){
 			event.htmlObject.css("background-color", "lightgray");
+		}else{
+			event.htmlObject.css("background-color", "white");
 		}
 	};// @lock
 
@@ -237,16 +260,18 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	matrixMessage.onChildrenDraw = function matrixMessage_onChildrenDraw (event)// @startlock
 	{// @endlock
 		if(event.source.stamp != null){
-			event.htmlObject.children().last()[0].innerText = (moment(event.source.stamp).zone(new Date().getTimezoneOffset()).calendar())
+			$('#'+event.htmlObject[0].id+' .waf-clone-postItemDate')[0].innerText = (moment(event.source.stamp).zone(new Date().getTimezoneOffset()).calendar());
+			
 		}
 		
 		if(event.source.isViewed === true || event.pos === 0){ // if the isViewed attribute is true or if it's the first item
-			$(event.htmlObject[0].children[3]).hide(); // Hide the unread icon
+			$('#'+event.htmlObject[0].id+' .waf-clone-icon7').hide(); // Hide the unread icon
 		}
 		
 		if (event.source.enable === false) { 
 		   event.htmlObject.css("background-color", "lightgray");
 		} else {
+			event.htmlObject.css("background-color", "white");
 		}
 	};// @lock
 
@@ -268,7 +293,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 
 	messageItem.click = function messageItem_click (event)// @startlock
 	{// @endlock
-		$(this.$domNode[0].children[3]).hide();
+		$('#'+this.$domNode[0].id+' .waf-clone-icon7').hide();
 		forums.displayMessage();
 	};// @lock
 
@@ -291,7 +316,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	{// @endlock
 		if(forums.widgets.tabViewNav.getSelectedTab().index === 4){
 			
-			forums.displayThreadActionButtons();
+			forums.displayActionButtons();
 			
 			if(waf.sources.posts.getCurrentElement() !== null && typeof waf.sources.mainComp_post != 'undefined'){
 				var newCol = ds.Post.newCollection();

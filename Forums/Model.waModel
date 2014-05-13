@@ -1827,7 +1827,6 @@
 					"name" : "validationId",
 					"kind" : "storage",
 					"scope" : "publicOnServer",
-					"indexed" : true,
 					"unique" : true,
 					"type" : "string"
 				},

@@ -23,7 +23,7 @@ function constructor (id) {
 				},100);
 			}
 		},onError:function(err){
-			debugger;
+			
 		}},waf.sources.forums.ID);
 
 	// @region namespaceDeclaration// @startlock
@@ -107,21 +107,15 @@ function constructor (id) {
 
 	savePostBtn.click = function savePostBtn_click (event)// @startlock
 	{// @endlock
-		$comp.sources.topics.edit({onSuccess:function(evt){
-			
-			try{
-				waf.sources.topics.serverRefresh({forceReload:true});
-			}catch(e){
-				waf.sources.forums.serverRefresh({forceReload:true});
-			}
-			
-		}},$$(getHtmlId('topicTitleTxt')).getValue());
+		$comp.sources.topics.edit($$(getHtmlId('topicTitleTxt')).getValue());
 		
 		$comp.sources.posts.edit({onSuccess:function(evt){
 			try{
-				waf.sources.topics.serverRefresh({forceReload:true});
+				//waf.sources.topics.serverRefresh({forceReload:true});
+				forums.refreshThread();
 			}catch(e){
-				waf.sources.forums.serverRefresh({forceReload:true});
+				//waf.sources.forums.serverRefresh({forceReload:true});
+				forums.refreshForum();
 			}
 			$comp.sources.posts.serverRefresh({forceReload:true});
 			

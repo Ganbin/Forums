@@ -70,7 +70,7 @@ function constructor (id) {
 	{// @endlock
 		$$(getHtmlId('errorDiv1')).setValue('');
 		forums.closeCenterComp($comp);
-		waf.sources.category.serverRefresh({forceReload:true});
+		forums.refreshCategory();
 	};// @lock
 
 	// @region eventManager// @startlock

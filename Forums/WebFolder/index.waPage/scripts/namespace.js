@@ -147,6 +147,9 @@ forums.displayMenuBarItem = function(){
 			message.show();
 			break;
 	}
+	thread.html(waf.sources.forums.title);
+	message.html(waf.sources.topics.title);
+	forum.html(waf.sources.category.title);
 	$(".ellipsis").dotdotdot();
 };
 
@@ -221,29 +224,7 @@ forums.goToMessageView = function(){
 	forums.widgets.tabViewNav.selectTab(4);
 	forums.displayMenuBarItem();
 	
-//	if(sources.forums.hasAccess('write')){ // Check if the user has write access and display the add button
-//		forums.widgets.addBtn.show();
-//	}else{
-//		forums.widgets.addBtn.hide();
-//	}
-//	
-//	if(sources.forums.isModerator()){ // Check if the user is a moderator and display the management button
-//		forums.widgets.managementBtn.show();
-//		forums.widgets.editBtn.show();
-//		forums.widgets.deleteBtn.show();
-//	}else{
-//		forums.widgets.managementBtn.hide();
-//		
-//		if(waf.sources.posts.isMyPost()){
-//			forums.widgets.editBtn.show();
-//			forums.widgets.deleteBtn.show();
-//		}else{
-//			forums.widgets.editBtn.hide();
-//			forums.widgets.deleteBtn.hide();
-//		}
-//	}
-	
-	forums.displayThreadActionButtons();
+	forums.displayActionButtons();
 	
 	forums.displayMessage();
 	$(".ellipsis").dotdotdot();
@@ -263,7 +244,7 @@ forums.displayMessage = function(){
 	}});
 };
 
-forums.displayThreadActionButtons = function(){
+forums.displayActionButtons = function(){
 	
 	var displayMEDButtons = function(){
 		if(sources.forums.isModerator()){ // Check if the user is a moderator and display the management button
@@ -396,6 +377,112 @@ forums.displayThreadActionButtons = function(){
 		forums.widgets.resolvedBtn.hide();
 		forums.widgets.unresolvedBtn.hide();
 	}
+};
+
+forums.refreshCategory = function(){
+	forums.forumTempID = waf.sources.forums.ID;
+	forums.threadTempID = waf.sources.topics.ID;
+	forums.postTempID = waf.sources.posts.ID;
+	
+	waf.sources.category.serverRefresh({onSuccess:function(evt){
+		
+		forums.forumListenerID = waf.sources.forums.addListener('onCollectionChange',function(ev){
+			
+			if(ev.dataSource.length !== 0){
+				waf.sources.forums.selectByKey(forums.forumTempID,{onSuccess:function(e){
+					waf.sources.forums.removeListener({ID:forums.forumListenerID});
+					forums.displayMenuBarItem();
+				},onError:function(err){
+					waf.sources.forums.removeListener({ID:forums.forumListenerID});
+					forums.displayMenuBarItem();
+				}});
+			}
+		});
+		
+		forums.threadListenerID = waf.sources.topics.addListener('onCollectionChange',function(ev){
+			
+			if(ev.dataSource.length !== 0){
+				waf.sources.topics.selectByKey(forums.threadTempID,{onSuccess:function(e){
+					waf.sources.topics.removeListener({ID:forums.threadListenerID});
+					forums.displayMenuBarItem();
+				},onError:function(err){
+					waf.sources.topics.removeListener({ID:forums.threadListenerID});
+					forums.displayMenuBarItem();
+				}});
+			}
+		});
+		
+		forums.postListenerID = waf.sources.posts.addListener('onCollectionChange',function(ev){
+			if(ev.dataSource.length !== 0){
+				waf.sources.posts.selectByKey(forums.postTempID,{onSuccess:function(e){
+					waf.sources.posts.removeListener({ID:forums.postListenerID});
+					forums.displayMenuBarItem();
+					forums.displayMessage();
+				},onError:function(err){
+					waf.sources.posts.removeListener({ID:forums.postListenerID});
+					forums.displayMenuBarItem();
+				}});
+			}
+		});
+		
+	}});
+};
+
+forums.refreshForum = function(){
+	forums.threadTempID = waf.sources.topics.ID;
+	forums.postTempID = waf.sources.posts.ID;
+	
+	waf.sources.forums.serverRefresh({onSuccess:function(evt){
+		
+		forums.threadListenerID = waf.sources.topics.addListener('onCollectionChange',function(ev){
+			
+			if(ev.dataSource.length !== 0){
+				waf.sources.topics.selectByKey(forums.threadTempID,{onSuccess:function(e){
+					waf.sources.topics.removeListener({ID:forums.threadListenerID});
+					forums.displayMenuBarItem();
+					forums.displayMessage();
+				},onError:function(err){
+					waf.sources.topics.removeListener({ID:forums.threadListenerID});
+					forums.displayMenuBarItem();
+				}});
+			}
+		});
+		
+		forums.postListenerID = waf.sources.posts.addListener('onCollectionChange',function(ev){
+			
+			if(ev.dataSource.length !== 0){
+				waf.sources.posts.selectByKey(forums.postTempID,{onSuccess:function(e){
+					waf.sources.posts.removeListener({ID:forums.postListenerID});
+					forums.displayMenuBarItem();
+				},onError:function(err){
+					waf.sources.posts.removeListener({ID:forums.postListenerID});
+					forums.displayMenuBarItem();
+				}});
+			}
+		});
+		
+	}});
+};
+
+forums.refreshThread = function(){
+	forums.postTempID = waf.sources.posts.ID;
+	waf.sources.topics.serverRefresh({onSuccess:function(evt){
+				
+		forums.postListenerID = waf.sources.posts.addListener('onCollectionChange',function(ev){
+			
+			if(ev.dataSource.length !== 0){
+				waf.sources.posts.selectByKey(forums.postTempID,{onSuccess:function(e){
+					waf.sources.posts.removeListener({ID:forums.postListenerID});
+					forums.displayMenuBarItem();
+					forums.displayMessage();
+				},onError:function(err){
+					waf.sources.posts.removeListener({ID:forums.postListenerID});
+					forums.displayMenuBarItem();
+				}});
+			}
+		});
+		
+	}});
 };
 
 forums.closeCenterComp = function(comp){
