@@ -94,16 +94,16 @@ function constructor (id) {
 				}else{
 					waf.sources.posts.edit({onSuccess:function(evt){
 						
-						forums.refreshThread();
-						forums.closeCenterComp($comp);
+//						forums.refreshThread();
+//						forums.closeCenterComp($comp);
 						
 						// OLD CODE
-						/*waf.sources.posts.serverRefresh({onSuccess:function(e){
+						waf.sources.posts.serverRefresh({onSuccess:function(e){
 							$('.xbbcode-code').each(function(i, e) {hljs.highlightBlock(e)});
 							forums.closeCenterComp($comp);
 						},onError:function(err){
 							$$(getHtmlId('errorDiv1')).setValue(err.error[0].message);
-						},forceReload:true});*/
+						},forceReload:true});
 						
 					}},data.userData.content,data.userData.title,true);
 				}

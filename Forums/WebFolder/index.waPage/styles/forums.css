@@ -1,4 +1,11 @@
-﻿
+﻿.colpick{
+	left:25px;
+	z-index:9999999;
+}
+#centerComp_colorPicker{
+	overflow:visible;
+}
+
 #mainComp_resolvedImg{
 	opacity : 0.7;
 }

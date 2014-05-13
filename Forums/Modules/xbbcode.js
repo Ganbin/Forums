@@ -122,7 +122,7 @@ var XBBCODE = (function() {
                 return '</div>';
             },
             noParse: true
-        },/*
+        },
         "color": {
             openTag: function(params,content) {
             
@@ -144,7 +144,7 @@ var XBBCODE = (function() {
             closeTag: function(params,content) {
                 return '</span>';
             }
-        },*/
+        },
         "i": {
             openTag: function(params,content) {
                 return '<span class="xbbcode-i">';

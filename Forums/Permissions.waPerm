@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?><permissions>
 	<allow action="read" groupName="User" groupID="C0FAEA3766074D559991C4B6DE5BB3B0" resource="Model.Inscription" temporaryForcePermissions="false" type="dataClass"/>
-	<allow action="create" groupName="Administrateur" groupID="6909476594EC457DA895EEE8B35B36A8" resource="Model.Inscription" temporaryForcePermissions="false" type="dataClass"/>
-	<allow action="update" groupName="Administrateur" groupID="6909476594EC457DA895EEE8B35B36A8" resource="Model.Inscription" temporaryForcePermissions="false" type="dataClass"/>
-	<allow action="remove" groupName="Administrateur" groupID="6909476594EC457DA895EEE8B35B36A8" resource="Model.Inscription" temporaryForcePermissions="false" type="dataClass"/>
+	<allow action="create" groupName="CUD_Inscription" groupID="8EA7E4ADE30B4BE0923CBFD6023BCDD5" resource="Model.Inscription" temporaryForcePermissions="false" type="dataClass"/>
+	<allow action="update" groupName="CUD_Inscription" groupID="8EA7E4ADE30B4BE0923CBFD6023BCDD5" resource="Model.Inscription" temporaryForcePermissions="false" type="dataClass"/>
+	<allow action="remove" groupName="CUD_Inscription" groupID="8EA7E4ADE30B4BE0923CBFD6023BCDD5" resource="Model.Inscription" temporaryForcePermissions="false" type="dataClass"/>
 	<allow action="execute" groupName="User" groupID="C0FAEA3766074D559991C4B6DE5BB3B0" resource="Model.Inscription" temporaryForcePermissions="false" type="dataClass"/>
 	<allow action="read" groupName="Read_Access" groupID="C7C1CFA420404AFB9453219ABC8DD136" resource="Model.Access" temporaryForcePermissions="false" type="dataClass"/>
 	<allow action="create" groupName="Administrateur" groupID="6909476594EC457DA895EEE8B35B36A8" resource="Model.Access" temporaryForcePermissions="false" type="dataClass"/>

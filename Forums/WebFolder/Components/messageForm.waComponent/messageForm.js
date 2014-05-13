@@ -16,6 +16,8 @@ function constructor (id) {
 
 
 	// @region namespaceDeclaration// @startlock
+	var colorPickClickHack = {};	// @container
+	var colorBtn = {};	// @button
 	var codeBtn = {};	// @button
 	var urlBtn = {};	// @button
 	var underlineBtn = {};	// @button
@@ -56,6 +58,51 @@ function constructor (id) {
 	}
 
 	// eventHandlers// @lock
+
+	colorPickClickHack.click = function colorPickClickHack_click (event)// @startlock
+	{// @endlock
+		if(getHtmlObj('colorPicker').children().length === 0){
+			getHtmlObj('colorPicker').colpick({
+				flat:true,
+				layout:'hex',
+				submit:true,
+				color:'000000',
+				onChange:function(hsb,hex,rgb,el,bySetColor) {
+					$(el).css('background-color', '#'+hex);
+				},
+				onSubmit:function(hsb,hex,rgb,el){
+					$(el).css('background-color', '#'+hex);
+					$(el).colpickHide();
+					forums.insertTag('[color]','[/color]','centerComp_messageContentTxt','color','#'+hex);
+				}
+			});
+		}else{
+			getHtmlObj('colorPicker').colpickShow();
+		}
+	};// @lock
+
+	colorBtn.click = function colorBtn_click (event)// @startlock
+	{// @endlock
+		if(getHtmlObj('colorPicker').children().length === 0){
+			getHtmlObj('colorPicker').colpick({
+				flat:true,
+				layout:'hex',
+				submit:true,
+				color:'000000',
+				onChange:function(hsb,hex,rgb,el,bySetColor) {
+					$(el).css('background-color', '#'+hex);
+				},
+				onSubmit:function(hsb,hex,rgb,el){
+					$(el).css('background-color', '#'+hex);
+					$(el).colpickHide();
+					forums.insertTag('[color]','[/color]','centerComp_messageContentTxt','color','#'+hex);
+				}
+			});
+		}else{
+			getHtmlObj('colorPicker').colpickShow();
+		}
+		
+	};// @lock
 
 	codeBtn.click = function codeBtn_click (event)// @startlock
 	{// @endlock
@@ -117,8 +164,8 @@ function constructor (id) {
 					
 						waf.sources.posts.reply({onSuccess:function(evt){
 							waf.sources.topics.serverRefresh({onSuccess:function(e){
-								forums.goToMessageView();
 								$comp.resetValue();
+								forums.goToMessageView();
 								forums.closeCenterComp($comp);
 							},onError:function(err){
 								$$(getHtmlId('errorDiv1')).setValue(err.error[0].message);
@@ -149,16 +196,11 @@ function constructor (id) {
 					}else{
 						waf.sources.posts.edit({onSuccess:function(evt){
 							
-							forums.refreshThread();
-							forums.closeCenterComp($comp);
-							
-							//OLD CODE
-//							waf.sources.posts.serverRefresh({onSuccess:function(e){
-//								$('pre code').each(function(i, e) {hljs.highlightBlock(e)});
-//								forums.closeCenterComp($comp);
-//							},onError:function(err){
-//								$$(getHtmlId('errorDiv1')).setValue(err.error[0].message);
-//							},forceReload:true});
+							waf.sources.posts.serverRefresh({onSuccess:function(e){
+								forums.closeCenterComp($comp);
+							},onError:function(err){
+								$$(getHtmlId('errorDiv1')).setValue(err.error[0].message);
+							},forceReload:true});
 							
 							
 						}},$$(getHtmlId('messageContentTxt')).getValue(),$$(getHtmlId('messageTitleTxt')).getValue(),true);
@@ -168,8 +210,8 @@ function constructor (id) {
 					
 					waf.sources.posts.reply({onSuccess:function(evt){
 						waf.sources.topics.serverRefresh({onSuccess:function(e){
-							forums.goToMessageView();
 							$comp.resetValue();
+							forums.goToMessageView();
 							forums.closeCenterComp($comp);
 						},onError:function(err){
 							$$(getHtmlId('errorDiv1')).setValue(err.error[0].message);
@@ -191,6 +233,8 @@ function constructor (id) {
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_colorPickClickHack", "click", colorPickClickHack.click, "WAF");
+	WAF.addListener(this.id + "_colorBtn", "click", colorBtn.click, "WAF");
 	WAF.addListener(this.id + "_codeBtn", "click", codeBtn.click, "WAF");
 	WAF.addListener(this.id + "_urlBtn", "click", urlBtn.click, "WAF");
 	WAF.addListener(this.id + "_underlineBtn", "click", underlineBtn.click, "WAF");

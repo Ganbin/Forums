@@ -235,9 +235,15 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 
 	subscriptionDialog.onValidClick = function subscriptionDialog_onValidClick (event)// @startlock
 	{// @endlock
-		ds.Inscription.subscribeToForum(waf.sources.forums.ID);
-		forums.widgets.subscriptionDialog.closeDialog();
-		forums.widgets.subscriptionOkDialog.openDialog();
+		ds.Inscription.subscribeToForum(waf.sources.forums.ID,{onSuccess:function(evt){
+			if(evt === true){
+				forums.widgets.subscriptionDialog.closeDialog();
+				forums.widgets.subscriptionOkDialog.openDialog();
+			}else{
+				alertify.alert('An error occur...');
+				forums.widgets.subscriptionDialog.closeDialog();
+			}
+		}});
 	};// @lock
 
 	matrixForum.onChildrenDraw = function matrixForum_onChildrenDraw (event)// @startlock

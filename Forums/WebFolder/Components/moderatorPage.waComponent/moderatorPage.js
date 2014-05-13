@@ -38,7 +38,7 @@ function constructor (id) {
 
 	cancelSubscriptionBtn.click = function cancelSubscriptionBtn_click (event)// @startlock
 	{// @endlock
-		$comp.sources.allCloseInscriptions.cancelInscription({onSuccess:function(evt){
+		$comp.sources.allCloseInscriptions.removeInscription({onSuccess:function(evt){
 			//$$(getHtmlId('cancelSubscriptionDialog')).closeDialog();
 			$comp.sources.forum.serverRefresh({forceReload:true});
 			if(evt.result === false){

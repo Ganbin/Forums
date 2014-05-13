@@ -515,7 +515,7 @@ Parametre : starTag : le tag de début. endTag : le tag de fin. textareaId : l'i
 
 Probleme : le prompt qui demande certaine infos fait bugger le rendu final.
 **********/
-forums.insertTag = function(startTag, endTag, textareaId, tagType,url) {
+forums.insertTag = function(startTag, endTag, textareaId, tagType,argumentValue) {
 	//debugger;
 	var widget = $$(textareaId);
 	var field = document.getElementById(textareaId);
@@ -542,10 +542,14 @@ forums.insertTag = function(startTag, endTag, textareaId, tagType,url) {
 			break;
 			case "url":
 				if(currentSelection) {
-					startTag = '[url=' + url + ']';
+					startTag = '[url=' + argumentValue + ']';
 				} else {
-					currentSelection = url;
+					currentSelection = argumentValue;
 				}
+			break;
+			case "color":
+				startTag = '[color=' + argumentValue + ']';
+				
 			break;
 		}
 	}
