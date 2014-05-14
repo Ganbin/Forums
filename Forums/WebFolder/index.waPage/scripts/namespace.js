@@ -383,6 +383,7 @@ forums.displayActionButtons = function(){
 	}
 };
 
+// DEPRECATED
 forums.refreshCategory = function(){
 	forums.forumTempID = waf.sources.forums.ID;
 	forums.threadTempID = waf.sources.topics.ID;
@@ -470,15 +471,14 @@ forums.refreshForum = function(){
 
 forums.refreshThread = function(){
 	forums.postTempID = waf.sources.posts.ID;
+	
 	waf.sources.topics.serverRefresh({onSuccess:function(evt){
 				
 		forums.postListenerID = waf.sources.posts.addListener('onCollectionChange',function(ev){
-			
-			if(ev.dataSource.length !== 0){
+			if(ev.dataSource.length !== 0 && waf.sources.posts.ID != undefined){
 				waf.sources.posts.selectByKey(forums.postTempID,{onSuccess:function(e){
 					waf.sources.posts.removeListener({ID:forums.postListenerID});
 					forums.displayMenuBarItem();
-					forums.displayMessage();
 				},onError:function(err){
 					waf.sources.posts.removeListener({ID:forums.postListenerID});
 					forums.displayMenuBarItem();

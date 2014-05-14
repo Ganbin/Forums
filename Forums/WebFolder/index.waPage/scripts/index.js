@@ -413,11 +413,27 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 			$$('nbUserOnlineTxt').setValue(RPCUtils.getUserOnlineLength());
 			$$('nbGuestOnlineTxt').setValue(RPCUtils.getGuestOnlineLength());
 			$$('nbRegisteredUserTxt').setValue(RPCUtils.getRegisteredUserLength());
+			forums.refreshThread();
+			
 			
 			setInterval(function(){
 				$$('nbUserOnlineTxt').setValue(RPCUtils.getUserOnlineLength());
 				$$('nbGuestOnlineTxt').setValue(RPCUtils.getGuestOnlineLength());
 				$$('nbRegisteredUserTxt').setValue(RPCUtils.getRegisteredUserLength());
+				switch(forums.widgets.tabViewNav.getSelectedTab().index){
+					case 1:
+					
+					break;
+					case 2:
+					
+					break;
+					case 3:
+						waf.sources.forums.serverRefresh();
+					break;
+					case 4:
+						forums.refreshThread();
+					break;
+				}
 			},1000*60*2);
 			
 			$('#menuBar2').hide();
