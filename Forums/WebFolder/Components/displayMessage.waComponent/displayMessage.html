@@ -1,6 +1,10 @@
 ﻿<!DOCTYPE html><section data-group="[]">
     <meta name="generator" content="Wakanda GUIDesigner"/>
-    <meta name="WAF.catalog" content="Post"/>
+    <meta name="WAF.catalog" content="Post,User"/>
+    <meta data-type="dataSource" data-lib="WAF" data-source="{id}post.user" data-source-type="dataClass" data-dataType="string" data-autoLoad="true" name="WAF.config.datasources" data-scope="local" data-id="{id}user1" content="user1"/>
+    <meta data-type="dataSource" data-lib="WAF" data-source="{id}post.user" data-source-type="dataClass" data-dataType="string" data-autoLoad="true" name="WAF.config.datasources" data-scope="local" data-id="{id}user2" content="user2"/>
+    <meta data-type="dataSource" data-lib="WAF" data-source="{id}post.user" data-source-type="dataClass" data-dataType="string" data-autoLoad="true" name="WAF.config.datasources" data-scope="local" data-id="{id}user3" content="user3"/>
+    <meta data-type="dataSource" data-lib="WAF" data-source="{id}post.user" data-source-type="dataClass" data-dataType="string" data-autoLoad="true" name="WAF.config.datasources" data-scope="local" data-id="{id}user4" content="user4"/>
     <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="Post" data-scope="local" data-lib="WAF" data-id="{id}post" data-dataType="string" data-autoLoad="false" content="post"/>
     <div id="{id}container1" data-type="container" data-lib="WAF" data-label-position="top" data-label="" data-constraint-top="true" data-constraint-right="true" data-constraint-left="true" data-constraint-bottom="true" class="waf-widget waf-container -level-0 waf-level-0">
         <div id="{id}container2" data-type="container" data-lib="WAF" data-label-position="top" data-label="" data-constraint-top="true" data-constraint-right="true" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-container waf-container-level-1 waf-level-1">
@@ -11,10 +15,11 @@
             <div id="{id}rateContainer" data-type="container" data-lib="WAF" data-label-position="top" data-label="" data-hideonload="true" data-constraint-top="true" data-constraint-right="true" data-constraint-left="false" data-constraint-bottom="false" class="waf-widget waf-container waf-container-level-2 waf-level-2">
 				<span id="{id}rateDiv" class="rateit"></span>
 			</div>
-        </div>
+        	<div id="{id}image1" data-type="image" data-lib="WAF" class="waf-widget waf-image" data-target="_blank" data-label="" data-label-position="left" data-fit="4" data-constraint-left="true" data-constraint-top="true" data-constraint-bottom="false" data-constraint-right="false" data-binding="{id}post.user.avatar"></div>
+ 	 	</div>
         <div id="{id}richText3" data-type="richText" data-target="_blank" data-role="normalText" data-plainText="true" data-overflow="Hidden" data-lib="WAF" data-label-position="left" data-label="" data-constraint-top="true" data-constraint-right="true" data-constraint-left="true" data-constraint-bottom="false" data-binding="{id}post.title" data-autoWidth="false" class="waf-widget waf-richText waf-role-normalText ellipsis"></div>
         <div id="{id}displayMessageContent" data-type="richText" data-target="_blank" data-role="normalText" data-plainText="false" data-overflow="Both" data-lib="WAF" data-label-position="left" data-label="" data-constraint-top="true" data-constraint-right="true" data-constraint-left="true" data-constraint-bottom="true" data-binding="{id}post.contentHTML" data-autoWidth="false" class="waf-widget waf-richText waf-role-normalText"></div>
-    	<div id="{id}resolvedImg" data-type="image" data-lib="WAF" class="waf-widget waf-image" data-target="_blank" data-label="" data-label-position="left" data-fit="0" data-constraint-left="false" data-constraint-top="false" data-constraint-bottom="true" data-constraint-right="true" data-src="/images/Resolved_text.png" data-hideonload="true"></div>
- 		<div id="{id}closedImg" data-type="image" data-lib="WAF" class="waf-widget waf-image" data-target="_blank" data-label="" data-label-position="left" data-fit="0" data-constraint-left="false" data-constraint-top="false" data-constraint-bottom="true" data-constraint-right="true" data-src="/images/Closed.png" data-hideonload="true"></div>
+    	<div id="{id}resolvedImg" data-type="image" data-target="_blank" data-src="/images/Resolved_text.png" data-lib="WAF" data-label-position="left" data-label="" data-hideonload="true" data-fit="0" data-constraint-top="false" data-constraint-right="true" data-constraint-left="false" data-constraint-bottom="true" class="waf-widget waf-image"></div>
+ 		<div id="{id}closedImg" data-type="image" data-target="_blank" data-src="/images/Closed.png" data-lib="WAF" data-label-position="left" data-label="" data-hideonload="true" data-fit="0" data-constraint-top="false" data-constraint-right="true" data-constraint-left="false" data-constraint-bottom="true" class="waf-widget waf-image"></div>
  	</div>
 	</section>

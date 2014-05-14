@@ -93,6 +93,7 @@ forums.displayMenuBarItem = function(){
 			category.addClass('waf-state-selected');
 			
 			category.html('Categories');
+			$('title').text(RPCUtils.getForumTitle());
 			
 			category.show();
 			break;
@@ -109,6 +110,7 @@ forums.displayMenuBarItem = function(){
 			forum.addClass('waf-state-selected');
 			
 			forum.html(waf.sources.category.title);
+			$('title').text(waf.sources.category.title);
 			
 			forum.show();
 			break;
@@ -126,6 +128,7 @@ forums.displayMenuBarItem = function(){
 			
 			
 			thread.html(waf.sources.forums.title);
+			$('title').text(waf.sources.forums.title);
 			
 			thread.show();
 			break;
@@ -143,6 +146,7 @@ forums.displayMenuBarItem = function(){
 			
 			
 			message.html(waf.sources.topics.title);
+			$('title').text(waf.sources.topics.title);
 			
 			message.show();
 			break;

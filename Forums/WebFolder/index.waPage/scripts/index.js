@@ -407,6 +407,9 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 			forums.isAdmin();
 			forums.displayMenuBarItem();
 			$$('titleTxt').setValue(RPCUtils.getForumTitle());
+			
+			$('title').text(RPCUtils.getForumTitle());
+			
 			$('#menuBar2').hide();
 			
 			// Listener for click on the menuBarItems
