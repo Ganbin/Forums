@@ -1,0 +1,25 @@
+{
+    "name": "ModalDialog",
+    "studioName": "Modal Dialog",
+    "category": "Custom Widgets",
+    "iconPath": "/icons/widget.png",
+    "author": "Gabriel Inzirillo",
+    "contributors": [
+        "Gabriel Inzirillo"
+    ],
+    "version": "1.0.0",
+    "copyright": "(c) 2014 Widget Developer",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ganbin/ModalDialog.git"
+    },
+    "keywords": ["wakanda", "widget","modal","dialog","ModalDialog"],
+    "engines": {"wakanda": ">= 8"},
+    "license": "MIT",
+    "loadDependencies": [
+        {"id": "Widget_V2"},
+        {"id": "ModalDialog/widget.js", "version": "1.0.0", "path": "WIDGETS_CUSTOM"},
+        {"id": "ModalDialog/css/widget.css", "version": "1.0.0", "path": "WIDGETS_CUSTOM"},
+        {"id": "ModalDialog/designer.js", "studioOnly": true, "version": "1.0.0", "path": "WIDGETS_CUSTOM"}
+    ]
+}
