@@ -410,6 +410,16 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 			
 			$('title').text(RPCUtils.getForumTitle());
 			
+			$$('nbUserOnlineTxt').setValue(RPCUtils.getUserOnlineLength());
+			$$('nbGuestOnlineTxt').setValue(RPCUtils.getGuestOnlineLength());
+			$$('nbRegisteredUserTxt').setValue(RPCUtils.getRegisteredUserLength());
+			
+			setInterval(function(){
+				$$('nbUserOnlineTxt').setValue(RPCUtils.getUserOnlineLength());
+				$$('nbGuestOnlineTxt').setValue(RPCUtils.getGuestOnlineLength());
+				$$('nbRegisteredUserTxt').setValue(RPCUtils.getRegisteredUserLength());
+			},1000*60*2);
+			
 			$('#menuBar2').hide();
 			
 			// Listener for click on the menuBarItems
