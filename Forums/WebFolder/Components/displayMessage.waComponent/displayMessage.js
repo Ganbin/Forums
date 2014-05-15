@@ -23,15 +23,15 @@ function constructor (id) {
 	
 	getHtmlObj('rateDiv').bind('rated', function (event, value) {
 		waf.sources.posts.vote(value,{onSuccess:function(evt){
-			forums.refreshThread();
-			//waf.sources.posts.serverRefresh({forceReload:true});
+			//forums.refreshThread();
+			waf.sources.posts.serverRefresh({forceReload:true});
 		}});
 	});
 
 	getHtmlObj('rateDiv').bind('reset', function () {
 		waf.sources.posts.vote(-1,{onSuccess:function(evt){
-			forums.refreshThread();
-			//waf.sources.posts.serverRefresh({forceReload:true});
+			//forums.refreshThread();
+			waf.sources.posts.serverRefresh({forceReload:true});
 		}});
 	});
 	// @region namespaceDeclaration// @startlock

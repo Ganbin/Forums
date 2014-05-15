@@ -1,4 +1,12 @@
-﻿.colpick{
+﻿#waf-body .waf-clone-categoryUnreadNb, #waf-body .waf-clone-forumUnreadNb, #waf-body .waf-clone-threadUnreadNb{
+	-webkit-border-radius: 12px;
+	-moz-border-radius: 12px;
+	border-radius: 12px;
+	color :  #3399cc !important;
+	border-color:#3399cc !important;
+}
+
+.colpick{
 	left:25px;
 	z-index:9999999;
 }

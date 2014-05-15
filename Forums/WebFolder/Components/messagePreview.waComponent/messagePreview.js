@@ -77,29 +77,19 @@ function constructor (id) {
 							
 						waf.sources.posts.edit({onSuccess:function(evt2){
 							
-							forums.refreshForum();
-							forums.closeCenterComp($comp);
-							
-							// OLD CODE
-							/*waf.sources.posts.serverRefresh({onSuccess:function(e2){
-								$('.xbbcode-code').each(function(i, e) {hljs.highlightBlock(e)});
+							waf.sources.posts.serverRefresh({onSuccess:function(e){
 								forums.closeCenterComp($comp);
-							},onError:function(err2){
-								$$(getHtmlId('errorDiv1')).setValue(err2.error[0].message);
-							},forceReload:true});*/
+							},onError:function(err){
+								$$(getHtmlId('errorDiv1')).setValue(err.error[0].message);
+							},forceReload:true});
 							
 						}},data.userData.content,data.userData.title,true);
 							
 					}},data.userData.title);
 				}else{
 					waf.sources.posts.edit({onSuccess:function(evt){
-						
-//						forums.refreshThread();
-//						forums.closeCenterComp($comp);
-						
-						// OLD CODE
+					
 						waf.sources.posts.serverRefresh({onSuccess:function(e){
-							$('.xbbcode-code').each(function(i, e) {hljs.highlightBlock(e)});
 							forums.closeCenterComp($comp);
 						},onError:function(err){
 							$$(getHtmlId('errorDiv1')).setValue(err.error[0].message);

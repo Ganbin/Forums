@@ -111,11 +111,11 @@ function constructor (id) {
 		
 		$comp.sources.posts.edit({onSuccess:function(evt){
 			try{
-				//waf.sources.topics.serverRefresh({forceReload:true});
-				forums.refreshThread();
+				waf.sources.topics.serverRefresh({forceReload:true});
+				//forums.refreshThread();
 			}catch(e){
-				//waf.sources.forums.serverRefresh({forceReload:true});
-				forums.refreshForum();
+				waf.sources.forums.serverRefresh({forceReload:true});
+				//forums.refreshForum();
 			}
 			$comp.sources.posts.serverRefresh({forceReload:true});
 			

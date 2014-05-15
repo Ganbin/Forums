@@ -167,8 +167,8 @@
 					"pathVisible" : true,
 					"position" : 
 					{
-						"X" : 57,
-						"Y" : 254
+						"X" : 67,
+						"Y" : 273
 					}
 				}
 			},
@@ -234,7 +234,8 @@
 				"Category" : 
 				{
 					"method" : "Category/Category-methods.js",
-					"events" : "Category/Category-events.js"
+					"events" : "Category/Category-events.js",
+					"computed" : "Category/Category-events.js"
 				},
 				"UserGroup" : 
 				{
@@ -538,6 +539,20 @@
 					"kind" : "storage",
 					"scope" : "public",
 					"type" : "number"
+				},
+				{
+					"name" : "currentUserUnread",
+					"kind" : "calculated",
+					"scope" : "public",
+					"type" : "number",
+					"scriptKind" : "javascript",
+					"onGet" : 
+					[
+						{
+							"from" : "$mainModel.Category.currentUserUnread.onGet",
+							"userDefined" : true
+						}
+					]
 				}
 			],
 			"events" : 
@@ -754,6 +769,20 @@
 					"kind" : "storage",
 					"scope" : "public",
 					"type" : "number"
+				},
+				{
+					"name" : "currentUserUnread",
+					"kind" : "calculated",
+					"scope" : "public",
+					"type" : "number",
+					"scriptKind" : "javascript",
+					"onGet" : 
+					[
+						{
+							"from" : "$mainModel.Forum.currentUserUnread.onGet",
+							"userDefined" : true
+						}
+					]
 				}
 			],
 			"events" : 
@@ -1554,6 +1583,20 @@
 					"scope" : "public",
 					"type" : "User",
 					"path" : "User"
+				},
+				{
+					"name" : "currentUserUnread",
+					"kind" : "calculated",
+					"scope" : "public",
+					"type" : "number",
+					"scriptKind" : "javascript",
+					"onGet" : 
+					[
+						{
+							"from" : "$mainModel.Topic.currentUserUnread.onGet",
+							"userDefined" : true
+						}
+					]
 				}
 			],
 			"events" : 

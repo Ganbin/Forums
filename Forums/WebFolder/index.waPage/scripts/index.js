@@ -43,6 +43,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	
 	
 // @region namespaceDeclaration// @startlock
+	var matrixCategory = {};	// @matrix
 	var threadMovedDialog = {};	// @ModalDialog
 	var unresolvedBtn = {};	// @buttonImage
 	var matrixThread = {};	// @matrix
@@ -73,6 +74,15 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 // @endregion// @endlock
 
 // eventHandlers// @lock
+
+	matrixCategory.onChildrenDraw = function matrixCategory_onChildrenDraw (event)// @startlock
+	{// @endlock
+		if(event.source.currentUserUnread != null && event.source.currentUserUnread != 0){
+			$('#'+event.htmlObject[0].id+' .waf-clone-categoryUnreadNb').show();
+		}else{
+			$('#'+event.htmlObject[0].id+' .waf-clone-categoryUnreadNb').hide();
+		}
+	};// @lock
 
 	threadMovedDialog.onValidClick = function threadMovedDialog_onValidClick (event)// @startlock
 	{// @endlock
@@ -117,6 +127,16 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 			$('#'+event.htmlObject[0].id+' .waf-clone-resolvedThreadImg').show();
 		}else{
 			$('#'+event.htmlObject[0].id+' .waf-clone-resolvedThreadImg').hide();
+		}
+		
+		if(event.source.stamp != null){
+			$('#'+event.htmlObject[0].id+' .waf-clone-topicDateTxt')[0].innerText = (moment(event.source.stamp).zone(new Date().getTimezoneOffset()).calendar());
+		}
+		
+		if(event.source.currentUserUnread != null && event.source.currentUserUnread != 0){
+			$('#'+event.htmlObject[0].id+' .waf-clone-threadUnreadNb').show();
+		}else{
+			$('#'+event.htmlObject[0].id+' .waf-clone-threadUnreadNb').hide();
 		}
 	};// @lock
 
@@ -252,6 +272,12 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 			event.htmlObject.css("background-color", "lightgray");
 		}else{
 			event.htmlObject.css("background-color", "white");
+		}
+		
+		if(event.source.currentUserUnread != null && event.source.currentUserUnread != 0){
+			$('#'+event.htmlObject[0].id+' .waf-clone-forumUnreadNb').show();
+		}else{
+			$('#'+event.htmlObject[0].id+' .waf-clone-forumUnreadNb').hide();
 		}
 	};// @lock
 
@@ -413,13 +439,14 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 			$$('nbUserOnlineTxt').setValue(RPCUtils.getUserOnlineLength());
 			$$('nbGuestOnlineTxt').setValue(RPCUtils.getGuestOnlineLength());
 			$$('nbRegisteredUserTxt').setValue(RPCUtils.getRegisteredUserLength());
-			forums.refreshThread();
 			
-			
+			// Updating the informations about the user every 2 minutes
 			setInterval(function(){
 				$$('nbUserOnlineTxt').setValue(RPCUtils.getUserOnlineLength());
 				$$('nbGuestOnlineTxt').setValue(RPCUtils.getGuestOnlineLength());
 				$$('nbRegisteredUserTxt').setValue(RPCUtils.getRegisteredUserLength());
+				
+				// IN PROGRESS --> HAVE TO THINK FOR A REFRESH PROCESSUS, MAYBE WITH SERVER EVENT
 				switch(forums.widgets.tabViewNav.getSelectedTab().index){
 					case 1:
 					
@@ -428,10 +455,10 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 					
 					break;
 					case 3:
-						waf.sources.forums.serverRefresh();
+						//waf.sources.forums.serverRefresh();
 					break;
 					case 4:
-						forums.refreshThread();
+						//forums.refreshThread();
 					break;
 				}
 			},1000*60*2);
@@ -473,6 +500,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	};// @lock
 
 // @region eventManager// @startlock
+	WAF.addListener("matrixCategory", "onChildrenDraw", matrixCategory.onChildrenDraw, "WAF");
 	WAF.addListener("threadMovedDialog", "onValidClick", threadMovedDialog.onValidClick, "WAF");
 	WAF.addListener("unresolvedBtn", "click", unresolvedBtn.click, "WAF");
 	WAF.addListener("matrixThread", "onChildrenDraw", matrixThread.onChildrenDraw, "WAF");
