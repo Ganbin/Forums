@@ -783,6 +783,13 @@
 							"userDefined" : true
 						}
 					]
+				},
+				{
+					"name" : "categoryID",
+					"kind" : "alias",
+					"scope" : "public",
+					"type" : "long",
+					"path" : "category.ID"
 				}
 			],
 			"events" : 
@@ -1228,31 +1235,15 @@
 				},
 				{
 					"name" : "contentHTML",
-					"kind" : "calculated",
+					"kind" : "storage",
 					"scope" : "public",
-					"type" : "string",
-					"scriptKind" : "javascript",
-					"onGet" : 
-					[
-						{
-							"from" : "$mainModel.Post.contentHTML.onGet",
-							"userDefined" : true
-						}
-					]
+					"type" : "string"
 				},
 				{
 					"name" : "contentText",
-					"kind" : "calculated",
+					"kind" : "storage",
 					"scope" : "public",
-					"type" : "string",
-					"scriptKind" : "javascript",
-					"onGet" : 
-					[
-						{
-							"from" : "$mainModel.Post.contentText.onGet",
-							"userDefined" : true
-						}
-					]
+					"type" : "string"
 				},
 				{
 					"name" : "stamp",
@@ -1379,6 +1370,13 @@
 							"userDefined" : true
 						}
 					]
+				},
+				{
+					"name" : "topicID",
+					"kind" : "alias",
+					"scope" : "public",
+					"type" : "long",
+					"path" : "topic.ID"
 				}
 			],
 			"events" : 
@@ -1597,6 +1595,13 @@
 							"userDefined" : true
 						}
 					]
+				},
+				{
+					"name" : "forumID",
+					"kind" : "alias",
+					"scope" : "public",
+					"type" : "long",
+					"path" : "forum.ID"
 				}
 			],
 			"events" : 
@@ -1870,6 +1875,7 @@
 					"name" : "validationId",
 					"kind" : "storage",
 					"scope" : "publicOnServer",
+					"indexed" : true,
 					"unique" : true,
 					"type" : "string"
 				},

@@ -103,10 +103,10 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		    if (e) {
 		        waf.sources.topics.resolve(toResolve,{onSuccess:function(evt){
 		        	
-		        	waf.sources.topics.serverRefresh({forceReload:true,onSuccess:function(evt){
-		        		forums.displayActionButtons();
+		        	//waf.sources.topics.serverRefresh({forceReload:true,onSuccess:function(evt){
+		        		//forums.displayActionButtons();
 		        		forums.refreshForum();
-		        	}});
+		        	//}});
 		        	
 		    	}});
 		    } else {
@@ -130,7 +130,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		}
 		
 		if(event.source.stamp != null){
-			$('#'+event.htmlObject[0].id+' .waf-clone-topicDateTxt')[0].innerText = (moment(event.source.stamp).zone(new Date().getTimezoneOffset()).calendar());
+			$('#'+event.htmlObject[0].id+' .waf-clone-topicDateTxt')[0].innerHTML = (moment(event.source.stamp).zone(new Date().getTimezoneOffset()).calendar());
 		}
 		
 		if(event.source.currentUserUnread != null && event.source.currentUserUnread != 0){
@@ -198,14 +198,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		alertify.confirm(message, function (e) {
 		    if (e) {
 		        waf.sources.topics.resolve(toResolve,{onSuccess:function(evt){
-		        	
-		        	waf.sources.topics.serverRefresh({forceReload:true,onSuccess:function(evt){
-		        		forums.displayActionButtons();
-		        		forums.refreshForum();
-		        	}});
-		        	
-		        	
-		        	
+		        	forums.refreshForum();
 		    	}});
 		    } else {
 		        // user clicked "cancel"
@@ -225,9 +218,8 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 				
 				forums.widgets.mainComp.removeComponent();
 				
-				forums.goToCategoryView();
 				waf.sources.category.all({keepOrderBy:true,onSuccess:function(evt){
-					waf.sources.category.serverRefresh();
+					forums.goToCategoryView(false);
 				}});
 	        }});      
 		}
@@ -268,12 +260,6 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 
 	matrixForum.onChildrenDraw = function matrixForum_onChildrenDraw (event)// @startlock
 	{// @endlock
-		if(!event.source.hasAccess('read')){
-			event.htmlObject.css("background-color", "lightgray");
-		}else{
-			event.htmlObject.css("background-color", "white");
-		}
-		
 		if(event.source.currentUserUnread != null && event.source.currentUserUnread != 0){
 			$('#'+event.htmlObject[0].id+' .waf-clone-forumUnreadNb').show();
 		}else{
@@ -292,18 +278,15 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	matrixMessage.onChildrenDraw = function matrixMessage_onChildrenDraw (event)// @startlock
 	{// @endlock
 		if(event.source.stamp != null){
-			$('#'+event.htmlObject[0].id+' .waf-clone-postItemDate')[0].innerText = (moment(event.source.stamp).zone(new Date().getTimezoneOffset()).calendar());
+			$('#'+event.htmlObject[0].id+' .waf-clone-postItemDate')[0].innerHTML = (moment(event.source.stamp).zone(new Date().getTimezoneOffset()).calendar());
 			
 		}
 		
+			
 		if(event.source.isViewed === true || event.pos === 0){ // if the isViewed attribute is true or if it's the first item
 			$('#'+event.htmlObject[0].id+' .waf-clone-icon7').hide(); // Hide the unread icon
-		}
-		
-		if (event.source.enable === false) { 
-		   event.htmlObject.css("background-color", "lightgray");
-		} else {
-			event.htmlObject.css("background-color", "white");
+		}else{
+			$('#'+event.htmlObject[0].id+' .waf-clone-icon7').show(); // show the unread icon
 		}
 	};// @lock
 
@@ -348,7 +331,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	{// @endlock
 		if(forums.widgets.tabViewNav.getSelectedTab().index === 4){
 			
-			forums.displayActionButtons();
+			//forums.displayActionButtons();
 			
 			if(waf.sources.posts.getCurrentElement() !== null && typeof waf.sources.mainComp_post != 'undefined'){
 				var newCol = ds.Post.newCollection();

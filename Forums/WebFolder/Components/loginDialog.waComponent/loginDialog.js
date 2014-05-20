@@ -51,7 +51,7 @@ function constructor (id) {
 	           forums.isLogged();
 				forums.isAdmin();
 				
-				forums.goToCategoryView();
+				forums.goToCategoryView(false);
 				waf.sources.category.all({keepOrderBy:true});
 				forums.closeCenterComp($comp);
 	        }else{

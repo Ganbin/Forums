@@ -19,6 +19,18 @@ function constructor (id) {
 		$('.xbbcode-code').each(function(i, e) {hljs.highlightBlock(e)});
 		forums.displayActionButtons();
 		getHtmlObj('rateDiv').rateit({ step : 1 , max : 5, value : waf.sources.posts.voteAverage, ispreset:true });
+		
+		if(waf.sources.forums.hasAccess('write')){
+			setTimeout(function(){
+				$$(getHtmlId('replyToPostBtn')).show();
+			},10);
+		}
+		
+		if(waf.sources.forums.hasAccess('vote')){
+			setTimeout(function(){
+				$$(getHtmlId('rateContainer')).show();
+			},10);
+		}
 	},100);
 	
 	getHtmlObj('rateDiv').bind('rated', function (event, value) {
@@ -44,18 +56,6 @@ function constructor (id) {
 	{// @endlock
 		forums.loadCorrectComponent('replyBtn');
 	};// @lock
-	
-	if(waf.sources.forums.hasAccess('write')){
-		setTimeout(function(){
-			$$(getHtmlId('replyToPostBtn')).show();
-		},100);
-	}
-	
-	if(waf.sources.forums.hasAccess('vote')){
-		setTimeout(function(){
-			$$(getHtmlId('rateContainer')).show();
-		},100);
-	}
 	
 
 	// @region eventManager// @startlock

@@ -119,6 +119,12 @@ function constructor (id) {
 		$$(getHtmlId("modifyPasswordDialog")).closeDialog(); //cancel button
 	};// @lock
 
+	dataGrid3.onRowDblClick = function dataGrid3_onRowDblClick (event)// @startlock
+	{// @endlock
+		forums.selectSpecificPost($comp.sources.posts.ID);
+		forums.closeCenterComp($comp);
+	};// @lock
+
 	dataGrid3.onRowDraw = function dataGrid3_onRowDraw (event)// @startlock
 	{// @endlock
 		//debugger;
@@ -182,6 +188,7 @@ function constructor (id) {
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_dataGrid3", "onRowDblClick", dataGrid3.onRowDblClick, "WAF");
 	WAF.addListener(this.id + "_passwordChangedDialog", "onValidClick", passwordChangedDialog.onValidClick, "WAF");
 	WAF.addListener(this.id + "_modifyPasswordText", "click", modifyPasswordText.click, "WAF");
 	WAF.addListener(this.id + "_pwdConfirm", "keyup", pwdConfirm.keyup, "WAF");

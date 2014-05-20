@@ -2,8 +2,12 @@
 	-webkit-border-radius: 12px;
 	-moz-border-radius: 12px;
 	border-radius: 12px;
-	color :  #3399cc !important;
+	color :  #ffffff !important;
 	border-color:#3399cc !important;
+	background-color:#3399cc !important;
+	max-width:100px !important;
+	min-width:20px !important;
+	width:auto !important;
 }
 
 .colpick{
