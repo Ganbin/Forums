@@ -375,6 +375,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 			waf.sources.posts.removeListener({ID:forums.postListenerID});
 			forums.postListenerID = 0;
 			forums.postTempID = 0;
+			forums.displayMessage();
 		}
 			
 	};// @lock
@@ -404,7 +405,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	{// @endlock
 		if(waf.sources.forums.hasAccess('read')){
 			$('#menuMessages').hide();
-			forums.goToThreadView();
+			forums.goToThreadView(false);
 		}else{
 			if(waf.sources.forums.isSubscribed()){
 				forums.widgets.alreadySubscribedDialog.openDialog();
@@ -437,7 +438,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	{// @endlock
 		$('#menuThread').hide();
 		$('#menuMessages').hide();
-		forums.goToForumView();
+		forums.goToForumView(false);
 	};// @lock
 
 	editCategoryButton.click = function editCategoryButton_click (event)// @startlock
@@ -487,13 +488,13 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 			// Listener for click on the menuBarItems
 			
 			$('#menuCategory').click(function(){
-				forums.goToCategoryView();
+				forums.goToCategoryView(true);
 			});
 			$('#menuForum').hide().click(function(){
-				forums.goToForumView();
+				forums.goToForumView(true);
 			});
 			$('#menuThread').hide().click(function(){
-				forums.goToThreadView();
+				forums.goToThreadView(true);
 			});
 			$('#menuMessages').hide().click(function(){
 				forums.goToMessageView();

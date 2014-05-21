@@ -166,7 +166,7 @@ forums.displayMenuBarItem = function(){
 /*
 * This method do the appropriate actions when we want to display the category list
 */
-forums.goToCategoryView = function(keepPost){
+forums.goToCategoryView = function(refresh,keepPost){
 	forums.widgets.tabViewNav.selectTab(1);
 	forums.isAdmin();
 	forums.displayMenuBarItem();
@@ -180,21 +180,23 @@ forums.goToCategoryView = function(keepPost){
 	forums.widgets.resolvedBtn.hide();
 	forums.widgets.unresolvedBtn.hide();
 	
+	refresh = refresh != null ? refresh : false;
 	keepPost = keepPost != null ? keepPost : true;
 	
-	if(keepPost){
-		forums.refreshCategory();
-	}else{
-		waf.sources.category.serverRefresh({forceReload:true});
+	if(refresh){
+		if(keepPost){
+			forums.refreshCategory();
+		}else{
+			waf.sources.category.collectionRefresh({forceReload:true});
+		}
 	}
-	
 	$(".ellipsis").dotdotdot();
 };
 
 /*
 * This method do the appropriate actions when we want to display the forum list
 */
-forums.goToForumView = function(){
+forums.goToForumView = function(refresh){
 	forums.widgets.tabViewNav.selectTab(2);
 	
 	forums.isAdmin();
@@ -209,7 +211,11 @@ forums.goToForumView = function(){
 	forums.widgets.resolvedBtn.hide();
 	forums.widgets.unresolvedBtn.hide();
 	
-	forums.refreshForum();
+	refresh = refresh != null ? refresh : false;
+	
+	if(refresh){
+		forums.refreshForum();
+	}
 	
 	$(".ellipsis").dotdotdot();
 };
@@ -217,7 +223,7 @@ forums.goToForumView = function(){
 /*
 * This method do the appropriate actions when we want to display the thread list
 */
-forums.goToThreadView = function(){
+forums.goToThreadView = function(refresh){
 	forums.widgets.tabViewNav.selectTab(3);
 	forums.displayMenuBarItem();
 	forums.widgets.editBtn.hide();
@@ -228,7 +234,11 @@ forums.goToThreadView = function(){
 	forums.widgets.resolvedBtn.hide();
 	forums.widgets.unresolvedBtn.hide();
 	
-	forums.refreshThread();
+	refresh = refresh != null ? refresh : false;
+	
+	if(refresh){
+		forums.refreshThread();
+	}
 	
 	if(sources.forums.hasAccess('write')){ // Check if the user has write access and display the add button
 		forums.widgets.addBtn.show();

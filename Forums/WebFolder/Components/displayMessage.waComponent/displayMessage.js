@@ -10,6 +10,8 @@ function constructor (id) {
 	this.name = 'displayMessage';
 	// @endregion// @endlock
 
+	$comp.TEMPRateInit = false;
+
 	this.load = function (data) {// @lock
 		
 
@@ -18,7 +20,10 @@ function constructor (id) {
 		$$(getHtmlId('postDateTxt')).setValue(moment(waf.sources.posts.stamp).zone(new Date().getTimezoneOffset()).format('MMMM Do YYYY, H:mm:ss Z'));
 		$('.xbbcode-code').each(function(i, e) {hljs.highlightBlock(e)});
 		forums.displayActionButtons();
-		getHtmlObj('rateDiv').rateit({ step : 1 , max : 5, value : waf.sources.posts.voteAverage, ispreset:true });
+		if($comp.sources.post.voteAverage !== null){
+			getHtmlObj('rateDiv').rateit({ step : 1 , max : 5, value : waf.sources.posts.voteAverage, ispreset:true });
+			$comp.TEMPRateInit = true;
+		}
 		
 		if(waf.sources.forums.hasAccess('write')){
 			setTimeout(function(){
@@ -31,26 +36,41 @@ function constructor (id) {
 				$$(getHtmlId('rateContainer')).show();
 			},10);
 		}
-	},100);
+	},200);
 	
 	getHtmlObj('rateDiv').bind('rated', function (event, value) {
 		waf.sources.posts.vote(value,{onSuccess:function(evt){
-			//forums.refreshThread();
-			waf.sources.posts.serverRefresh({forceReload:true});
+			forums.refreshThread();
+			//waf.sources.posts.serverRefresh({forceReload:true});
 		}});
 	});
 
 	getHtmlObj('rateDiv').bind('reset', function () {
 		waf.sources.posts.vote(-1,{onSuccess:function(evt){
-			//forums.refreshThread();
-			waf.sources.posts.serverRefresh({forceReload:true});
+			forums.refreshThread();
+			//waf.sources.posts.serverRefresh({forceReload:true});
 		}});
 	});
 	// @region namespaceDeclaration// @startlock
+	var postEvent = {};	// @dataSource
 	var replyToPostBtn = {};	// @icon
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
+
+	postEvent.onCurrentElementChange = function postEvent_onCurrentElementChange (event)// @startlock
+	{// @endlock
+		if($comp.sources.post.voteAverage !== null && $comp.TEMPRateInit == true){
+			getHtmlObj('rateDiv').rateit('value', $comp.sources.post.voteAverage);
+			getHtmlObj('rateDiv').rateit('ispreset', true);
+		}
+		
+		if($comp.sources.post.contentHTML !== null){
+			setTimeout(function(){
+				$('.xbbcode-code').each(function(i, e) {hljs.highlightBlock(e)});
+			},200);
+		}
+	};// @lock
 
 	replyToPostBtn.click = function replyToPostBtn_click (event)// @startlock
 	{// @endlock
@@ -59,6 +79,7 @@ function constructor (id) {
 	
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_post", "onCurrentElementChange", postEvent.onCurrentElementChange, "WAF");
 	WAF.addListener(this.id + "_replyToPostBtn", "click", replyToPostBtn.click, "WAF");
 	// @endregion// @endlock
 
