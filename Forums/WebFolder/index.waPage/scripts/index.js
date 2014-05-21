@@ -43,6 +43,9 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	
 	
 // @region namespaceDeclaration// @startlock
+	var categoryEvent = {};	// @dataSource
+	var topicsEvent = {};	// @dataSource
+	var forumsEvent = {};	// @dataSource
 	var matrixCategory = {};	// @matrix
 	var threadMovedDialog = {};	// @ModalDialog
 	var unresolvedBtn = {};	// @buttonImage
@@ -74,6 +77,33 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 // @endregion// @endlock
 
 // eventHandlers// @lock
+
+	categoryEvent.onCurrentElementChange = function categoryEvent_onCurrentElementChange (event)// @startlock
+	{// @endlock
+		if(event.dataSource.ID === forums.categoryTempID){
+			waf.sources.category.removeListener({ID:forums.categoryListenerID});
+			forums.categoryListenerID = 0;
+			forums.categoryTempID = 0;
+		}
+	};// @lock
+
+	topicsEvent.onCurrentElementChange = function topicsEvent_onCurrentElementChange (event)// @startlock
+	{// @endlock
+		if(event.dataSource.ID === forums.threadTempID){
+			waf.sources.topics.removeListener({ID:forums.threadListenerID});
+			forums.threadListenerID = 0;
+			forums.threadTempID = 0;
+		}
+	};// @lock
+
+	forumsEvent.onCurrentElementChange = function forumsEvent_onCurrentElementChange (event)// @startlock
+	{// @endlock
+		 if(event.dataSource.ID === forums.forumTempID){
+			waf.sources.forums.removeListener({ID:forums.forumListenerID});
+			forums.forumListenerID = 0;
+			forums.forumTempID = 0;
+		}
+	};// @lock
 
 	matrixCategory.onChildrenDraw = function matrixCategory_onChildrenDraw (event)// @startlock
 	{// @endlock
@@ -340,6 +370,12 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 				waf.sources.posts.viewPost();
 			}
 		}
+		
+		if(event.dataSource.ID === forums.postTempID){
+			waf.sources.posts.removeListener({ID:forums.postListenerID});
+			forums.postListenerID = 0;
+			forums.postTempID = 0;
+		}
 			
 	};// @lock
 
@@ -483,6 +519,9 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	};// @lock
 
 // @region eventManager// @startlock
+	WAF.addListener("category", "onCurrentElementChange", categoryEvent.onCurrentElementChange, "WAF");
+	WAF.addListener("topics", "onCurrentElementChange", topicsEvent.onCurrentElementChange, "WAF");
+	WAF.addListener("forums", "onCurrentElementChange", forumsEvent.onCurrentElementChange, "WAF");
 	WAF.addListener("matrixCategory", "onChildrenDraw", matrixCategory.onChildrenDraw, "WAF");
 	WAF.addListener("threadMovedDialog", "onValidClick", threadMovedDialog.onValidClick, "WAF");
 	WAF.addListener("unresolvedBtn", "click", unresolvedBtn.click, "WAF");

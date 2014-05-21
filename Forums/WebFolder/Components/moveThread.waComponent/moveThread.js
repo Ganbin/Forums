@@ -35,74 +35,41 @@ function constructor (id) {
 	{// @endlock
 		forums.threadTempID = waf.sources.topics.ID;
 		forums.postTempID = waf.sources.posts.ID;
+		forums.forumTempID = $comp.sources.forum.ID;
+		forums.categoryTempID = $comp.sources.forum.getAttributeValue('category.ID');
 		
 		waf.sources.topics.move($comp.sources.forum.ID,{onSuccess:function(evt){
 			if(evt.result === true){
-				//forums.refreshCategory();
-				//waf.sources.category.all({onSuccess:function(evt){
-				
-//					forums.categoryListenerID = waf.sources.category.addListener('onCollectionChange',function(ev){
-//				
-//						if(ev.dataSource.length !== 0){
-//							waf.sources.category.selectByKey($comp.sources.forum.getAttributeValue('category.ID'),{onSuccess:function(e){
-//								waf.sources.category.removeListener({ID:forums.categoryListenerID});
-//								forums.displayMenuBarItem();
-//							},onError:function(err){
-//								waf.sources.category.removeListener({ID:forums.categoryListenerID});
-//								forums.displayMenuBarItem();
-//							}});
-//						}
-//					});
+								
+				forums.categoryListenerID = waf.sources.category.addListener('onCollectionChange',function(ev){
+			
+					if(ev.dataSource.length !== 0){
+						waf.sources.category.selectByKey(forums.categoryTempID);
+					}
+				});
 
-				waf.sources.category.selectByKey($comp.sources.forum.getAttributeValue('category.ID'),{onSuccess:function(evt){
+				forums.forumListenerID = waf.sources.forums.addListener('onCollectionChange',function(ev){
+					if(ev.dataSource.length !== 0){
+						waf.sources.forums.selectByKey(forums.forumTempID);
+					}
+				});
+
+				forums.threadListenerID = waf.sources.topics.addListener('onCollectionChange',function(ev){
+					
+					if(ev.dataSource.length !== 0){
+						waf.sources.topics.selectByKey(forums.threadTempID);
+					}
+				});
+
+				forums.postListenerID = waf.sources.posts.addListener('onCollectionChange',function(ev){
+					if(ev.dataSource.length !== 0){
+						waf.sources.posts.selectByKey(forums.postTempID,{onSuccess:function(e){
+							forums.displayMenuBarItem();
+						}});
+					}
+				});
 				
-					forums.forumListenerID = waf.sources.forums.addListener('onCollectionChange',function(ev){
-				
-						if(ev.dataSource.length !== 0){
-							waf.sources.forums.selectByKey($comp.sources.forum.ID,{onSuccess:function(e){
-								waf.sources.forums.removeListener({ID:forums.forumListenerID});
-								forums.displayMenuBarItem();
-							},onError:function(err){
-								waf.sources.forums.removeListener({ID:forums.forumListenerID});
-								forums.displayMenuBarItem();
-							}});
-						}
-					});
-					
-					forums.threadListenerID = waf.sources.topics.addListener('onCollectionChange',function(ev){
-						
-						if(ev.dataSource.length !== 0){
-							waf.sources.topics.selectByKey(forums.threadTempID,{onSuccess:function(e){
-								waf.sources.topics.removeListener({ID:forums.threadListenerID});
-								forums.displayMenuBarItem();
-							},onError:function(err){
-								waf.sources.topics.removeListener({ID:forums.threadListenerID});
-								forums.displayMenuBarItem();
-							}});
-						}
-					});
-					
-					forums.postListenerID = waf.sources.posts.addListener('onCollectionChange',function(ev){
-						if(ev.dataSource.length !== 0){
-							waf.sources.posts.selectByKey(forums.postTempID,{onSuccess:function(e){
-								waf.sources.posts.removeListener({ID:forums.postListenerID});
-								forums.displayMenuBarItem();
-								forums.displayMessage();
-							},onError:function(err){
-								waf.sources.posts.removeListener({ID:forums.postListenerID});
-								forums.displayMenuBarItem();
-							}});
-						}
-					});
-				}});
-				/*
-					$('#menuThread').hide();
-					$('#menuMessages').hide();
-					
-					forums.goToForumView();
-					
-					forums.displayMenuBarItem();*/
-				//}});
+				waf.sources.category.all();
 				
 				$$('threadMovedDialog').openDialog();
 				forums.closeCenterComp($comp);

@@ -1297,6 +1297,7 @@
 					"kind" : "calculated",
 					"scope" : "public",
 					"type" : "string",
+					"indexKind" : "cluster",
 					"scriptKind" : "javascript",
 					"onGet" : 
 					[
@@ -1319,6 +1320,7 @@
 					"matchColumn" : "viewPostCollection",
 					"scope" : "public",
 					"type" : "ViewPostCollection",
+					"indexKind" : "auto",
 					"reversePath" : true,
 					"path" : "post"
 				},
@@ -1334,6 +1336,7 @@
 					"kind" : "calculated",
 					"scope" : "public",
 					"type" : "bool",
+					"indexKind" : "cluster",
 					"scriptKind" : "javascript",
 					"onGet" : 
 					[
@@ -1348,6 +1351,7 @@
 					"kind" : "calculated",
 					"scope" : "public",
 					"type" : "number",
+					"indexKind" : "cluster",
 					"scriptKind" : "javascript",
 					"onGet" : 
 					[
@@ -1362,6 +1366,7 @@
 					"kind" : "calculated",
 					"scope" : "public",
 					"type" : "number",
+					"indexKind" : "cluster",
 					"scriptKind" : "javascript",
 					"onGet" : 
 					[
@@ -2139,6 +2144,7 @@
 					"kind" : "relatedEntity",
 					"scope" : "public",
 					"type" : "Post",
+					"indexKind" : "auto",
 					"path" : "Post"
 				},
 				{
@@ -2162,6 +2168,7 @@
 					"kind" : "relatedEntity",
 					"scope" : "public",
 					"type" : "User",
+					"indexKind" : "auto",
 					"path" : "User"
 				}
 			],
