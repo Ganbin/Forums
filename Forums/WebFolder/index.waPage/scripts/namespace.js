@@ -4,6 +4,15 @@
 var forums = {}; // initialisation de notre objet
 forums.widgets = {}; // initialisation de la proprieté widgets qui contiendra tout nos widgets
 
+forums.categoryListenerID = 0;
+forums.forumListenerID = 0;
+forums.threadListenerID = 0;
+forums.postListenerID = 0;
+
+forums.categoryID = 0;
+forums.forumTempID = 0;
+forums.threadTempID = 0;
+forums.postTempID = 0;
 
 /***************************
 Définition de nos fonctions
@@ -422,6 +431,19 @@ forums.displayActionButtons = function(){
 forums.selectSpecificPost = function(postID,goToView){
 	forums.vGoToView = (goToView != undefined) ? goToView : 4;
 	
+	if(forums.categoryListenerID !== 0){
+		waf.sources.category.removeListener({ID:forums.categoryListenerID});
+	}
+	if(forums.forumListenerID !== 0){
+		waf.sources.forums.removeListener({ID:forums.forumListenerID});
+	}
+	if(forums.threadListenerID !== 0){
+		waf.sources.topics.removeListener({ID:forums.threadListenerID});
+	}
+	if(forums.postListenerID !== 0){
+		waf.sources.posts.removeListener({ID:forums.postListenerID});
+	}
+	
 	ds.Post.find('ID = :1',postID,{autoExpand:'topic,topic.forum,topic.forum.category',onSuccess:function(evt){
 		
 		forums.categoryID = evt.entity.topic.relEntity.forum.relEntity.category.relEntity.ID.value;
@@ -437,7 +459,7 @@ forums.selectSpecificPost = function(postID,goToView){
 		});
 		
 		forums.threadListenerID = waf.sources.topics.addListener('onCollectionChange',function(ev2){
-						//debugger;
+			
 			if(ev2.dataSource.length !== 0){
 				waf.sources.topics.selectByKey(forums.threadTempID);
 			}
@@ -452,8 +474,10 @@ forums.selectSpecificPost = function(postID,goToView){
 				}});
 			}
 		});
-				
-		waf.sources.category.selectByKey(forums.categoryID);
+		
+		waf.sources.category.selectByKey(forums.categoryID,{onSuccess:function(evt){
+			waf.sources.category.serverRefresh({forceReload:true});
+		}});
 		
 	}});
 };

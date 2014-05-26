@@ -43,6 +43,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	
 	
 // @region namespaceDeclaration// @startlock
+	var searchBtn = {};	// @buttonImage
 	var categoryEvent = {};	// @dataSource
 	var topicsEvent = {};	// @dataSource
 	var forumsEvent = {};	// @dataSource
@@ -77,6 +78,11 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 // @endregion// @endlock
 
 // eventHandlers// @lock
+
+	searchBtn.click = function searchBtn_click (event)// @startlock
+	{// @endlock
+		forums.widgets.centerComp.loadComponent('/Components/search.waComponent');
+	};// @lock
 
 	categoryEvent.onCurrentElementChange = function categoryEvent_onCurrentElementChange (event)// @startlock
 	{// @endlock
@@ -449,6 +455,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	documentEvent.onLoad = function documentEvent_onLoad (event)// @startlock
 	{// @endlock
 		setTimeout(function(){
+			
 			forums.isLogged();
 			forums.isAdmin();
 			forums.displayMenuBarItem();
@@ -512,6 +519,8 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 			        sameElse : 'D/M/YY - H:mm'
 			    }
 			});
+			
+			waf.sources.searchPostResult.declareDependencies('topic,user');
 		},100);
 		
 		window.onresize = function(){
@@ -520,6 +529,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	};// @lock
 
 // @region eventManager// @startlock
+	WAF.addListener("searchBtn", "click", searchBtn.click, "WAF");
 	WAF.addListener("category", "onCurrentElementChange", categoryEvent.onCurrentElementChange, "WAF");
 	WAF.addListener("topics", "onCurrentElementChange", topicsEvent.onCurrentElementChange, "WAF");
 	WAF.addListener("forums", "onCurrentElementChange", forumsEvent.onCurrentElementChange, "WAF");

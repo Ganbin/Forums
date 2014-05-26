@@ -1308,13 +1308,6 @@
 					]
 				},
 				{
-					"name" : "forum",
-					"kind" : "alias",
-					"scope" : "public",
-					"type" : "string",
-					"path" : "topic.forum.title"
-				},
-				{
 					"name" : "allViewPosts",
 					"kind" : "relatedEntities",
 					"matchColumn" : "viewPostCollection",
@@ -1382,6 +1375,27 @@
 					"scope" : "public",
 					"type" : "long",
 					"path" : "topic.ID"
+				},
+				{
+					"name" : "forum",
+					"kind" : "alias",
+					"scope" : "public",
+					"type" : "string",
+					"path" : "topic.forum.title"
+				},
+				{
+					"name" : "userfullName",
+					"kind" : "alias",
+					"scope" : "public",
+					"type" : "string",
+					"path" : "user.fullName"
+				},
+				{
+					"name" : "topicTitle",
+					"kind" : "alias",
+					"scope" : "public",
+					"type" : "string",
+					"path" : "topic.title"
 				}
 			],
 			"events" : 
@@ -1493,6 +1507,13 @@
 					"applyTo" : "entity",
 					"scope" : "public",
 					"from" : "$mainModel.Post.entityMethods.reply",
+					"userDefined" : true
+				},
+				{
+					"name" : "search",
+					"applyTo" : "dataClass",
+					"scope" : "public",
+					"from" : "$mainModel.Post.methods.search",
 					"userDefined" : true
 				},
 				{
