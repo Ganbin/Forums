@@ -17,21 +17,21 @@ function constructor (id) {
 
 	
 	setTimeout(function(){
-		$$(getHtmlId('postDateTxt')).setValue(moment(waf.sources.posts.stamp).zone(new Date().getTimezoneOffset()).format('MMMM Do YYYY, H:mm:ss Z'));
+		$$(getHtmlId('postDateTxt')).setValue(moment(waf.sources.post.stamp).zone(new Date().getTimezoneOffset()).format('MMMM Do YYYY, H:mm:ss Z'));
 		$('.xbbcode-code').each(function(i, e) {hljs.highlightBlock(e)});
 		forums.displayActionButtons();
 		if($comp.sources.post.voteAverage !== null){
-			getHtmlObj('rateDiv').rateit({ step : 1 , max : 5, value : waf.sources.posts.voteAverage, ispreset:true });
+			getHtmlObj('rateDiv').rateit({ step : 1 , max : 5, value : waf.sources.post.voteAverage, ispreset:true });
 			$comp.TEMPRateInit = true;
 		}
 		
-		if(waf.sources.forums.hasAccess('write')){
+		if(waf.sources.forum.hasAccess('write')){
 			setTimeout(function(){
 				$$(getHtmlId('replyToPostBtn')).show();
 			},10);
 		}
 		
-		if(waf.sources.forums.hasAccess('vote')){
+		if(waf.sources.forum.hasAccess('vote')){
 			setTimeout(function(){
 				$$(getHtmlId('rateContainer')).show();
 			},10);
@@ -39,16 +39,16 @@ function constructor (id) {
 	},200);
 	
 	getHtmlObj('rateDiv').bind('rated', function (event, value) {
-		waf.sources.posts.vote(value,{onSuccess:function(evt){
+		waf.sources.post.vote(value,{onSuccess:function(evt){
 			forums.refreshThread();
-			//waf.sources.posts.serverRefresh({forceReload:true});
+			//waf.sources.post.serverRefresh({forceReload:true});
 		}});
 	});
 
 	getHtmlObj('rateDiv').bind('reset', function () {
-		waf.sources.posts.vote(-1,{onSuccess:function(evt){
+		waf.sources.post.vote(-1,{onSuccess:function(evt){
 			forums.refreshThread();
-			//waf.sources.posts.serverRefresh({forceReload:true});
+			//waf.sources.post.serverRefresh({forceReload:true});
 		}});
 	});
 	// @region namespaceDeclaration// @startlock

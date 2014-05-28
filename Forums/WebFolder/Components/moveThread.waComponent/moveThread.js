@@ -33,43 +33,15 @@ function constructor (id) {
 
 	validBtn.click = function validBtn_click (event)// @startlock
 	{// @endlock
-		forums.threadTempID = waf.sources.topics.ID;
-		forums.postTempID = waf.sources.posts.ID;
+		forums.threadTempID = waf.sources.topic.ID;
+		forums.postTempID = waf.sources.post.ID;
 		forums.forumTempID = $comp.sources.forum.ID;
 		forums.categoryTempID = $comp.sources.forum.getAttributeValue('category.ID');
 		
-		waf.sources.topics.move($comp.sources.forum.ID,{onSuccess:function(evt){
+		waf.sources.topic.move($comp.sources.forum.ID,{onSuccess:function(evt){
 			if(evt.result === true){
-								
-				forums.categoryListenerID = waf.sources.category.addListener('onCollectionChange',function(ev){
-			
-					if(ev.dataSource.length !== 0){
-						waf.sources.category.selectByKey(forums.categoryTempID);
-					}
-				});
-
-				forums.forumListenerID = waf.sources.forums.addListener('onCollectionChange',function(ev){
-					if(ev.dataSource.length !== 0){
-						waf.sources.forums.selectByKey(forums.forumTempID);
-					}
-				});
-
-				forums.threadListenerID = waf.sources.topics.addListener('onCollectionChange',function(ev){
-					
-					if(ev.dataSource.length !== 0){
-						waf.sources.topics.selectByKey(forums.threadTempID);
-					}
-				});
-
-				forums.postListenerID = waf.sources.posts.addListener('onCollectionChange',function(ev){
-					if(ev.dataSource.length !== 0){
-						waf.sources.posts.selectByKey(forums.postTempID,{onSuccess:function(e){
-							forums.displayMenuBarItem();
-						}});
-					}
-				});
 				
-				waf.sources.category.all();
+				forums.selectSpecificPost(forums.postTempID);
 				
 				$$('threadMovedDialog').openDialog();
 				forums.closeCenterComp($comp);

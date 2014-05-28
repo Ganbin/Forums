@@ -562,7 +562,7 @@ var XBBCODE = (function() {
         config.text = config.text.replace(/</g, "&lt;"); // escape HTML tag brackets
         config.text = config.text.replace(/>/g, "&gt;"); // escape HTML tag brackets
         
-        if(removeTag === undefined || removeTag === false){
+        if(removeTag == null || removeTag === false){
 	        config.text = config.text.replace(openTags, function(matchStr, openB, contents, closeB) {
 	        	return "<" + contents + ">";
 	        });
@@ -602,9 +602,12 @@ var XBBCODE = (function() {
         if (config.removeMisalignedTags) {
             ret.html = ret.html.replace(/\[.*?\]/g,"");
         }
-        if (config.addInLineBreaks) {
+        if (config.addInLineBreaks && removeTag !== true) {
             ret.html = ret.html.replace(/\r\n/g, "\n");
             ret.html = ret.html.replace(/(\r|\n)/g, "<br />");
+        }else if(removeTag === true){
+        	ret.html = ret.html.replace(/\r\n/g, " ");
+            ret.html = ret.html.replace(/(\r|\n)/g, " ");
         }
     
         ret.html = ret.html.replace("&#91;", "["); // put ['s back in

@@ -17,14 +17,14 @@ function constructor (id) {
 		
 		$comp.sources.forum.query('ID = :1',{onSuccess:function(evt){
 			//debugger;
-			if(waf.sources.topics.ID !== null){
+			if(waf.sources.topic.ID !== null){
 				setTimeout(function(){
-					$comp.sources.topics.selectByKey(waf.sources.topics.ID);
+					$comp.sources.topics.selectByKey(waf.sources.topic.ID);
 				},100);
 			}
 		},onError:function(err){
 			
-		}},waf.sources.forums.ID);
+		}},waf.sources.forum.ID);
 
 	// @region namespaceDeclaration// @startlock
 	var cancelSubscriptionBtn = {};	// @button
@@ -111,11 +111,11 @@ function constructor (id) {
 		
 		$comp.sources.posts.edit({onSuccess:function(evt){
 			try{
-				waf.sources.topics.serverRefresh({forceReload:true});
-				//forums.refreshThread();
+				//waf.sources.topic.serverRefresh({forceReload:true});
+				forums.refreshThread();
 			}catch(e){
-				waf.sources.forums.serverRefresh({forceReload:true});
-				//forums.refreshForum();
+				//waf.sources.forum.serverRefresh({forceReload:true});
+				forums.refreshForum();
 			}
 			$comp.sources.posts.serverRefresh({forceReload:true});
 			

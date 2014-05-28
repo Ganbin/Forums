@@ -34,6 +34,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	forums.widgets.passwordResetDialog = $$('passwordResetDialog');
 	
 	// Temp Variables
+	forums.categoryTempID = 0;
 	forums.forumTempID = 0;
 	forums.threadTempID = 0;
 	forums.postTempID = 0;
@@ -43,6 +44,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	
 	
 // @region namespaceDeclaration// @startlock
+	var postEvent = {};	// @dataSource
 	var searchBtn = {};	// @buttonImage
 	var categoryEvent = {};	// @dataSource
 	var topicsEvent = {};	// @dataSource
@@ -79,6 +81,25 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 
 // eventHandlers// @lock
 
+	postEvent.onCurrentElementChange = function postEvent_onCurrentElementChange (event)// @startlock
+	{// @endlock
+		if(event.eventKind === 'onCurrentElementChange'){
+			if(forums.widgets.tabViewNav.getSelectedTab().index === 4){
+				
+				//forums.displayActionButtons();
+				
+				if(waf.sources.post.getCurrentElement() !== null && typeof waf.sources.mainComp_post != 'undefined'){
+					var newCol = ds.Post.newCollection();
+					newCol.add(waf.sources.post.getCurrentElement());
+					waf.sources.mainComp_post.setEntityCollection(newCol);
+					waf.sources.post.viewPost();
+				}
+			}
+		}else{
+			
+		}	
+	};// @lock
+
 	searchBtn.click = function searchBtn_click (event)// @startlock
 	{// @endlock
 		forums.widgets.centerComp.loadComponent('/Components/search.waComponent');
@@ -86,29 +107,17 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 
 	categoryEvent.onCurrentElementChange = function categoryEvent_onCurrentElementChange (event)// @startlock
 	{// @endlock
-		if(event.dataSource.ID === forums.categoryTempID){
-			waf.sources.category.removeListener({ID:forums.categoryListenerID});
-			forums.categoryListenerID = 0;
-			forums.categoryTempID = 0;
-		}
+
 	};// @lock
 
 	topicsEvent.onCurrentElementChange = function topicsEvent_onCurrentElementChange (event)// @startlock
 	{// @endlock
-		if(event.dataSource.ID === forums.threadTempID){
-			waf.sources.topics.removeListener({ID:forums.threadListenerID});
-			forums.threadListenerID = 0;
-			forums.threadTempID = 0;
-		}
+
 	};// @lock
 
 	forumsEvent.onCurrentElementChange = function forumsEvent_onCurrentElementChange (event)// @startlock
 	{// @endlock
-		 if(event.dataSource.ID === forums.forumTempID){
-			waf.sources.forums.removeListener({ID:forums.forumListenerID});
-			forums.forumListenerID = 0;
-			forums.forumTempID = 0;
-		}
+		
 	};// @lock
 
 	matrixCategory.onChildrenDraw = function matrixCategory_onChildrenDraw (event)// @startlock
@@ -283,7 +292,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 
 	subscriptionDialog.onValidClick = function subscriptionDialog_onValidClick (event)// @startlock
 	{// @endlock
-		ds.Inscription.subscribeToForum(waf.sources.forums.ID,{onSuccess:function(evt){
+		ds.Inscription.subscribeToForum(waf.sources.forum.ID,{onSuccess:function(evt){
 			if(evt === true){
 				forums.widgets.subscriptionDialog.closeDialog();
 				forums.widgets.subscriptionOkDialog.openDialog();
@@ -305,7 +314,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 
 	confirmPostDeleteDialog.onValidClick = function confirmPostDeleteDialog_onValidClick (event)// @startlock
 	{// @endlock
-		waf.sources.posts.disable({onSuccess:function(evt){
+		waf.sources.post.disable({onSuccess:function(evt){
 			waf.sources.topics.serverRefresh({forceReload:true});
 		}});
 		forums.widgets.confirmPostDeleteDialog.closeDialog(); //ok button confirmDeletePostDialog
@@ -329,7 +338,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	deleteBtn.click = function deleteBtn_click (event)// @startlock
 	{// @endlock
 		forums.widgets.confirmPostDeleteDialog.openDialog();
-		forums.widgets.confirmPostDeleteDialog.setText('Are you sure that you want to delete this post "'+waf.sources.posts.title+'" and all the posts linked ?');
+		forums.widgets.confirmPostDeleteDialog.setText('Are you sure that you want to delete this post "'+waf.sources.post.title+'" and all the posts linked ?');
 	};// @lock
 
 	messageItem.mouseover = function messageItem_mouseover (event)// @startlock
@@ -360,30 +369,29 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 
 	threadItem.click = function threadItem_click (event)// @startlock
 	{// @endlock
-		forums.goToMessageView();
+		waf.sources.post.query('topic.ID == :1',waf.sources.topic.ID,{onSuccess:function(evt){
+			forums.goToMessageView();
+		}});
 	};// @lock
 
 	postsEvent.onCurrentElementChange = function postsEvent_onCurrentElementChange (event)// @startlock
 	{// @endlock
-		if(forums.widgets.tabViewNav.getSelectedTab().index === 4){
-			
-			//forums.displayActionButtons();
-			
-			if(waf.sources.posts.getCurrentElement() !== null && typeof waf.sources.mainComp_post != 'undefined'){
-				var newCol = ds.Post.newCollection();
-				newCol.add(waf.sources.posts.getCurrentElement());
-				waf.sources.mainComp_post.setEntityCollection(newCol);
-				waf.sources.posts.viewPost();
-			}
-		}
 		
-		if(event.dataSource.ID === forums.postTempID){
-			waf.sources.posts.removeListener({ID:forums.postListenerID});
-			forums.postListenerID = 0;
-			forums.postTempID = 0;
-			forums.displayMessage();
-		}
+		if(event.eventKind === 'onCurrentElementChange'){
+			if(forums.widgets.tabViewNav.getSelectedTab().index === 4){
+				
+				//forums.displayActionButtons();
+				
+				if(waf.sources.post.getCurrentElement() !== null && typeof waf.sources.mainComp_post != 'undefined'){
+					var newCol = ds.Post.newCollection();
+					newCol.add(waf.sources.post.getCurrentElement());
+					waf.sources.mainComp_post.setEntityCollection(newCol);
+					waf.sources.post.viewPost();
+				}
+			}
+		}else{
 			
+		}			
 	};// @lock
 
 	editBtn.click = function editBtn_click (event)// @startlock
@@ -409,16 +417,19 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 
 	forumItem.click = function forumItem_click (event)// @startlock
 	{// @endlock
-		if(waf.sources.forums.hasAccess('read')){
-			$('#menuMessages').hide();
-			forums.goToThreadView(false);
+		if(waf.sources.forum.hasAccess('read')){
+			waf.sources.topic.query('forum.ID == :1',waf.sources.forum.ID,{onSuccess:function(evt){
+				$('#menuMessages').hide();
+				forums.goToThreadView(false);
+			}});
+			
 		}else{
-			if(waf.sources.forums.isSubscribed()){
+			if(waf.sources.forum.isSubscribed()){
 				forums.widgets.alreadySubscribedDialog.openDialog();
 				forums.widgets.alreadySubscribedDialog.setText('Your subscription for this forum is pending. Wait for a confirmation from the moderator.');
 			}else{
 				forums.widgets.subscriptionDialog.openDialog();
-				forums.widgets.subscriptionDialog.setText('You don\'t have any access for this forum : "'+waf.sources.forums.title+'". Do you want to subscribe to this forum?');
+				forums.widgets.subscriptionDialog.setText('You don\'t have any access for this forum : "'+waf.sources.forum.title+'". Do you want to subscribe to this forum?');
 			}
 		}
 	};// @lock
@@ -442,9 +453,11 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 
 	categoryItem.click = function categoryItem_click (event)// @startlock
 	{// @endlock
-		$('#menuThread').hide();
-		$('#menuMessages').hide();
-		forums.goToForumView(false);
+		waf.sources.forum.query('category.ID == :1',waf.sources.category.ID,{onSuccess:function(evt){
+			$('#menuThread').hide();
+			$('#menuMessages').hide();
+			forums.goToForumView(false);
+		}});
 	};// @lock
 
 	editCategoryButton.click = function editCategoryButton_click (event)// @startlock
@@ -482,7 +495,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 					
 					break;
 					case 3:
-						//waf.sources.forums.serverRefresh();
+						//waf.sources.forum.serverRefresh();
 					break;
 					case 4:
 						//forums.refreshThread();
@@ -529,6 +542,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	};// @lock
 
 // @region eventManager// @startlock
+	WAF.addListener("post", "onCurrentElementChange", postEvent.onCurrentElementChange, "WAF");
 	WAF.addListener("searchBtn", "click", searchBtn.click, "WAF");
 	WAF.addListener("category", "onCurrentElementChange", categoryEvent.onCurrentElementChange, "WAF");
 	WAF.addListener("topics", "onCurrentElementChange", topicsEvent.onCurrentElementChange, "WAF");

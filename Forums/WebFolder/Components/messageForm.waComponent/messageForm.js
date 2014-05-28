@@ -41,14 +41,14 @@ function constructor (id) {
 		$comp.typeBtn = data.userData.typeBtn;
 		
 		if($comp.typeBtn === 'editBtn'){
-			$$(getHtmlId('messageContentTxt')).setValue(waf.sources.posts.content);
-			$$(getHtmlId('messageTitleTxt')).setValue(waf.sources.posts.title);
+			$$(getHtmlId('messageContentTxt')).setValue(waf.sources.post.content);
+			$$(getHtmlId('messageTitleTxt')).setValue(waf.sources.post.title);
 		}
 		if($comp.typeBtn === 'addBtn'){
-			$$(getHtmlId('messageTitleTxt')).setValue('RE : '+waf.sources.topics.title);
+			$$(getHtmlId('messageTitleTxt')).setValue('RE : '+waf.sources.topic.title);
 		}
 		if($comp.typeBtn === 'replyBtn'){
-			$$(getHtmlId('messageTitleTxt')).setValue('RE : '+waf.sources.posts.title);
+			$$(getHtmlId('messageTitleTxt')).setValue('RE : '+waf.sources.post.title);
 		}
 	}
 	
@@ -145,14 +145,18 @@ function constructor (id) {
 					$$(getHtmlId('errorDiv1')).setValue('Please enter a title and a content.');
 				}else{
 					ds.Topic.createTopic({onSuccess:function(evt){
-						waf.sources.forums.serverRefresh({onSuccess:function(e){
-							$comp.resetValue();
-							forums.goToMessageView();
-							forums.closeCenterComp($comp);
-						},forceReload:true});
+						
+						waf.source.topic.query('forum.ID == :1',waf.sources.forum.ID,{keepOrderBy:true,onSuccess:function(evt){
+							waf.sources.post.query('topic.ID == :1',waf.sources.topic.ID,{keepOrderBy:true,onSuccess:function(evt2){
+								$comp.resetValue();
+								forums.goToMessageView();
+								forums.closeCenterComp($comp);
+							}});
+						}});
+
 					},onError:function(err){
 						$$(getHtmlId('errorDiv1')).setValue(err.error[0].message);
-					}},$$(getHtmlId('messageTitleTxt')).getValue(),waf.sources.forums.ID,$$(getHtmlId('messageContentTxt')).getValue()); 
+					}},$$(getHtmlId('messageTitleTxt')).getValue(),waf.sources.forum.ID,$$(getHtmlId('messageContentTxt')).getValue()); 
 				}
 				
 			}else if($comp.loadedFor === 'message'){
@@ -160,26 +164,25 @@ function constructor (id) {
 					$$(getHtmlId('errorDiv1')).setValue('Please enter a title and a content.');
 				}else if($comp.typeBtn === 'addBtn'){ // If we want to reply to a message
 					
-					ds.Post.find('topic.ID = :1 and replyTo = null',{params:[waf.sources.topics.ID],onSuccess:function(evt){
+					ds.Post.find('topic.ID = :1 and replyTo = null',{params:[waf.sources.topic.ID],onSuccess:function(evt){
 					
-						waf.sources.posts.reply({onSuccess:function(evt){
-							waf.sources.topics.serverRefresh({onSuccess:function(e){
-								$comp.resetValue();
+						waf.sources.post.reply({onSuccess:function(evt){
+							
+							waf.sources.post.query('topic.ID == :1',waf.sources.topic.ID,{keepOrderBy:true,onSuccess:function(evt2){
 								forums.goToMessageView();
 								forums.closeCenterComp($comp);
-							},onError:function(err){
-								$$(getHtmlId('errorDiv1')).setValue(err.error[0].message);
-							},forceReload:true});
+							}});
+							
 						}},$$(getHtmlId('messageContentTxt')).getValue(),$$(getHtmlId('messageTitleTxt')).getValue(),evt.result.ID.value);
 						
 					}});
 				}else if($comp.typeBtn === 'editBtn'){ // else if we want to edit a message
 					
-					if(waf.sources.posts.getPosition() === (waf.sources.posts.length -1)){
-						waf.sources.topics.edit({onSuccess:function(evt){
-								waf.sources.posts.edit({onSuccess:function(evt2){
+					if(waf.sources.post.getPosition() === (waf.sources.post.length -1)){
+						waf.sources.topic.edit({onSuccess:function(evt){
+								waf.sources.post.edit({onSuccess:function(evt2){
 									
-									waf.sources.posts.serverRefresh({onSuccess:function(e){
+									waf.sources.post.serverRefresh({onSuccess:function(e){
 										forums.closeCenterComp($comp);
 									},onError:function(err){
 										$$(getHtmlId('errorDiv1')).setValue(err.error[0].message);
@@ -190,9 +193,9 @@ function constructor (id) {
 								}},$$(getHtmlId('messageContentTxt')).getValue(),$$(getHtmlId('messageTitleTxt')).getValue(),true);
 						}},$$(getHtmlId('messageTitleTxt')).getValue());
 					}else{
-						waf.sources.posts.edit({onSuccess:function(evt){
+						waf.sources.post.edit({onSuccess:function(evt){
 							
-							waf.sources.posts.serverRefresh({onSuccess:function(e){
+							waf.sources.post.serverRefresh({onSuccess:function(e){
 								forums.closeCenterComp($comp);
 							},onError:function(err){
 								$$(getHtmlId('errorDiv1')).setValue(err.error[0].message);
@@ -204,27 +207,23 @@ function constructor (id) {
 					
 				}else if($comp.typeBtn === 'replyBtn'){
 					
-					waf.sources.posts.reply({onSuccess:function(evt){
-						waf.sources.topics.serverRefresh({onSuccess:function(e){
-							$comp.resetValue();
+					waf.sources.post.reply({onSuccess:function(evt){
+						waf.sources.post.query('topic.ID == :1',waf.sources.topic.ID,{keepOrderBy:true,onSuccess:function(evt2){
 							forums.goToMessageView();
 							forums.closeCenterComp($comp);
-						},onError:function(err){
-							$$(getHtmlId('errorDiv1')).setValue(err.error[0].message);
-						},forceReload:true});
-					}},$$(getHtmlId('messageContentTxt')).getValue(),$$(getHtmlId('messageTitleTxt')).getValue(),waf.sources.posts.ID);
+						}});
+					}},$$(getHtmlId('messageContentTxt')).getValue(),$$(getHtmlId('messageTitleTxt')).getValue(),waf.sources.post.ID);
 					
 				}
 			}
 		}else{
-			
 			if($comp.typeBtn){
-				forums.widgets.centerComp.loadComponent({path:'/Components/messagePreview.waComponent',userData:{loadedFor:$comp.loadedFor,typeBtn:$comp.typeBtn,title:$$(getHtmlId('messageTitleTxt')).getValue(),content:$$(getHtmlId('messageContentTxt')).getValue()}});
+				forums.widgets.centerComp2.loadComponent({path:'/Components/messagePreview.waComponent',userData:{loadedFor:$comp.loadedFor,typeBtn:$comp.typeBtn,title:$$(getHtmlId('messageTitleTxt')).getValue(),content:$$(getHtmlId('messageContentTxt')).getValue()}});
 			}else{
-				forums.widgets.centerComp.loadComponent({path:'/Components/messagePreview.waComponent',userData:{loadedFor:$comp.loadedFor,title:$$(getHtmlId('messageTitleTxt')).getValue(),content:$$(getHtmlId('messageContentTxt')).getValue()}});
+				forums.widgets.centerComp2.loadComponent({path:'/Components/messagePreview.waComponent',userData:{loadedFor:$comp.loadedFor,title:$$(getHtmlId('messageTitleTxt')).getValue(),content:$$(getHtmlId('messageContentTxt')).getValue()}});
 			}
 			$comp.resetValue();
-			//forums.closeCenterComp($comp);
+			forums.closeCenterComp($comp);
 		}
 	};// @lock
 

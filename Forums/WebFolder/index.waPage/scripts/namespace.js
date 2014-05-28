@@ -14,6 +14,8 @@ forums.forumTempID = 0;
 forums.threadTempID = 0;
 forums.postTempID = 0;
 
+forums.timeoutInstance = 0;
+
 /***************************
 Définition de nos fonctions
 ***************************/
@@ -137,8 +139,8 @@ forums.displayMenuBarItem = function(){
 			thread.addClass('waf-state-selected');
 			
 			
-			thread.html(waf.sources.forums.title);
-			$('title').text(waf.sources.forums.title);
+			thread.html(waf.sources.forum.title);
+			$('title').text(waf.sources.forum.title);
 			
 			category.show();
 			forum.show();
@@ -157,8 +159,8 @@ forums.displayMenuBarItem = function(){
 			message.addClass('waf-state-selected');
 			
 			
-			message.html(waf.sources.topics.title);
-			$('title').text(waf.sources.topics.title);
+			message.html(waf.sources.topic.title);
+			$('title').text(waf.sources.topic.title);
 			
 			category.show();
 			forum.show();
@@ -166,14 +168,16 @@ forums.displayMenuBarItem = function(){
 			message.show();
 			break;
 	}
-	thread.html(waf.sources.forums.title);
-	message.html(waf.sources.topics.title);
+	thread.html(waf.sources.forum.title);
+	message.html(waf.sources.topic.title);
 	forum.html(waf.sources.category.title);
 	$(".ellipsis").dotdotdot();
 };
 
 /*
 * This method do the appropriate actions when we want to display the category list
+* parameters : refresh : true if we want to refresh the category (default : false)
+*				keepPost : true if we want to keep the current post (default : false)
 */
 forums.goToCategoryView = function(refresh,keepPost){
 	forums.widgets.tabViewNav.selectTab(1);
@@ -204,6 +208,7 @@ forums.goToCategoryView = function(refresh,keepPost){
 
 /*
 * This method do the appropriate actions when we want to display the forum list
+* parameter : refresh : true if we want to refresh the forum and keep the current post (default : false)
 */
 forums.goToForumView = function(refresh){
 	forums.widgets.tabViewNav.selectTab(2);
@@ -231,6 +236,7 @@ forums.goToForumView = function(refresh){
 
 /*
 * This method do the appropriate actions when we want to display the thread list
+* parameter : refresh : true if we want to refresh the thread and keep the current post (default : false)
 */
 forums.goToThreadView = function(refresh){
 	forums.widgets.tabViewNav.selectTab(3);
@@ -249,13 +255,13 @@ forums.goToThreadView = function(refresh){
 		forums.refreshThread();
 	}
 	
-	if(sources.forums.hasAccess('write')){ // Check if the user has write access and display the add button
+	if(sources.forum.hasAccess('write')){ // Check if the user has write access and display the add button
 		forums.widgets.addBtn.show();
 	}else{
 		forums.widgets.addBtn.hide();
 	}
 	
-	if(sources.forums.isModerator()){ // Check if the user is a moderator and display the management button
+	if(sources.forum.isModerator()){ // Check if the user is a moderator and display the management button
 		forums.widgets.managementBtn.show();
 	}else{
 		forums.widgets.managementBtn.hide();
@@ -281,29 +287,30 @@ forums.goToMessageView = function(){
 * This method load the displayMessage component and set the current post of the local source of the component with the select post in the page
 */
 forums.displayMessage = function(){
-	waf.sources.posts.viewPost();
+	waf.sources.post.viewPost();
 	forums.widgets.mainComp.loadComponent({path:'/Components/displayMessage.waComponent',onSuccess:function(){
 		var newCol = ds.Post.newCollection(); // Create a new empty collection
-		newCol.add(waf.sources.posts.getCurrentElement()); // Add the current post selected in the page to the new empty collection
+		newCol.add(waf.sources.post.getCurrentElement()); // Add the current post selected in the page to the new empty collection
 		waf.sources.mainComp_post.setEntityCollection(newCol);	// Set the new entityCollection of the local source of the component. So that way we always have the correct post displayed
 		$(".ellipsis").dotdotdot();
 	}});
 };
 
+// This method show the correct action buttons when we are on the messageView
 forums.displayActionButtons = function(){
 	
 	var displayMEDButtons = function(){
-		if(sources.forums.isModerator()){ // Check if the user is a moderator and display the management button
+		if(sources.forum.isModerator()){ // Check if the user is a moderator and display the management button
 			forums.widgets.moveThreadBtn.show();
 			forums.widgets.managementBtn.show();
 			
-			if(sources.forums.hasAccess('modify')){ // Check if the user has write access and display the add button
+			if(sources.forum.hasAccess('modify')){ // Check if the user has write access and display the add button
 				forums.widgets.editBtn.show();
 			}else{
 				forums.widgets.editBtn.hide();
 			}
 			
-			if(sources.forums.hasAccess('del')){ // Check if the user has write access and display the add button
+			if(sources.forum.hasAccess('del')){ // Check if the user has write access and display the add button
 				forums.widgets.deleteBtn.show();
 			}else{
 				forums.widgets.deleteBtn.hide();
@@ -312,14 +319,14 @@ forums.displayActionButtons = function(){
 			forums.widgets.managementBtn.hide();
 			forums.widgets.moveThreadBtn.hide();
 			
-			if(waf.sources.posts.isMyPost()){
-				if(sources.forums.hasAccess('modify')){ // Check if the user has write access and display the add button
+			if(waf.sources.post.isMyPost()){
+				if(sources.forum.hasAccess('modify')){ // Check if the user has write access and display the add button
 					forums.widgets.editBtn.show();
 				}else{
 					forums.widgets.editBtn.hide();
 				}
 				
-				if(sources.forums.hasAccess('del')){ // Check if the user has write access and display the add button
+				if(sources.forum.hasAccess('del')){ // Check if the user has write access and display the add button
 					forums.widgets.deleteBtn.show();
 				}else{
 					forums.widgets.deleteBtn.hide();
@@ -331,7 +338,7 @@ forums.displayActionButtons = function(){
 		}
 	};
 	
-	if(waf.sources.posts.isMyThread()){
+	if(waf.sources.post.isMyThread()){
 		
 		displayMEDButtons();
 				
@@ -389,7 +396,7 @@ forums.displayActionButtons = function(){
 			forums.widgets.deleteBtn.hide();
 			forums.widgets.managementBtn.hide();
 			
-			waf.sources.posts.isMyThread({onSuccess:function(evt){
+			waf.sources.post.isMyThread({onSuccess:function(evt){
 				if(evt.result === true){
 					forums.widgets.editBtn.show();
 				}
@@ -401,7 +408,7 @@ forums.displayActionButtons = function(){
 				$$('mainComp_closedImg').hide();
 			}
 			
-			if(sources.forums.hasAccess('write')){ // Check if the user has write access and display the add button
+			if(sources.forum.hasAccess('write')){ // Check if the user has write access and display the add button
 				forums.widgets.addBtn.show();
 			}else{
 				forums.widgets.addBtn.hide();
@@ -428,55 +435,42 @@ forums.displayActionButtons = function(){
 	}
 };
 
+
+// This function select a specific post and display it.
+// parameters : postID : ID of the post to select
+//				goToView : (default : 4) the view to show (1: category, 2:forum, 3:thread, 4:post)
 forums.selectSpecificPost = function(postID,goToView){
-	forums.vGoToView = (goToView != undefined) ? goToView : 4;
 	
-	if(forums.categoryListenerID !== 0){
-		waf.sources.category.removeListener({ID:forums.categoryListenerID});
-	}
-	if(forums.forumListenerID !== 0){
-		waf.sources.forums.removeListener({ID:forums.forumListenerID});
-	}
-	if(forums.threadListenerID !== 0){
-		waf.sources.topics.removeListener({ID:forums.threadListenerID});
-	}
-	if(forums.postListenerID !== 0){
-		waf.sources.posts.removeListener({ID:forums.postListenerID});
-	}
+	forums.vGoToView = (goToView != undefined) ? goToView : 4; // if goToView is empty set it to 4
 	
+	// Find the post to select and retreive all the ID's of the topic, the forum and the category
 	ds.Post.find('ID = :1',postID,{autoExpand:'topic,topic.forum,topic.forum.category',onSuccess:function(evt){
 		
-		forums.categoryID = evt.entity.topic.relEntity.forum.relEntity.category.relEntity.ID.value;
+		// Assign to the globalNamespace all the ID's
+		forums.categoryTempID = evt.entity.topic.relEntity.forum.relEntity.category.relEntity.ID.value;
 		forums.forumTempID = evt.entity.topic.relEntity.forum.relEntity.ID.value;
 		forums.threadTempID = evt.entity.topic.relEntity.ID.value;
 		forums.postTempID = evt.entity.ID.value;
 		
-		forums.forumListenerID = waf.sources.forums.addListener('onCollectionChange',function(ev){
+		waf.sources.category.all({onSuccess:function(evt){
+			waf.sources.category.selectByKey(forums.categoryTempID);
+		}});
+		
+		waf.sources.forum.query('category.ID == :1',forums.categoryTempID,{onSuccess:function(evt){
+			waf.sources.forum.selectByKey(forums.forumTempID);
+		}});
+		
+		waf.sources.topic.query('forum.ID == :1',forums.forumTempID,{onSuccess:function(evt){
+			waf.sources.topic.selectByKey(forums.threadTempID);
+		}});
+		
+		waf.sources.post.query('topic.ID == :1',forums.threadTempID,{onSuccess:function(evt){
+			waf.sources.post.selectByKey(forums.postTempID,{onSuccess:function(){
+				forums.widgets.tabViewNav.selectTab(forums.vGoToView);
+				forums.displayMenuBarItem();
+				forums.displayMessage();
+			}});
 			
-			if(ev.dataSource.length !== 0){
-				waf.sources.forums.selectByKey(forums.forumTempID);
-			}
-		});
-		
-		forums.threadListenerID = waf.sources.topics.addListener('onCollectionChange',function(ev2){
-			
-			if(ev2.dataSource.length !== 0){
-				waf.sources.topics.selectByKey(forums.threadTempID);
-			}
-		});
-		
-		forums.postListenerID = waf.sources.posts.addListener('onCollectionChange',function(ev3){
-			if(ev3.dataSource.length !== 0){
-				waf.sources.posts.selectByKey(forums.postTempID,{onSuccess:function(e){
-					forums.widgets.tabViewNav.selectTab(forums.vGoToView);
-					forums.displayMenuBarItem();
-					forums.displayMessage();
-				}});
-			}
-		});
-		
-		waf.sources.category.selectByKey(forums.categoryID,{onSuccess:function(evt){
-			waf.sources.category.serverRefresh({forceReload:true});
 		}});
 		
 	}});
@@ -484,68 +478,61 @@ forums.selectSpecificPost = function(postID,goToView){
 
 
 forums.refreshCategory = function(){
-	forums.forumTempID = waf.sources.forums.ID;
-	forums.threadTempID = waf.sources.topics.ID;
-	forums.postTempID = waf.sources.posts.ID;
+	forums.categoryTempID = waf.sources.category.ID;
+	forums.forumTempID = waf.sources.forum.ID;
+	forums.threadTempID = waf.sources.topic.ID;
+	forums.postTempID = waf.sources.post.ID;
 	
-	forums.forumListenerID = waf.sources.forums.addListener('onCollectionChange',function(ev){
-		if(ev.dataSource.length !== 0){
-			waf.sources.forums.selectByKey(forums.forumTempID);
-		}
-	});
 	
-	forums.threadListenerID = waf.sources.topics.addListener('onCollectionChange',function(ev2){
-		if(ev2.dataSource.length !== 0){
-			waf.sources.topics.selectByKey(forums.threadTempID);
-		}
-	});
-	
-	forums.postListenerID = waf.sources.posts.addListener('onCollectionChange',function(ev3){
-		if(ev3.dataSource.length !== 0){
-			waf.sources.posts.selectByKey(forums.postTempID);
-		}
-	});
-	
-	waf.sources.category.serverRefresh({forceReload:true,onSuccess:function(evt){
-	
+	waf.sources.category.all({keepOrderBy:true,onSuccess:function(evt){
+		waf.sources.category.selectByKey(forums.categoryTempID);
 	}});
 	
+	waf.sources.forum.query('category.ID == :1',forums.categoryTempID,{keepOrderBy:true,onSuccess:function(evt){
+		waf.sources.forum.selectByKey(forums.forumTempID);
+	}});
+	
+	waf.sources.topic.query('forum.ID == :1',forums.forumTempID,{keepOrderBy:true,onSuccess:function(evt){
+		waf.sources.topic.selectByKey(forums.threadTempID);
+	}});
+	
+	waf.sources.post.query('topic.ID == :1',forums.threadTempID,{keepOrderBy:true,onSuccess:function(evt){
+		waf.sources.post.selectByKey(forums.postTempID);
+	}});
 };
 
 forums.refreshForum = function(){
-	forums.threadTempID = waf.sources.topics.ID;
-	forums.postTempID = waf.sources.posts.ID;
 	
-	forums.threadListenerID = waf.sources.topics.addListener('onCollectionChange',function(ev){
-			
-		if(ev.dataSource.length !== 0){
-			waf.sources.topics.selectByKey(forums.threadTempID);
-		}
-	});
-	
-	forums.postListenerID = waf.sources.posts.addListener('onCollectionChange',function(ev2){
+	forums.categoryTempID = waf.sources.category.ID;
+	forums.forumTempID = waf.sources.forum.ID;
+	forums.threadTempID = waf.sources.topic.ID;
+	forums.postTempID = waf.sources.post.ID;
 		
-		if(ev2.dataSource.length !== 0){
-			waf.sources.posts.selectByKey(forums.postTempID);
-		}
-	});
-	
-	waf.sources.forums.serverRefresh({forceReload:true,onSuccess:function(evt){
-		
+	waf.sources.forum.query('category.ID == :1',forums.categoryTempID,{keepOrderBy:true,onSuccess:function(evt){
+		waf.sources.forum.selectByKey(forums.forumTempID);
 	}});
+	
+	waf.sources.topic.query('forum.ID == :1',forums.forumTempID,{keepOrderBy:true,onSuccess:function(evt){
+		waf.sources.topic.selectByKey(forums.threadTempID);
+	}});
+	
+	waf.sources.post.query('topic.ID == :1',forums.threadTempID,{keepOrderBy:true,onSuccess:function(evt){
+		waf.sources.post.selectByKey(forums.postTempID);
+	}});
+	
 };
 
 forums.refreshThread = function(){
-	forums.postTempID = waf.sources.posts.ID;
+	forums.forumTempID = waf.sources.forum.ID;
+	forums.threadTempID = waf.sources.topic.ID;
+	forums.postTempID = waf.sources.post.ID;
 	
-	forums.postListenerID = waf.sources.posts.addListener('onCollectionChange',function(ev){
-		if(ev.dataSource.length !== 0){
-			waf.sources.posts.selectByKey(forums.postTempID);
-		}
-	});
+	waf.sources.topic.query('forum.ID == :1',forums.forumTempID,{keepOrderBy:true,onSuccess:function(evt){
+		waf.sources.topic.selectByKey(forums.threadTempID);
+	}});
 	
-	waf.sources.topics.serverRefresh({forceReload:true,onSuccess:function(evt){
-		
+	waf.sources.post.query('topic.ID == :1',forums.threadTempID,{keepOrderBy:true,onSuccess:function(evt){
+		waf.sources.post.selectByKey(forums.postTempID);
 	}});
 };
 

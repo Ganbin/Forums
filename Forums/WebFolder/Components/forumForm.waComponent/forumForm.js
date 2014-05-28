@@ -29,12 +29,12 @@ function constructor (id) {
 	deleteForumBtn.click = function deleteForumBtn_click (event)// @startlock
 	{// @endlock
 		$$(getHtmlId("confirmForumDeleteDialog")).displayDialog();
-		$$(getHtmlId('confirmDeleteForumTxt')).setValue('Are you sure that you want delete this forum : "'+waf.sources.forums.title+'" ?');
+		$$(getHtmlId('confirmDeleteForumTxt')).setValue('Are you sure that you want delete this forum : "'+waf.sources.forum.title+'" ?');
 	};// @lock
 
 	button7.click = function button7_click (event)// @startlock
 	{// @endlock
-		sources.forums.removeCurrent({onSuccess:function(evt){
+		sources.forum.removeCurrent({onSuccess:function(evt){
 			sources.category.serverRefresh({forceReload:true});
 			$$(getHtmlId("confirmForumDeleteDialog")).closeDialog(); //ok dialog button button
 			$$(getHtmlId('errorDiv1')).setTextColor('green');
@@ -53,8 +53,8 @@ function constructor (id) {
 
 	forumFormBValid.click = function forumFormBValid_click (event)// @startlock
 	{// @endlock
-		if(sources.forums.title != null && sources.forums.title != ''){
-			sources.forums.save({onSuccess:function(evt){
+		if(sources.forum.title != null && sources.forum.title != ''){
+			sources.forum.save({onSuccess:function(evt){
 				sources.category.serverRefresh({forceReload:true});
 				$$(getHtmlId('errorDiv1')).setTextColor('green');
 				$$(getHtmlId('errorDiv1')).setValue('New forum saved!');
