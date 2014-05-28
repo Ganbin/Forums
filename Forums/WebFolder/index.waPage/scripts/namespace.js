@@ -342,7 +342,7 @@ forums.displayActionButtons = function(){
 		
 		displayMEDButtons();
 				
-		if(waf.sources.topics.closed === true){
+		if(waf.sources.topic.closed === true){
 			if($$('mainComp_closedImg') !== undefined){
 				$$('mainComp_closedImg').show();
 				$$('mainComp_resolvedImg').hide();
@@ -356,7 +356,7 @@ forums.displayActionButtons = function(){
 			forums.widgets.closeThreadBtn.hide();
 			forums.widgets.unCloseThreadBtn.show();
 			
-		}else if(waf.sources.topics.resolved === true){
+		}else if(waf.sources.topic.resolved === true){
 			if($$('mainComp_resolvedImg') !== undefined){
 				$$('mainComp_closedImg').hide();
 				$$('mainComp_resolvedImg').show();
@@ -366,7 +366,7 @@ forums.displayActionButtons = function(){
 			forums.widgets.unresolvedBtn.show();
 			forums.widgets.closeThreadBtn.show();
 			
-		}else if(waf.sources.topics.closed !== true || waf.sources.topics.resolved !== true){
+		}else if(waf.sources.topic.closed !== true || waf.sources.topic.resolved !== true){
 			if($$('mainComp_closedImg') !== undefined){
 				$$('mainComp_closedImg').hide();
 			}
@@ -385,7 +385,7 @@ forums.displayActionButtons = function(){
 		
 	}else{
 		
-		if(waf.sources.topics.closed === true){
+		if(waf.sources.topic.closed === true){
 			if($$('mainComp_closedImg') !== undefined){
 				$$('mainComp_closedImg').show();
 				$$('mainComp_resolvedImg').hide();
@@ -418,7 +418,7 @@ forums.displayActionButtons = function(){
 			
 		}
 		
-		if(waf.sources.topics.resolved === true){
+		if(waf.sources.topic.resolved === true){
 			if($$('mainComp_resolvedImg') !== undefined){
 				$$('mainComp_resolvedImg').show();
 			}
@@ -456,15 +456,15 @@ forums.selectSpecificPost = function(postID,goToView){
 			waf.sources.category.selectByKey(forums.categoryTempID);
 		}});
 		
-		waf.sources.forum.query('category.ID == :1',forums.categoryTempID,{onSuccess:function(evt){
+		waf.sources.forum.query('category.ID == :1',forums.categoryTempID,{keepOrderBy:true,onSuccess:function(evt){
 			waf.sources.forum.selectByKey(forums.forumTempID);
 		}});
 		
-		waf.sources.topic.query('forum.ID == :1',forums.forumTempID,{onSuccess:function(evt){
+		waf.sources.topic.query('forum.ID == :1',forums.forumTempID,{keepOrderBy:true,onSuccess:function(evt){
 			waf.sources.topic.selectByKey(forums.threadTempID);
 		}});
 		
-		waf.sources.post.query('topic.ID == :1',forums.threadTempID,{onSuccess:function(evt){
+		waf.sources.post.query('topic.ID == :1',forums.threadTempID,{keepOrderBy:true,onSuccess:function(evt){
 			waf.sources.post.selectByKey(forums.postTempID,{onSuccess:function(){
 				forums.widgets.tabViewNav.selectTab(forums.vGoToView);
 				forums.displayMenuBarItem();

@@ -38,17 +38,12 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	forums.forumTempID = 0;
 	forums.threadTempID = 0;
 	forums.postTempID = 0;
-	forums.forumListenerID = 0;
-	forums.threadListenerID = 0;
-	forums.postListenerID = 0;
 	
 	
 // @region namespaceDeclaration// @startlock
 	var postEvent = {};	// @dataSource
 	var searchBtn = {};	// @buttonImage
 	var categoryEvent = {};	// @dataSource
-	var topicsEvent = {};	// @dataSource
-	var forumsEvent = {};	// @dataSource
 	var matrixCategory = {};	// @matrix
 	var threadMovedDialog = {};	// @ModalDialog
 	var unresolvedBtn = {};	// @buttonImage
@@ -69,7 +64,6 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	var deleteBtn = {};	// @buttonImage
 	var messageItem = {};	// @container
 	var threadItem = {};	// @container
-	var postsEvent = {};	// @dataSource
 	var editBtn = {};	// @buttonImage
 	var addBtn = {};	// @buttonImage
 	var forumItem = {};	// @container
@@ -110,16 +104,6 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 
 	};// @lock
 
-	topicsEvent.onCurrentElementChange = function topicsEvent_onCurrentElementChange (event)// @startlock
-	{// @endlock
-
-	};// @lock
-
-	forumsEvent.onCurrentElementChange = function forumsEvent_onCurrentElementChange (event)// @startlock
-	{// @endlock
-		
-	};// @lock
-
 	matrixCategory.onChildrenDraw = function matrixCategory_onChildrenDraw (event)// @startlock
 	{// @endlock
 		if(event.source.currentUserUnread != null && event.source.currentUserUnread != 0){
@@ -136,22 +120,22 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 
 	unresolvedBtn.click = function unresolvedBtn_click (event)// @startlock
 	{// @endlock
-		if(waf.sources.topics.resolved === true){
+		if(waf.sources.topic.resolved === true){
 			var message = 'Do you want to set this message as unresolved?';
-			var toResolve = false;
+			forums.toResolve = false;
 		}else{
 			var message = 'Do you want to set this message as resolved?';
-			var toResolve = true;
+			forums.toResolve = true;
 		}
 		
 		alertify.confirm(message, function (e) {
 		    if (e) {
-		        waf.sources.topics.resolve(toResolve,{onSuccess:function(evt){
+		        waf.sources.topic.resolve(forums.toResolve,{onSuccess:function(evt){
 		        	
-		        	//waf.sources.topics.serverRefresh({forceReload:true,onSuccess:function(evt){
-		        		//forums.displayActionButtons();
+		        	waf.sources.topic.serverRefresh({forceReload:true,onSuccess:function(evt){
+		        		forums.displayActionButtons();
 		        		forums.refreshForum();
-		        	//}});
+		        	}});
 		        	
 		    	}});
 		    } else {
@@ -188,13 +172,13 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	unCloseThreadBtn.click = function unCloseThreadBtn_click (event)// @startlock
 	{// @endlock
 		var message = 'Do you want to set this message as not close?';
-		var toClose = false;
+		forums.toClose = false;
 		
 		alertify.confirm(message, function (e) {
 		    if (e) {
-		        waf.sources.topics.close(toClose,{onSuccess:function(evt){
+		        waf.sources.topic.close(forums.toClose,{onSuccess:function(evt){
 		        	
-		        	waf.sources.topics.serverRefresh({forceReload:true,onSuccess:function(evt){
+		        	waf.sources.topic.serverRefresh({forceReload:true,onSuccess:function(evt){
 		        		forums.displayActionButtons();
 		        		forums.refreshForum();
 		        	}});
@@ -213,13 +197,13 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	closeThreadBtn.click = function closeThreadBtn_click (event)// @startlock
 	{// @endlock
 		var message = 'Do you want to set this message as close?';
-		var toClose = true;
+		forums.toClose = true;
 		
 		alertify.confirm(message, function (e) {
 		    if (e) {
-		        waf.sources.topics.close(toClose,{onSuccess:function(evt){
+		        waf.sources.topic.close(forums.toClose,{onSuccess:function(evt){
 		        	
-		        	waf.sources.topics.serverRefresh({forceReload:true,onSuccess:function(evt){
+		        	waf.sources.topic.serverRefresh({forceReload:true,onSuccess:function(evt){
 		        		forums.displayActionButtons();
 		        		forums.refreshForum();
 		        	}});
@@ -232,18 +216,21 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 
 	resolvedBtn.click = function resolvedBtn_click (event)// @startlock
 	{// @endlock
-		if(waf.sources.topics.resolved === true){
+		if(waf.sources.topic.resolved === true){
 			var message = 'Do you want to set this message as unresolved?';
-			var toResolve = false;
+			forums.toResolve = false;
 		}else{
 			var message = 'Do you want to set this message as resolved?';
-			var toResolve = true;
+			forums.toResolve = true;
 		}
 		
 		alertify.confirm(message, function (e) {
 		    if (e) {
-		        waf.sources.topics.resolve(toResolve,{onSuccess:function(evt){
-		        	forums.refreshForum();
+		        waf.sources.topic.resolve(forums.toResolve,{onSuccess:function(evt){
+		        	waf.sources.topic.serverRefresh({forceReload:true,onSuccess:function(evt){
+		        		forums.displayActionButtons();
+		        		forums.refreshForum();
+		        	}});
 		    	}});
 		    } else {
 		        // user clicked "cancel"
@@ -369,29 +356,9 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 
 	threadItem.click = function threadItem_click (event)// @startlock
 	{// @endlock
-		waf.sources.post.query('topic.ID == :1',waf.sources.topic.ID,{onSuccess:function(evt){
+		waf.sources.post.query('topic.ID == :1',waf.sources.topic.ID,{keepOrderBy:true,onSuccess:function(evt){
 			forums.goToMessageView();
 		}});
-	};// @lock
-
-	postsEvent.onCurrentElementChange = function postsEvent_onCurrentElementChange (event)// @startlock
-	{// @endlock
-		
-		if(event.eventKind === 'onCurrentElementChange'){
-			if(forums.widgets.tabViewNav.getSelectedTab().index === 4){
-				
-				//forums.displayActionButtons();
-				
-				if(waf.sources.post.getCurrentElement() !== null && typeof waf.sources.mainComp_post != 'undefined'){
-					var newCol = ds.Post.newCollection();
-					newCol.add(waf.sources.post.getCurrentElement());
-					waf.sources.mainComp_post.setEntityCollection(newCol);
-					waf.sources.post.viewPost();
-				}
-			}
-		}else{
-			
-		}			
 	};// @lock
 
 	editBtn.click = function editBtn_click (event)// @startlock
@@ -418,7 +385,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	forumItem.click = function forumItem_click (event)// @startlock
 	{// @endlock
 		if(waf.sources.forum.hasAccess('read')){
-			waf.sources.topic.query('forum.ID == :1',waf.sources.forum.ID,{onSuccess:function(evt){
+			waf.sources.topic.query('forum.ID == :1',waf.sources.forum.ID,{keepOrderBy:true,onSuccess:function(evt){
 				$('#menuMessages').hide();
 				forums.goToThreadView(false);
 			}});
@@ -453,7 +420,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 
 	categoryItem.click = function categoryItem_click (event)// @startlock
 	{// @endlock
-		waf.sources.forum.query('category.ID == :1',waf.sources.category.ID,{onSuccess:function(evt){
+		waf.sources.forum.query('category.ID == :1',waf.sources.category.ID,{keepOrderBy:true,onSuccess:function(evt){
 			$('#menuThread').hide();
 			$('#menuMessages').hide();
 			forums.goToForumView(false);
@@ -545,8 +512,6 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	WAF.addListener("post", "onCurrentElementChange", postEvent.onCurrentElementChange, "WAF");
 	WAF.addListener("searchBtn", "click", searchBtn.click, "WAF");
 	WAF.addListener("category", "onCurrentElementChange", categoryEvent.onCurrentElementChange, "WAF");
-	WAF.addListener("topics", "onCurrentElementChange", topicsEvent.onCurrentElementChange, "WAF");
-	WAF.addListener("forums", "onCurrentElementChange", forumsEvent.onCurrentElementChange, "WAF");
 	WAF.addListener("matrixCategory", "onChildrenDraw", matrixCategory.onChildrenDraw, "WAF");
 	WAF.addListener("threadMovedDialog", "onValidClick", threadMovedDialog.onValidClick, "WAF");
 	WAF.addListener("unresolvedBtn", "click", unresolvedBtn.click, "WAF");
@@ -565,7 +530,6 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	WAF.addListener("categoryItem", "mouseover", categoryItem.mouseover, "WAF");
 	WAF.addListener("loginBtn", "click", loginBtn.click, "WAF");
 	WAF.addListener("passwordResetDialog", "onValidClick", passwordResetDialog.onValidClick, "WAF");
-	WAF.addListener("posts", "oncontentHTMLAttributeChange", postsEvent.oncontentHTMLAttributeChange, "WAF", "contentHTML");
 	WAF.addListener("userPrefBtn", "click", userPrefBtn.click, "WAF");
 	WAF.addListener("alreadySubscribedDialog", "onValidClick", alreadySubscribedDialog.onValidClick, "WAF");
 	WAF.addListener("subscriptionOkDialog", "onValidClick", subscriptionOkDialog.onValidClick, "WAF");
@@ -576,7 +540,6 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	WAF.addListener("deleteBtn", "click", deleteBtn.click, "WAF");
 	WAF.addListener("messageItem", "click", messageItem.click, "WAF");
 	WAF.addListener("threadItem", "click", threadItem.click, "WAF");
-	WAF.addListener("posts", "onCurrentElementChange", postsEvent.onCurrentElementChange, "WAF");
 	WAF.addListener("editBtn", "click", editBtn.click, "WAF");
 	WAF.addListener("addBtn", "click", addBtn.click, "WAF");
 	WAF.addListener("forumItem", "click", forumItem.click, "WAF");
