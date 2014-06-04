@@ -81,8 +81,10 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 			if(forums.widgets.tabViewNav.getSelectedTab().index === 4){
 				
 				//forums.displayActionButtons();
-				
+				// When the current element change, 
 				if(waf.sources.post.getCurrentElement() !== null && typeof waf.sources.mainComp_post != 'undefined'){
+					// refresh the local post datasource form the mainComp component (displayMessage.waComponent)
+					// This is to be shure to always display the selected post
 					var newCol = ds.Post.newCollection();
 					newCol.add(waf.sources.post.getCurrentElement());
 					waf.sources.mainComp_post.setEntityCollection(newCol);

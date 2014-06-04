@@ -452,23 +452,31 @@ forums.selectSpecificPost = function(postID,goToView){
 		forums.threadTempID = evt.entity.topic.relEntity.ID.value;
 		forums.postTempID = evt.entity.ID.value;
 		
+		// Refresh the category datasource and get all the entities
 		waf.sources.category.all({onSuccess:function(evt){
+			// Then select the correct entity with the stored category ID
 			waf.sources.category.selectByKey(forums.categoryTempID);
 		}});
 		
+		// query the forum datasource to get al the forums who belongs to the category
 		waf.sources.forum.query('category.ID == :1',forums.categoryTempID,{keepOrderBy:true,onSuccess:function(evt){
+			// Then select the correct forum
 			waf.sources.forum.selectByKey(forums.forumTempID);
 		}});
 		
+		// query the topic datasource to get al the topics who belongs to the forum
 		waf.sources.topic.query('forum.ID == :1',forums.forumTempID,{keepOrderBy:true,onSuccess:function(evt){
+			// Then select the correct topic
 			waf.sources.topic.selectByKey(forums.threadTempID);
 		}});
 		
+		// query the post datasource to get al the posts who belongs to the topic
 		waf.sources.post.query('topic.ID == :1',forums.threadTempID,{keepOrderBy:true,onSuccess:function(evt){
+			// Then select the correct post
 			waf.sources.post.selectByKey(forums.postTempID,{onSuccess:function(){
-				forums.widgets.tabViewNav.selectTab(forums.vGoToView);
-				forums.displayMenuBarItem();
-				forums.displayMessage();
+				forums.widgets.tabViewNav.selectTab(forums.vGoToView); // Select the view of the tabViewNav widget
+				forums.displayMenuBarItem(); // Display the menu bar items
+				forums.displayMessage(); // Display the message
 			}});
 			
 		}});
@@ -476,8 +484,11 @@ forums.selectSpecificPost = function(postID,goToView){
 	}});
 };
 
-
+// This methods allow you to refresh the category level.
+// That mean when you use this method you refresh all the sublevel as well (category->forums->topics->posts)
 forums.refreshCategory = function(){
+	
+	// Assign to the globalNamespace all the ID's
 	forums.categoryTempID = waf.sources.category.ID;
 	forums.forumTempID = waf.sources.forum.ID;
 	forums.threadTempID = waf.sources.topic.ID;
@@ -501,6 +512,8 @@ forums.refreshCategory = function(){
 	}});
 };
 
+// This methods allow you to refresh the forum level.
+// That mean when you use this method you refresh all the sublevel as well (forum->topics->posts)
 forums.refreshForum = function(){
 	
 	forums.categoryTempID = waf.sources.category.ID;
@@ -522,6 +535,8 @@ forums.refreshForum = function(){
 	
 };
 
+// This methods allow you to refresh the thread level.
+// That mean when you use this method you refresh all the sublevel as well (topic->posts)
 forums.refreshThread = function(){
 	forums.forumTempID = waf.sources.forum.ID;
 	forums.threadTempID = waf.sources.topic.ID;
@@ -536,11 +551,13 @@ forums.refreshThread = function(){
 	}});
 };
 
+// This method allow to close the centerComp and set the height to 0 so that the component don't override the application
 forums.closeCenterComp = function(comp){
 	comp.removeComponent();
 	comp.setHeight(0);
 };
 
+// This methods prompt an dialog to enter the url when enter a post.
 forums.promptUrl = function(message,placeholder){
 	
 	alertify.prompt(message, function (e, str) {
@@ -548,9 +565,11 @@ forums.promptUrl = function(message,placeholder){
 	    
 	    if (e) {
 	    	// user clicked "ok"
-	    	if(str !== '' && forums.isURL(str) && RPCUtils.testUrl(str)){
+	    	if(str !== '' && forums.isURL(str) && RPCUtils.testUrl(str)){ // If the string is not empty and the url is valid
+	    		// Then insert the url with the appropriate tag in the post
 				forums.insertTag('[url]','[/url]','centerComp_messageContentTxt','url',str);
 			}else{
+				// else prompt again the dialog
 				forums.promptUrl('Enter a valid URL.','Please give a valid URL (E.g. http://www.ajar.ch).');
 			}
 	    } else {
@@ -564,7 +583,6 @@ Function qui permet d'inserer un tag dans un textarea
 
 Parametre : starTag : le tag de début. endTag : le tag de fin. textareaId : l'id du textarea dans lequelle on veut inserer le tag. tagType : pour des cas plus complexe qu'une simple insertion de tag.
 
-Probleme : le prompt qui demande certaine infos fait bugger le rendu final.
 **********/
 forums.insertTag = function(startTag, endTag, textareaId, tagType,argumentValue) {
 	//debugger;
@@ -624,7 +642,10 @@ forums.isURL = function(url){
 	return regexp.test(url);
 };
 
-
+// This method is usefull to check the password safety and display a feedback message
+// Params : pwd : the password
+//			feedback : id of the feedback widget
+//			safetypwd : id of the feedback image widget
 forums.check_password_safety=function(pwd,feedback,safetypwd){
 
 	var msg = "";
@@ -663,6 +684,7 @@ forums.check_password_safety=function(pwd,feedback,safetypwd){
 	password_info.innerHTML = msg ;
 };
 
+// This method calculate the password entropy
 forums.check_password_entropy = function(password) {
 	var alphabet = 0, lower = false, upper = false, numbers = false, symbols1 = false, symbols2 = false, other = '', c ;
 	
@@ -700,6 +722,12 @@ forums.check_password_entropy = function(password) {
 
 };
 
+// This method check if two password are the same
+// Params :	pwd1 : password 1
+//			pwd2 : password 2
+//			feedback : ID of the widget to display the feedback
+//			bvalid : ID of the validation button to enable if the 2 passwords are equal
+//			samepwd : ID of the image to show if the 2 password are equal
 forums.check_same_password=function(pwd1,pwd2,feedback,bvalid,safetypwd,samepwd){
 	if ( pwd1 == pwd2 ){
 		$$(bvalid).enable();
@@ -715,6 +743,7 @@ forums.check_same_password=function(pwd1,pwd2,feedback,bvalid,safetypwd,samepwd)
 
 };
 
+// Return a full upper case
 forums.capitalize=function(str){
        return str.replace( /(^|\s)([a-z])/g , function(m,p1,p2){ return p1+p2.toUpperCase(); } );
       };

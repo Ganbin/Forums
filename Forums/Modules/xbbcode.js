@@ -152,7 +152,7 @@ var XBBCODE = (function() {
             closeTag: function(params,content) {
                 return '</span>';
             }
-        },
+        },/*
         "img": {
             openTag: function(params,content) {
             
@@ -169,7 +169,7 @@ var XBBCODE = (function() {
                 return '';
             },
             displayContent: false
-        },/*
+        },
         "list": {
             openTag: function(params,content) {
                 return '<ul>';
@@ -554,6 +554,7 @@ var XBBCODE = (function() {
     // public functions
     // -----------------------------------------------------------------------------
     
+    // 2014 edition : adding the removeTag params to remove all the tags on the text if necessary
     me.process = function(config,removeTag) {
     
         var ret = {html: "", error: false},
@@ -602,6 +603,7 @@ var XBBCODE = (function() {
         if (config.removeMisalignedTags) {
             ret.html = ret.html.replace(/\[.*?\]/g,"");
         }
+        
         if (config.addInLineBreaks && removeTag !== true) {
             ret.html = ret.html.replace(/\r\n/g, "\n");
             ret.html = ret.html.replace(/(\r|\n)/g, "<br />");
